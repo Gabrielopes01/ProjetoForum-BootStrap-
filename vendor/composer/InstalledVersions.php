@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '7593854e88b6e353c769e362bf78c88c0e3220ba',
+    'reference' => 'cc0f8a91b348aaf6595c9ce7493b1f8a94654351',
     'name' => 'hcodebr/ecommerce',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '7593854e88b6e353c769e362bf78c88c0e3220ba',
+      'reference' => 'cc0f8a91b348aaf6595c9ce7493b1f8a94654351',
     ),
     'rain/raintpl' => 
     array (
