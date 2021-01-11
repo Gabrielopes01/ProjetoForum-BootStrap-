@@ -51,9 +51,9 @@ li a {
 
 </style>
     <body>
-
 <ul>
   <li class="titulo">Gerenciamento de Usuários</li>
+  <li><a href="/" style="background-color: black; color:white;">Home</a></li>
 </ul>
 
 

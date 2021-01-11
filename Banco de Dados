@@ -1,0 +1,18 @@
+DROP DATABASE Forum;
+CREATE DATABASE Forum;
+USE Forum;
+
+CREATE TABLE Usuario(
+    Id INT PRIMARY KEY IDENTITY,
+    Nome VARCHAR(200) NOT NULL,
+    Email VARCHAR(200) NOT NULL,
+    Data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Senha VARCHAR(900) NOT NULL
+);
+
+
+INSERT Usuario VALUES
+('Gabriel', 'gabrielperinotto@hotmail.com', DEFAULT, 'senhateste');
+
+SELECT *
+FROM Usuario;
