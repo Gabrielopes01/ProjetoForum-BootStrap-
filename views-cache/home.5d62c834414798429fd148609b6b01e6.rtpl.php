@@ -11,20 +11,20 @@
                 <th>Criação</th>
             </thead>
             <tbody>
+                <?php $counter1=-1;  if( isset($usuarios) && ( is_array($usuarios) || $usuarios instanceof Traversable ) && sizeof($usuarios) ) foreach( $usuarios as $key1 => $value1 ){ $counter1++; ?>
                 <tr>
-                    <?php $counter1=-1;  if( isset($usuarios) && ( is_array($usuarios) || $usuarios instanceof Traversable ) && sizeof($usuarios) ) foreach( $usuarios as $key1 => $value1 ){ $counter1++; ?>
                     <td><?php echo htmlspecialchars( $value1["Nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["Email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo formatDate($value1["Data"]); ?></td>
-                    <td><a href="" class="btn-floating yellow"></a></td>
-                    <td><a href="" class="btn-floating red"></a></td>
-                    <?php } ?>
+                    <td><a href="/admin/edit/<?php echo htmlspecialchars( $value1["Id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn-floating yellow"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/admin/delete/<?php echo htmlspecialchars( $value1["Id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn-floating red"><i class="material-icons">delete</i></a></td>
                 </tr>
+                <?php } ?>
             </tbody>
 
         </table>
 <hr>
 
-        <a href="" class="btn" style="float: right">Adicionar Usuário</a>
+        <a href="/admin/add" class="btn" style="float: right"><i class="material-icons">add_circle</i> Adicionar Usuário</a>
     </div>
 </div>

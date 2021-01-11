@@ -29,11 +29,36 @@ $app->get("/admin", function(){
 
     $sql = new Sql();
 
-    $resultado = $sql->select("SELECT Nome,Email,Data FROM Usuario");
+    $resultado = $sql->select("SELECT * FROM Usuario");
 
     $page->setTpl('home',[
         "usuarios"=>$resultado
     ]);
+
+});
+
+
+$app->get("/admin/add", function(){
+
+    $page = new PageAdmin();
+
+    $page->setTpl('add');
+
+});
+
+$app->post("/admin/add", function(){
+
+    $sql = new Sql();
+
+
+    $sql->query("INSERT INTO Usuario (Nome, Email, Senha) VALUES (:nome,:email,:senha)", array(
+        ":nome"=>$_POST["nome"],
+        ":email"=>$_POST["email"],
+        ":senha"=>$_POST["senha"]
+    ));
+
+    header("Location: /admin");
+    exit;
 
 });
 

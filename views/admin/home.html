@@ -11,20 +11,20 @@
                 <th>Criação</th>
             </thead>
             <tbody>
+                {loop="$usuarios"}
                 <tr>
-                    {loop="$usuarios"}
                     <td>{$value.Nome}</td>
                     <td>{$value.Email}</td>
                     <td>{function="formatDate($value.Data)"}</td>
-                    <td><a href="" class="btn-floating yellow"></a></td>
-                    <td><a href="" class="btn-floating red"></a></td>
-                    {/loop}
+                    <td><a href="/admin/edit/{$value.Id}" class="btn-floating yellow"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/admin/delete/{$value.Id}" class="btn-floating red"><i class="material-icons">delete</i></a></td>
                 </tr>
+                {/loop}
             </tbody>
 
         </table>
 <hr>
 
-        <a href="" class="btn" style="float: right">Adicionar Usuário</a>
+        <a href="/admin/add" class="btn" style="float: right"><i class="material-icons">add_circle</i> Adicionar Usuário</a>
     </div>
 </div>
