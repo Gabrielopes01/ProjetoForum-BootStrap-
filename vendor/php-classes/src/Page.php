@@ -40,4 +40,19 @@ class Page {
 
     }
 
+    public function setTpl($name, $data = array(), $returnHTML = false){
+
+        $this->setData($data);
+
+        return $this->tpl->draw($name, $returnHTML);
+
+    }
+
+
+    public function __destruct(){
+
+        $this->tpl->draw("footer");
+
+    }
+
 }
