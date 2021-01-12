@@ -29,7 +29,7 @@ $app->get("/admin", function(){
 
     $sql = new Sql();
 
-    $resultado = $sql->select("SELECT * FROM Usuario");
+    $resultado = $sql->select("SELECT TOP 10 * FROM Usuario");
 
     $page->setTpl('home',[
         "usuarios"=>$resultado,
@@ -37,7 +37,6 @@ $app->get("/admin", function(){
     ]);
 
 });
-
 
 $app->get("/admin/add", function(){
 
@@ -48,6 +47,7 @@ $app->get("/admin/add", function(){
     ]);
 
 });
+
 
 $app->post("/admin/add", function(){
 
@@ -60,15 +60,35 @@ $app->post("/admin/add", function(){
         exit;
     }
 
+    if($_POST["senha"] !== $_POST["csenha"]){
+        getError("Senhas não Conferem");
+        exit;
+    }
+
     $sql->query("INSERT INTO Usuario (Nome, Email, Senha) VALUES (:nome,:email,:senha)", array(
         ":nome"=>$_POST["nome"],
         ":email"=>$_POST["email"],
-        ":senha"=>$_POST["senha"]
+        ":senha"=>password_hash($_POST["senha"], PASSWORD_DEFAULT)
     ));
 
 
     getSucess("Usuário Cadastrado com Sucesso");
     exit;
+
+});
+
+$app->get("/admin/:message", function($message){
+
+    $page = new PageAdmin();
+
+    $sql = new Sql();
+
+    $resultado = $sql->select("SELECT TOP 10 * FROM Usuario");
+
+    $page->setTpl('home',[
+        "usuarios"=>$resultado,
+        "message"=>$message
+    ]);
 
 });
 
@@ -97,7 +117,31 @@ $app->post("/admin/edit/:id", function($id){
         ":id"=>$_POST["id"]
     ));
 
-    getSucess("Usuário Alterado com Sucesso");
+//    getSucess("Usuário Alterado com Sucesso");
+    header("Location: /admin/Usuário Alterado com Sucesso");
+    exit;
+
+});
+
+
+$app->get("/admin/delete/:id", function($id){
+
+    $page = new PageAdmin();
+
+    $page->setTpl('delete');
+
+});
+
+$app->post("/admin/delete/:id", function($id){
+
+    $sql = new Sql();
+
+    $sql->query("DELETE FROM Usuario WHERE Id = :id", array(
+        ":id"=>$id
+    ));
+
+//    getSucess("Usuário Deletado com Sucesso");
+    header("Location: /admin/Usuário Deletado com Sucesso");
     exit;
 
 });

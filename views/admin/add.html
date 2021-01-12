@@ -22,6 +22,10 @@
                 <input type="password" name="senha" id="senha">
                 <label for="senha">Senha</label>
             </div>
+            <div class="input-field col s12">
+                <input type="password" name="csenha" id="csenha">
+                <label for="csenha">Confirmar Senha</label>
+            </div>
 
 
 <hr>
