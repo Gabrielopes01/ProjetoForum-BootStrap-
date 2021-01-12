@@ -7,11 +7,13 @@ Use \Slim\Slim;
 Use \Classes\Page;
 Use \Classes\PageAdmin;
 Use \Classes\Sql;
+Use \Classes\User;
 
 $app = new Slim();
 
 $app->config('debug', true);
 
+//Home de Site
 $app->get("/", function(){
 
     $page = new Page();
@@ -22,7 +24,7 @@ $app->get("/", function(){
 
 });
 
-
+//Home da Parte Administrativa
 $app->get("/admin", function(){
 
     $page = new PageAdmin();
@@ -38,6 +40,7 @@ $app->get("/admin", function(){
 
 });
 
+//Adicioando um novo usuário
 $app->get("/admin/add", function(){
 
     $page = new PageAdmin();
@@ -77,6 +80,7 @@ $app->post("/admin/add", function(){
 
 });
 
+//Mensagens na Tela
 $app->get("/admin/:message", function($message){
 
     $page = new PageAdmin();
@@ -92,13 +96,14 @@ $app->get("/admin/:message", function($message){
 
 });
 
-
+//Editar usuário
 $app->get("/admin/edit/:id", function($id){
 
     $page = new PageAdmin();
 
-    $resultado = selectById($id);
+    $user = new User();
 
+    $resultado = $user->getUserById($id);
 
     $page->setTpl('edit', [
         "usuario"=>$resultado
@@ -123,7 +128,7 @@ $app->post("/admin/edit/:id", function($id){
 
 });
 
-
+//Deletar Usuário
 $app->get("/admin/delete/:id", function($id){
 
     $page = new PageAdmin();
