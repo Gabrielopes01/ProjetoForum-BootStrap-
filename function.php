@@ -15,11 +15,11 @@ function formatDate($date){
 }
 
 
-function getError($error){
+function getError($error, $tpl = 'add'){
 
     $page = new PageAdmin();
 
-    $page->setTpl('add', [
+    $page->setTpl($tpl, [
         "erro"=>$error
     ]);
 }

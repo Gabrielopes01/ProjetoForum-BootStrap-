@@ -18,9 +18,7 @@ $app->get("/", function(){
 
     $page = new Page();
 
-    $page->setTpl('home', [
-        "nome"=>"Gabriel"
-    ]);
+    $page->setTpl('home');
 
 });
 
@@ -65,6 +63,11 @@ $app->post("/admin/add", function(){
 
     if($_POST["senha"] !== $_POST["csenha"]){
         getError("Senhas não Conferem");
+        exit;
+    }
+
+    if(User::verifyEmail($_POST["email"])){
+        getError("Email já Cadastrado");
         exit;
     }
 
@@ -148,6 +151,23 @@ $app->post("/admin/delete/:id", function($id){
 //    getSucess("Usuário Deletado com Sucesso");
     header("Location: /admin/Usuário Deletado com Sucesso");
     exit;
+
+});
+
+
+$app->get("/login", function(){
+
+    $page = new PageAdmin();
+
+    $page->setTpl('login', [
+        'erro'=>""
+    ]);
+
+});
+
+$app->post("/login", function(){
+
+    User::verifyLogin($_POST["email"],$_POST["senha"]);
 
 });
 
