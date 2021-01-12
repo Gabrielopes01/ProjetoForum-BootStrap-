@@ -1,6 +1,7 @@
 <?php
 
 namespace Classes;
+require_once("function.php");
 
 Use \Classes\Sql;
 
@@ -29,7 +30,11 @@ class User{
 
         if(count($resultado) > 0){
             if(password_verify($password, $resultado[0]["Senha"])){
-                echo "Login Feito com sucesso";
+
+                $_SESSION['nome'] = $resultado[0]["Nome"];
+
+                login($resultado[0]["Nome"]);
+
             } else {
                 getError("Usuário e/ou Senha inválidos", 'login');
                 exit;
@@ -51,6 +56,12 @@ class User{
         }else{
             return false;
         }
+
+    }
+
+    public static function logout(){
+
+        $_SESSION['nome'] = "";
 
     }
 

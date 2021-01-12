@@ -41,5 +41,17 @@ function getSucess($message){
 }
 
 
+function login($name){
+
+    $page = new Page();
+
+    $page->setTpl('home', [
+        "nome"=>$name
+    ]);
+
+}
+
+
+
 
 ?>

@@ -57,5 +57,6 @@ li a {
   <li class="titulo">Forum CRM</li>
   <li><a href="/admin" style="background-color: black; color:white;">Admin</a></li>
   <li><a href="/login" style="background-color: black; color:white;">Login</a></li>
+  <li><a href="/logout" style="background-color: black; color:white;">Logout</a></li>
 </ul>
 

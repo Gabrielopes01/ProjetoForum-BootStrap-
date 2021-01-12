@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once("vendor/autoload.php");
 require_once("function.php");
@@ -9,6 +10,7 @@ Use \Classes\PageAdmin;
 Use \Classes\Sql;
 Use \Classes\User;
 
+
 $app = new Slim();
 
 $app->config('debug', true);
@@ -18,7 +20,9 @@ $app->get("/", function(){
 
     $page = new Page();
 
-    $page->setTpl('home');
+    $page->setTpl('home', [
+        "nome"=>$_SESSION['nome']
+    ]);
 
 });
 
@@ -168,6 +172,16 @@ $app->get("/login", function(){
 $app->post("/login", function(){
 
     User::verifyLogin($_POST["email"],$_POST["senha"]);
+
+
+});
+
+$app->get("/logout", function(){
+
+    User::logout();
+
+    header("Location: /");
+    exit;
 
 });
 
