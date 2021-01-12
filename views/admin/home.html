@@ -23,8 +23,8 @@
                     <td>{$value.Nome}</td>
                     <td>{$value.Email}</td>
                     <td>{function="formatDate($value.Data)"}</td>
-                    <td><a href="/admin/edit/{$value.Id}" class="btn-floating yellow"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/admin/delete/{$value.Id}" class="btn-floating red"><i class="material-icons">delete</i></a></td>
+                    <td><a href="/admin/edit/{$value.Id}" class="btn yellow"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/admin/delete/{$value.Id}" class="btn red"><i class="material-icons">delete</i></a></td>
                 </tr>
                 {/loop}
             </tbody>

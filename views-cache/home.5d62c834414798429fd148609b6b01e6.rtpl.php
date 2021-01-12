@@ -23,8 +23,8 @@
                     <td><?php echo htmlspecialchars( $value1["Nome"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["Email"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo formatDate($value1["Data"]); ?></td>
-                    <td><a href="/admin/edit/<?php echo htmlspecialchars( $value1["Id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn-floating yellow"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/admin/delete/<?php echo htmlspecialchars( $value1["Id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn-floating red"><i class="material-icons">delete</i></a></td>
+                    <td><a href="/admin/edit/<?php echo htmlspecialchars( $value1["Id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn yellow"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/admin/delete/<?php echo htmlspecialchars( $value1["Id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="btn red"><i class="material-icons">delete</i></a></td>
                 </tr>
                 <?php } ?>
             </tbody>
