@@ -32,7 +32,8 @@ $app->get("/admin", function(){
     $resultado = $sql->select("SELECT * FROM Usuario");
 
     $page->setTpl('home',[
-        "usuarios"=>$resultado
+        "usuarios"=>$resultado,
+        "message"=>""
     ]);
 
 });
@@ -42,7 +43,9 @@ $app->get("/admin/add", function(){
 
     $page = new PageAdmin();
 
-    $page->setTpl('add');
+    $page->setTpl('add', [
+        "erro"=>""
+    ]);
 
 });
 
@@ -50,6 +53,12 @@ $app->post("/admin/add", function(){
 
     $sql = new Sql();
 
+    $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
+
+    if (!preg_match($checkEmail, $_POST["email"])) {
+        getError("Email Invalido");
+        exit;
+    }
 
     $sql->query("INSERT INTO Usuario (Nome, Email, Senha) VALUES (:nome,:email,:senha)", array(
         ":nome"=>$_POST["nome"],
@@ -57,7 +66,38 @@ $app->post("/admin/add", function(){
         ":senha"=>$_POST["senha"]
     ));
 
-    header("Location: /admin");
+
+    getSucess("Usuário Cadastrado com Sucesso");
+    exit;
+
+});
+
+
+$app->get("/admin/edit/:id", function($id){
+
+    $page = new PageAdmin();
+
+    $resultado = selectById($id);
+
+
+    $page->setTpl('edit', [
+        "usuario"=>$resultado
+    ]);
+
+});
+
+$app->post("/admin/edit/:id", function($id){
+
+    $sql = new Sql();
+
+
+    $sql->query("UPDATE Usuario SET Nome = :nome, Email = :email WHERE Id = :id", array(
+        ":nome"=>$_POST["nome"],
+        ":email"=>$_POST["email"],
+        ":id"=>$_POST["id"]
+    ));
+
+    getSucess("Usuário Alterado com Sucesso");
     exit;
 
 });

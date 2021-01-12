@@ -1,4 +1,10 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><?php if( $erro != '' ){ ?>
+<script>
+    window.onload = function(){
+        M.toast({html: '<?php echo htmlspecialchars( $erro, ENT_COMPAT, 'UTF-8', FALSE ); ?>'});
+    }
+</script>
+<?php } ?>
 
 <div class="row">
     <div class="col s12 m6 push-m3">
@@ -16,7 +22,7 @@
                 <input type="password" name="senha" id="senha">
                 <label for="senha">Senha</label>
             </div>
-        
+
 
 <hr>
         <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Adicionar</button>

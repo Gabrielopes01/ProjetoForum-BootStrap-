@@ -1,4 +1,11 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><?php if( $message != '' ){ ?>
+<script>
+    window.onload = function(){
+        M.toast({html: '<?php echo htmlspecialchars( $message, ENT_COMPAT, 'UTF-8', FALSE ); ?>'});
+    }
+</script>
+<?php } ?>
+
 <div class="row">
     <div class="col s12 m6 push-m3">
 
