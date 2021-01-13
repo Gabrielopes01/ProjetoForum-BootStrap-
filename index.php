@@ -39,7 +39,7 @@ $app->get("/admin", function(){
 
     $page->setTpl('home',[
         "usuarios"=>$resultado,
-        "message"=>""
+        "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:''
     ]);
 
 });
@@ -50,7 +50,7 @@ $app->get("/admin/add", function(){
     $page = new PageAdmin();
 
     $page->setTpl('add', [
-        "erro"=>""
+        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:''
     ]);
 
 });
@@ -63,17 +63,20 @@ $app->post("/admin/add", function(){
     $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
 
     if (!preg_match($checkEmail, $_POST["email"])) {
-        getError("Email Invalido");
+        $_SESSION['mensagem'] = "Email Inválido";
+        header("Location: /admin/add");
         exit;
     }
 
     if($_POST["senha"] !== $_POST["csenha"]){
-        getError("Senhas não Conferem");
+        $_SESSION['mensagem'] = "Senhas não Conferem";
+        header("Location: /admin/add");
         exit;
     }
 
     if(User::verifyEmail($_POST["email"])){
-        getError("Email já Cadastrado");
+        $_SESSION['mensagem'] = "Email ja Cadastrado";
+        header("Location: /admin/add");
         exit;
     }
 
@@ -84,24 +87,9 @@ $app->post("/admin/add", function(){
     ));
 
 
-    getSucess("Usuário Cadastrado com Sucesso");
+    $_SESSION['mensagem'] = "Usuário Cadastrado com Sucesso";
+    header("Location: /admin");
     exit;
-
-});
-
-//Mensagens na Tela
-$app->get("/admin/:message", function($message){
-
-    $page = new PageAdmin();
-
-    $sql = new Sql();
-
-    $resultado = $sql->select("SELECT TOP 10 * FROM Usuario");
-
-    $page->setTpl('home',[
-        "usuarios"=>$resultado,
-        "message"=>$message
-    ]);
 
 });
 
@@ -131,8 +119,8 @@ $app->post("/admin/edit/:id", function($id){
         ":id"=>$_POST["id"]
     ));
 
-//    getSucess("Usuário Alterado com Sucesso");
-    header("Location: /admin/Usuário Alterado com Sucesso");
+    $_SESSION['mensagem'] = "Usuário Alterado com Sucessoo";
+    header("Location: /admin");
     exit;
 
 });
@@ -154,8 +142,8 @@ $app->post("/admin/delete/:id", function($id){
         ":id"=>$id
     ));
 
-//    getSucess("Usuário Deletado com Sucesso");
-    header("Location: /admin/Usuário Deletado com Sucesso");
+    $_SESSION['mensagem'] = "Usuário Deletado com Sucesso";
+    header("Location: /admin");
     exit;
 
 });
@@ -166,7 +154,7 @@ $app->get("/login", function(){
     $page = new PageAdmin();
 
     $page->setTpl('login', [
-        'erro'=>""
+        'erro'=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:''
     ]);
 
 });

@@ -15,41 +15,6 @@ function formatDate($date){
 }
 
 
-function getError($error, $tpl = 'add'){
-
-    $page = new PageAdmin();
-
-    $page->setTpl($tpl, [
-        "erro"=>$error
-    ]);
-}
-
-
-function getSucess($message){
-
-    $page = new PageAdmin();
-
-    $sql = new Sql();
-
-    $resultado = $sql->select("SELECT * FROM Usuario");
-
-    $page->setTpl('home',[
-        "usuarios"=>$resultado,
-        "message"=>$message
-    ]);
-
-}
-
-
-function login($name){
-
-    $page = new Page();
-
-    $page->setTpl('home', [
-        "nome"=>$name
-    ]);
-
-}
 
 
 

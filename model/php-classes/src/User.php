@@ -17,7 +17,6 @@ class User{
 
     return $resultado[0];
 
-
     }
 
     public static function verifyLogin($user, $password){
@@ -37,7 +36,8 @@ class User{
                 exit;
 
             } else {
-                getError("Usuário e/ou Senha inválidos", 'login');
+                $_SESSION['mensagem'] = "Usuário e/ou Senha Inválidos";
+                header("Location: /login");
                 exit;
             }
         }

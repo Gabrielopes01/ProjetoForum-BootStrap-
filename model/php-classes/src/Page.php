@@ -44,6 +44,8 @@ class Page {
 
         $this->setData($data);
 
+        $_SESSION['mensagem'] = '';
+
         return $this->tpl->draw($name, $returnHTML);
 
     }
