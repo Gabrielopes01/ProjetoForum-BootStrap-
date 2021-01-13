@@ -51,8 +51,6 @@ li a {
 
 </style>
 <body>
-
-
 <ul>
   <li class="titulo">Forum CRM</li>
   <li><a href="/admin" style="background-color: black; color:white;">Admin</a></li>

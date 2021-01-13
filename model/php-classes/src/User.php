@@ -33,7 +33,8 @@ class User{
 
                 $_SESSION['nome'] = $resultado[0]["Nome"];
 
-                login($resultado[0]["Nome"]);
+                header("Location: /");
+                exit;
 
             } else {
                 getError("Usuário e/ou Senha inválidos", 'login');

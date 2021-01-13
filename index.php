@@ -22,15 +22,9 @@ $app->get("/", function(){
 
     $page = new Page();
 
-    if(isset($_SESSION['nome'])){
-        $page->setTpl('home', [
-        "nome"=>$_SESSION['nome']
-    ]);
-    }else{
     $page->setTpl('home', [
-        "nome"=>$_SESSION['nome']=""
+    "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
     ]);
-    }
 
 });
 

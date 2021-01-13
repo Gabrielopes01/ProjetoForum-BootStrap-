@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'cc0f8a91b348aaf6595c9ce7493b1f8a94654351',
+    'reference' => '520df8bc7f202cc456b382dae86c2dbc8d4badc7',
     'name' => 'hcodebr/ecommerce',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'cc0f8a91b348aaf6595c9ce7493b1f8a94654351',
+      'reference' => '520df8bc7f202cc456b382dae86c2dbc8d4badc7',
     ),
     'rain/raintpl' => 
     array (
