@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+
+
 require_once("vendor/autoload.php");
 require_once("function.php");
 
@@ -20,9 +22,15 @@ $app->get("/", function(){
 
     $page = new Page();
 
-    $page->setTpl('home', [
+    if(isset($_SESSION['nome'])){
+        $page->setTpl('home', [
         "nome"=>$_SESSION['nome']
     ]);
+    }else{
+    $page->setTpl('home', [
+        "nome"=>$_SESSION['nome']=""
+    ]);
+    }
 
 });
 
