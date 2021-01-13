@@ -28,6 +28,11 @@ li {
   border-right:1px solid #bbb;
 }
 
+.lilogin{
+  float: right;
+  border-left: 1px solid #bbb;
+}
+
 li:last-child {
   border-right: none;
 }
@@ -49,11 +54,46 @@ li a {
   text-decoration: none;
 }
 
+.tituloFiltro {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 32px 16px;
+  text-decoration: none;
+}
+
+.busca{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1px 7px;
+  text-decoration: none;
+  border-right:none;
+  width: 25%;
+}
+
+.listaFiltro{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: static;
+  top: 0;
+  width: 100%;
+}
+
 </style>
     <body>
 <ul>
   <li class="titulo">Gerenciamento de Usuários</li>
   <li><a href="/" style="background-color: black; color:white;">Home</a></li>
+  {if="$nome != ''"}
+  <li class="lilogin"><a href="/logout">Logout</a></li>
+  {/if}
+  {if="$nome == ''"}
+  <li class="lilogin"><a href="/login">Login</a></li>
+  {/if}
 </ul>
 
 

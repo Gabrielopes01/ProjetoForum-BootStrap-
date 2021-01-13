@@ -16,7 +16,4 @@ function formatDate($date){
 
 
 
-
-
-
 ?>

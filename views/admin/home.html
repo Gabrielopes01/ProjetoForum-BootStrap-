@@ -8,10 +8,45 @@
 
 <div class="row">
     <div class="col s12 m6 push-m3">
+        <h3 class="light"; align="left">Usuários</h3>
+<form method="POST">
+        <ul class="listaFiltro">
+            <li class="tituloFiltro">Busca: </li>
+            <li class="busca"><div class="input-field col s12">
+                {if="$filtros.nome != ''"}
+                <input type="text" name="nome" id="nome" style="color: white; width: 50%" value="{$filtros.nome}">
+                {else}
+                <input type="text" name="nome" id="nome" style="color: white; width: 50% ">
+                {/if}
+                <label for="nome" style="color: white; width: 50%">Nome</label>
+                <button type="submit" class="btn gray"><i class="material-icons">search</i></button>
+            </div>
+            </li>
+            <li class="busca"><div class="input-field col s12">
+                {if="$filtros.email != ''"}
+                <input type="text" name="email" id="email" style="color: white; width: 50%" value="{$filtros.email}">
+                {else}
+                <input type="text" name="email" id="email" style="color: white; width: 50%">
+                {/if}
+                <label for="email" style="color: white; width: 50%">Email</label>
+                <button type="submit" class="btn gray"><i class="material-icons">search</i></button>
+            </div>
+            </li>
+            <li class="busca"><div class="input-field col s12">
+                {if="$filtros.data != ''"}
+                <input type="text" name="data" id="data" style="color: white; width: 50%" value="{$filtros.data}">
+                {else}
+                <input type="text" name="data" id="data" style="color: white; width: 50%">
+                {/if}
+                <label for="data" style="color: white; width: 50%">Data</label>
+                <button type="submit" class="btn gray"><i class="material-icons">search</i></button>
+            </div>
+            </li>
 
+        </ul>
+        <a href="/admin" class="btn red" style="float: right">Limpar Busca</a>
+</form>
         <table class="striped">
-
-        <caption><h3 class="light"; align="left">Usuários</h3></caption>
             <thead>
                 <th>Nome</th>
                 <th>Email</th>

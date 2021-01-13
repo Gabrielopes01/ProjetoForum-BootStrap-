@@ -66,6 +66,15 @@ class User{
 
     }
 
+    //Esta função verifica se o usário esta logado para acessar tal pagina
+    public static function checkLogin(){
+        if(!isset($_SESSION['nome']) || $_SESSION['nome'] === ""){
+            $_SESSION['mensagem'] = "Faça o login para acessar a página";
+            header("Location: /login");
+            exit;
+        }
+    }
+
 }
 
 ?>

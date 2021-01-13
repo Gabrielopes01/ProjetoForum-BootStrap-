@@ -1,3 +1,10 @@
+{if="$erro != ''"}
+<script>
+    window.onload = function(){
+        M.toast({html: '{$erro}'});
+    }
+</script>
+{/if}
 <div class="row">
     <div class="col s12 m6 push-m3">
         <form method="POST">
