@@ -69,10 +69,12 @@ $app->post("/admin", function(){
 
     foreach ($resultado as $num => $linha) {
 
+        //Verificando se os campos estão definidos e dando valores a eles
         $name = isset($_POST['nome']) && !$_POST['nome'] == ""? $_POST['nome']:"|";
         $email = isset($_POST['email']) && !$_POST['email'] == ""? $_POST['email']:"|";
         $data = isset($_POST['data']) && !$_POST['data'] == ""? $_POST['data']:"|";
 
+        //Verificando se os 3 campos estão preenchidos com parametros de busca
         if($_POST['verBuscaNome'] == 1 && $_POST['verBuscaEmail'] == 1 && $_POST['verBuscaData'] == 1 && $name != "|" && $email != "|" && $data != "|"){
             if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
                 strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
@@ -83,24 +85,27 @@ $app->post("/admin", function(){
             }
         } elseif ($name != "|" || $email != "|" || $data != "|") {
             if($_POST['verBuscaNome'] == 1 && $name != "|"){
+                //Verificando se o Nome e Email estao preenchidos
                 if($_POST['verBuscaEmail'] == 1 && $email != "|"){
                     if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
                         strpos(strtolower($linha["Email"]), strtolower($email)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
                     }
-
+                //Verificando se o Nome e Data estao preenchidos
                 } elseif ($_POST['verBuscaData'] == 1 && $data != "|") {
                     if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
                         strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
                     }
                 } else {
+                    //Apenas o Nome esta preenchido
                     if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
                     }
                 }
 
             } elseif ($_POST['verBuscaEmail'] == 1 && $email != "|") {
+                //Verificando se o Email e Data estao preenchidos
                 if($_POST['verBuscaData'] == 1 && $data != "|"){
                     if (strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
                         strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
@@ -112,6 +117,7 @@ $app->post("/admin", function(){
                     }
                 }
             } else {
+                //Apenas o Email esta preenchido
                 if($_POST['verBuscaData'] == 1 && $data != "|"){
                     if (strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
@@ -119,12 +125,11 @@ $app->post("/admin", function(){
                 }
             }
         } else {
+            //Nenhum dos 3 estao preenchidos
             $resultadoFiltro = $resultado;
         }
 
     }
-
-
 
 
     $page->setTpl('home',[
