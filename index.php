@@ -81,7 +81,7 @@ $app->post("/admin", function(){
                     array_push($resultadoFiltro, $resultado[$num]);
                 }
             }
-        } else {
+        } elseif ($name != "|" || $email != "|" || $data != "|") {
             if($_POST['verBuscaNome'] == 1 && $name != "|"){
                 if($_POST['verBuscaEmail'] == 1 && $email != "|"){
                     if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
@@ -118,6 +118,8 @@ $app->post("/admin", function(){
                     }
                 }
             }
+        } else {
+            $resultadoFiltro = $resultado;
         }
 
     }
