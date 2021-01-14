@@ -120,29 +120,6 @@ $app->post("/admin", function(){
             }
         }
 
-        foreach ($linha as $coluna => $valor) {
-            //Verificando se o Nome confere a busca
-/*
-            if($_POST['nome'] !== ""){
-                if ($coluna === "Nome" && strpos(strtolower($valor), strtolower($name)) !== false) {
-                    array_push($resultadoFiltro, $resultado[$num]);
-                }
-            }
-
-            if($_POST['email'] !== ""){
-                if ($coluna === "Email" && strpos(strtolower($valor), strtolower($email)) !== false) {
-                    array_push($resultadoFiltro, $resultado[$num]);
-                }
-            }
-
-            if($_POST['data'] !== ""){
-                if ($coluna === "Data" && strpos(formatDate(substr($valor, 0,10)), strtolower($data)) !== false) {
-                array_push($resultadoFiltro, $resultado[$num]);
-                }
-            }
-*/
-        }
-
     }
 
 
