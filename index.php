@@ -73,52 +73,74 @@ $app->post("/admin", function(){
         $email = isset($_POST['email']) && !$_POST['email'] == ""? $_POST['email']:"|";
         $data = isset($_POST['data']) && !$_POST['data'] == ""? $_POST['data']:"|";
 
-        if(strpos(strtolower($linha['Nome']), strtolower($name)) !== false &&
-            strpos(strtolower($linha['Email']), strtolower($email)) !== false &&
-            strpos(formatDate(substr($linha['Data'], 0,10)), strtolower($data)) !== false){
-
-            array_push($resultadoFiltro, $resultado[$num]);
-            break;
-
-        }else{
-                if(strpos(strtolower($linha['Nome']), strtolower($name)) !== false && strpos(strtolower($linha['Email']), strtolower($email)) !== false ||
-                strpos(strtolower($linha['Nome']), strtolower($name)) !== false && strpos(formatDate(substr($linha['Data'], 0,10)), strtolower($data)) !== false ||
-                strpos(strtolower($linha['Email']), strtolower($email)) !== false && strpos(formatDate(substr($linha['Data'], 0,10)), strtolower($data)) !== false){
-                array_push($resultadoFiltro, $resultado[$num]);
-            }else{
-                foreach ($linha as $coluna => $valor) {
-                    //Verificando se o Nome confere a busca
-                    $name = isset($_POST['nome']) && !$_POST['nome'] == ""? $_POST['nome']:"|";
-                    $email = isset($_POST['email']) && !$_POST['email'] == ""? $_POST['email']:"|";
-                    $data = isset($_POST['data']) && !$_POST['data'] == ""? $_POST['data']:"|";
-
-                    if($_POST['nome'] !== ""){
-                        if ($coluna === "Nome" && strpos(strtolower($valor), strtolower($name)) !== false) {
-                            array_push($resultadoFiltro, $resultado[$num]);
-                        }
-                    }
-
-                    if($_POST['email'] !== ""){
-                        if ($coluna === "Email" && strpos(strtolower($valor), strtolower($email)) !== false) {
-                            array_push($resultadoFiltro, $resultado[$num]);
-                        }
-                    }
-
-                    if($_POST['data'] !== ""){
-                        if ($coluna === "Data" && strpos(formatDate(substr($valor, 0,10)), strtolower($data)) !== false) {
+        if($_POST['verBuscaNome'] == 1 && $_POST['verBuscaEmail'] == 1 && $_POST['verBuscaData'] == 1){
+            if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
+                strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
+                strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
+                if($_POST['nome'] !== "" && $_POST['email'] !== "" && $_POST['data'] !== ""){
+                    array_push($resultadoFiltro, $resultado[$num]);
+                }
+            }
+        } else {
+            if($_POST['verBuscaNome'] == 1){
+                if($_POST['verBuscaEmail'] == 1){
+                    if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
+                        strpos(strtolower($linha["Email"]), strtolower($email)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
-                        }
                     }
 
+                } elseif (condition) {
+                    if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
+                        strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
+                        array_push($resultadoFiltro, $resultado[$num]);
+                    }
+                } else {
+                    if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false) {
+                        array_push($resultadoFiltro, $resultado[$num]);
+                    }
+                }
+
+            } elseif ($_POST['verBuscaEmail'] == 1) {
+                if($_POST['verBuscaData'] == 1){
+                    if (strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
+                        strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
+                        array_push($resultadoFiltro, $resultado[$num]);
+                    }
+                } else {
+                    if (strpos(strtolower($linha["Email"]), strtolower($email)) !== false) {
+                        array_push($resultadoFiltro, $resultado[$num]);
+                    }
+                }
+            }
+        }
+
+        foreach ($linha as $coluna => $valor) {
+            //Verificando se o Nome confere a busca
+/*
+            if($_POST['nome'] !== ""){
+                if ($coluna === "Nome" && strpos(strtolower($valor), strtolower($name)) !== false) {
+                    array_push($resultadoFiltro, $resultado[$num]);
                 }
             }
 
+            if($_POST['email'] !== ""){
+                if ($coluna === "Email" && strpos(strtolower($valor), strtolower($email)) !== false) {
+                    array_push($resultadoFiltro, $resultado[$num]);
+                }
+            }
+
+            if($_POST['data'] !== ""){
+                if ($coluna === "Data" && strpos(formatDate(substr($valor, 0,10)), strtolower($data)) !== false) {
+                array_push($resultadoFiltro, $resultado[$num]);
+                }
+            }
+*/
         }
 
-
-
-
     }
+
+
+
 
     $page->setTpl('home',[
         "usuarios"=>$resultadoFiltro,
