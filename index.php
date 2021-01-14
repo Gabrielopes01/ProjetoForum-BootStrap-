@@ -62,78 +62,87 @@ $app->post("/admin", function(){
 
     $sql = new Sql();
 
-    $resultado = $sql->select("SELECT TOP 10 * FROM Usuario");
+    //$resultado = $sql->select("SELECT * FROM Usuario");
+
+    //$resultado = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%')", [":nome"=>"a"]);
 
     $filtros = ["nome"=>$_POST['nome'], "email"=>$_POST['email'], "data"=>$_POST['data']];
     $resultadoFiltro = [];
 
-    foreach ($resultado as $num => $linha) {
+    //Verificando se os campos estão definidos e dando valores a eles
+    $name = isset($_POST['nome']) && !$_POST['nome'] == ""? $_POST['nome']:"|";
+    $email = isset($_POST['email']) && !$_POST['email'] == ""? $_POST['email']:"|";
+    $data = isset($_POST['data']) && !$_POST['data'] == ""? $_POST['data']:"|";
 
-        //Verificando se os campos estão definidos e dando valores a eles
-        $name = isset($_POST['nome']) && !$_POST['nome'] == ""? $_POST['nome']:"|";
-        $email = isset($_POST['email']) && !$_POST['email'] == ""? $_POST['email']:"|";
-        $data = isset($_POST['data']) && !$_POST['data'] == ""? $_POST['data']:"|";
+    //Verificando se os 3 campos estão preenchidos com parametros de busca
+    if($_POST['verBuscaNome'] == 1 && $_POST['verBuscaEmail'] == 1 && $_POST['verBuscaData'] == 1 && $name != "|" && $email != "|" && $data != "|"){
+        if($_POST['nome'] !== "" && $_POST['email'] !== "" && $_POST['data'] !== ""){
+                $resultadoALL = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND Email LIKE CONCAT('%', :email, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
+                    ":nome"=>$name,
+                    ":email"=>$email,
+                    ":data"=>$data
+                ]);
+                array_push($resultadoFiltro, $resultadoALL);
+        }
 
-        //Verificando se os 3 campos estão preenchidos com parametros de busca
-        if($_POST['verBuscaNome'] == 1 && $_POST['verBuscaEmail'] == 1 && $_POST['verBuscaData'] == 1 && $name != "|" && $email != "|" && $data != "|"){
-            if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
-                strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
-                strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
-                if($_POST['nome'] !== "" && $_POST['email'] !== "" && $_POST['data'] !== ""){
-                    array_push($resultadoFiltro, $resultado[$num]);
-                }
-            }
         } elseif ($name != "|" || $email != "|" || $data != "|") {
             if($_POST['verBuscaNome'] == 1 && $name != "|"){
                 //Verificando se o Nome e Email estao preenchidos
                 if($_POST['verBuscaEmail'] == 1 && $email != "|"){
-                    if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
-                        strpos(strtolower($linha["Email"]), strtolower($email)) !== false) {
-                        array_push($resultadoFiltro, $resultado[$num]);
-                    }
+                $resultadoNE = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND Email LIKE CONCAT('%', :email, '%')", [
+                    ":nome"=>$name,
+                    ":email"=>$email
+                ]);
+                    array_push($resultadoFiltro, $resultadoNE);
+
                 //Verificando se o Nome e Data estao preenchidos
                 } elseif ($_POST['verBuscaData'] == 1 && $data != "|") {
-                    if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
-                        strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
-                        array_push($resultadoFiltro, $resultado[$num]);
-                    }
+                $resultadoND = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
+                    ":nome"=>$name,
+                    ":data"=>$data
+                ]);
+                    array_push($resultadoFiltro, $resultadoND);
                 } else {
                     //Apenas o Nome esta preenchido
-                    if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false) {
-                        array_push($resultadoFiltro, $resultado[$num]);
-                    }
+                $resultadoN = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%')", [
+                    ":nome"=>$name
+                ]);
+                    array_push($resultadoFiltro, $resultadoN);
                 }
 
             } elseif ($_POST['verBuscaEmail'] == 1 && $email != "|") {
                 //Verificando se o Email e Data estao preenchidos
                 if($_POST['verBuscaData'] == 1 && $data != "|"){
-                    if (strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
-                        strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
-                        array_push($resultadoFiltro, $resultado[$num]);
-                    }
+                $resultadoED = $sql->select("SELECT * FROM Usuario WHERE Email LIKE CONCAT('%', :email, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
+                    ":email"=>$email,
+                    ":data"=>$data
+                ]);
+                    array_push($resultadoFiltro, $resultadoED);
                 } else {
-                    if (strpos(strtolower($linha["Email"]), strtolower($email)) !== false) {
-                        array_push($resultadoFiltro, $resultado[$num]);
-                    }
+                    //Apenas o Email esta preenchido
+                    $resultadoE = $sql->select("SELECT * FROM Usuario WHERE Email LIKE CONCAT('%', :email, '%')", [
+                        ":email"=>$email
+                    ]);
+                    array_push($resultadoFiltro, $resultadoE);
                 }
             } else {
-                //Apenas o Email esta preenchido
+                //Apenas a Data esta preenchido
                 if($_POST['verBuscaData'] == 1 && $data != "|"){
-                    if (strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
-                        array_push($resultadoFiltro, $resultado[$num]);
-                    }
+                    $resultadoD = $sql->select("SELECT * FROM Usuario WHERE SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
+                        ":data"=>$data
+                    ]);
+                    array_push($resultadoFiltro, $resultadoD);
                 }
             }
         } else {
             //Nenhum dos 3 estao preenchidos
-            $resultadoFiltro = $resultado;
+            $resultado2 = $sql->select("SELECT TOP 10 * FROM Usuario");
+            $resultadoFiltro[0] = $resultado2;
         }
-
-    }
 
 
     $page->setTpl('home',[
-        "usuarios"=>$resultadoFiltro,
+        "usuarios"=>$resultadoFiltro[0],
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>$filtros
     ]);
