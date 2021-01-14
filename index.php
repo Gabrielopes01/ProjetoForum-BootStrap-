@@ -73,7 +73,7 @@ $app->post("/admin", function(){
         $email = isset($_POST['email']) && !$_POST['email'] == ""? $_POST['email']:"|";
         $data = isset($_POST['data']) && !$_POST['data'] == ""? $_POST['data']:"|";
 
-        if($_POST['verBuscaNome'] == 1 && $_POST['verBuscaEmail'] == 1 && $_POST['verBuscaData'] == 1){
+        if($_POST['verBuscaNome'] == 1 && $_POST['verBuscaEmail'] == 1 && $_POST['verBuscaData'] == 1 && $name != "|" && $email != "|" && $data != "|"){
             if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
                 strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
                 strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
@@ -82,14 +82,14 @@ $app->post("/admin", function(){
                 }
             }
         } else {
-            if($_POST['verBuscaNome'] == 1){
-                if($_POST['verBuscaEmail'] == 1){
+            if($_POST['verBuscaNome'] == 1 && $name != "|"){
+                if($_POST['verBuscaEmail'] == 1 && $email != "|"){
                     if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
                         strpos(strtolower($linha["Email"]), strtolower($email)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
                     }
 
-                } elseif (condition) {
+                } elseif ($_POST['verBuscaData'] == 1 && $data != "|") {
                     if (strpos(strtolower($linha["Nome"]), strtolower($name)) !== false &&
                         strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
@@ -100,14 +100,20 @@ $app->post("/admin", function(){
                     }
                 }
 
-            } elseif ($_POST['verBuscaEmail'] == 1) {
-                if($_POST['verBuscaData'] == 1){
+            } elseif ($_POST['verBuscaEmail'] == 1 && $email != "|") {
+                if($_POST['verBuscaData'] == 1 && $data != "|"){
                     if (strpos(strtolower($linha["Email"]), strtolower($email)) !== false &&
                         strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
                     }
                 } else {
                     if (strpos(strtolower($linha["Email"]), strtolower($email)) !== false) {
+                        array_push($resultadoFiltro, $resultado[$num]);
+                    }
+                }
+            } else {
+                if($_POST['verBuscaData'] == 1 && $data != "|"){
+                    if (strpos(formatDate(substr($linha["Data"], 0,10)), strtolower($data)) !== false) {
                         array_push($resultadoFiltro, $resultado[$num]);
                     }
                 }
