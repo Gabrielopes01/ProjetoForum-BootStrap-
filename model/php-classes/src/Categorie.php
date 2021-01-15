@@ -30,6 +30,16 @@ class Categorie {
 
     }
 
+    public static function getALLCategorie(){
+
+        $sql = new Sql();
+
+        $resultado = $sql->select("SELECT* FROM Categoria");
+
+        return $resultado;
+
+    }
+
     public static function verifyCategorie($category){
 
         $sql = new Sql();

@@ -58,7 +58,7 @@ $app->get("/admin/add", function(){
 
 });
 
-
+//Adiconar
 $app->post("/admin/add", function(){
 
     $parametros = $_POST;

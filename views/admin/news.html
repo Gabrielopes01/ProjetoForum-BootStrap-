@@ -1,0 +1,132 @@
+{if="$message != ''"}
+<script>
+    window.onload = function(){
+        M.toast({html: '{$message}'});
+    }
+</script>
+{/if}
+
+<div class="row">
+    <div class="col s12 m6 push-m3">
+        <h3 class="light"; align="left">Notícias</h3>
+<form method="POST">
+        <ul class="listaFiltro">
+            <li class="tituloFiltro">Busca: </li>
+            <li class="busca2">
+                {if="$filtros.titulo != ''"}
+                <div class="input-field col s12">
+                <input type="text" name="titulo" id="titulo" style="color: white; width: 50%" value="{$filtros.titulo}">
+                <input type="hidden" name="verBuscaTitulo" id="verBuscaTitulo" value="1">
+                {else}
+                <button class="btn gray" style="margin-top: 21px;" id="buscaTitulo" onclick="searchTitle()">Título</button>
+                <div class="input-field col s12">
+                <input type="hidden" name="titulo" id="titulo" style="color: white; width: 50% ">
+                <input type="hidden" name="verBuscaTitulo" id="verBuscaTitulo" value="0">
+                {/if}
+                <label for="nome" style="color: white; width: 50%">Título</label>
+                </div>
+            </li>
+            <li class="busca2">
+                {if="$filtros.categoria != ''"}
+                <div class="input-field col s12">
+                <input type="text" name="categoria" id="categoria" style="color: white; width: 50%" value="{$filtros.categoria}">
+                <input type="hidden" name="verBuscaCategoria" id="verBuscaCategoria" value="1">
+                {else}
+                <button class="btn gray" style="margin-top: 21px;" id="buscaCategoria" onclick="searchCategorie()">Categoria</button>
+                <div class="input-field col s12">
+                <input type="hidden" name="categoria" id="categoria" style="color: white; width: 50% ">
+                <input type="hidden" name="verBuscaCategoria" id="verBuscaCategoria" value="0">
+                {/if}
+                <label for="nome" style="color: white; width: 50%">Categoria</label>
+                </div>
+            </li>
+            <li class="busca2">
+                {if="$filtros.usuario != ''"}
+                <div class="input-field col s12">
+                <input type="text" name="usuario" id="usuario" style="color: white; width: 50%" value="{$filtros.usuario}">
+                <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="1">
+                {else}
+                <button class="btn gray" style="margin-top: 21px;" id="buscaUsuario" onclick="searchUser()">Usuário</button>
+                <div class="input-field col s12">
+                <input type="hidden" name="usuario" id="usuario" style="color: white; width: 50% ">
+                <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="0">
+                {/if}
+                <label for="nome" style="color: white; width: 50%">Usuário</label>
+                </div>
+            </li>
+            <li class="busca2">
+                {if="$filtros.data != ''"}
+                <div class="input-field col s12">
+                <input type="text" name="data" id="data" style="color: white; width: 50%" value="{$filtros.data}">
+                <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
+                {else}
+                <button class="btn gray" style="margin-top: 21px;" id="buscaData" onclick="searchDate()">Data</button>
+                <div class="input-field col s12">
+                <input type="hidden" name="data" id="data" style="color: white; width: 50% ">
+                <input type="hidden" name="verBuscaData" id="verBuscaData" value="0">
+                {/if}
+                <label for="nome" style="color: white; width: 50%">Data</label>
+                </div>
+            </li>
+
+
+        </ul>
+        <a href="/adminNews" class="btn red" style="float: right; margin-left: 10px">Limpar Busca</a>
+        <button type="submit" class="btn gray" style="float: right;"><i class="material-icons">search</i></button>
+</form>
+        <table class="striped">
+            <thead>
+                <th>Título</th>
+                <th>Corpo</th>
+                <th>Categoria</th>
+                <th>Usuário</th>
+                <th>Data</th>
+            </thead>
+            <tbody>
+                {loop="$noticias"}
+                <tr>
+                    <td>{$value.Titulo}</td>
+                    <td>{$value.Corpo}</td>
+                    <td>{$value.Categoria}</td>
+                    <td>{$value.Usuario}</td>
+                    <td>{function="formatDate($value.Data)"}</td>
+                    <td><a href="/adminNews/edit/{$value.Id}" class="btn yellow" style="float: right;"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/adminNews/delete/{$value.Id}" class="btn red" ><i class="material-icons">delete</i></a></td>
+                </tr>
+                {/loop}
+            </tbody>
+
+        </table>
+<hr>
+
+        <a href="/adminNews/add" class="btn" style="float: right"><i class="material-icons">add_circle</i> Adicionar Notícia</a>
+    </div>
+</div>
+
+<script>
+function searchTitle() {
+  document.getElementById("buscaTitulo").remove();
+  document.getElementById('titulo').type = "text";
+  document.getElementById('verBuscaTitulo').value = 1;
+}
+
+function searchCategorie() {
+  document.getElementById("buscaCategoria").remove();
+  document.getElementById('categoria').type = "text";
+  document.getElementById('verBuscaCategoria').value = 1;
+}
+
+function searchUser() {
+  document.getElementById("buscaUsuario").remove();
+  document.getElementById('usuario').type = "text";
+  document.getElementById('verBuscaUsuario').value = 1;
+}
+
+function searchDate() {
+  document.getElementById("buscaData").remove();
+  document.getElementById('data').type = "text";
+  document.getElementById('verBuscaData').value = 1;
+}
+
+
+</script>

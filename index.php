@@ -15,6 +15,7 @@ require_once("home.php");
 require_once("admin.php");
 require_once("login.php");
 require_once("categorie.php");
+require_once("news.php");
 
 $app->run();
 

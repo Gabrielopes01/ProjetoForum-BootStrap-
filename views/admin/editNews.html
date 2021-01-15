@@ -1,0 +1,50 @@
+{if="$erro != ''"}
+<script>
+    window.onload = function(){
+        M.toast({html: '{$erro}'});
+    }
+</script>
+{/if}
+<div class="row">
+    <div class="col s12 m6 push-m3">
+        <form method="POST">
+            <h3 class="light"; align="left">Editar Notícia</h3>
+            <div class="input-field col s12">
+                <input type="text" name="titulo" id="titulo", value="{$noticia.Titulo}">
+                <label for="nome">Titulo</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="text" name="corpo" id="corpo" value="{$noticia.Corpo}">
+                <label for="email">Corpo</label>
+            </div>
+            <div class="input-field col s12">
+                <select id = "categoria" name = "categoria">
+                    <option value="{$noticia.Id_Categoria_FK}" selected>{function="getNameCategorie($noticia.Id_Categoria_FK)"}</option>
+                    {loop="$categorias"}
+                    {if="$value.Id != $noticia.Id_Categoria_FK"}
+                    <option value = {$value.Id}>{$value.Nome}</option>
+                    {/if}
+                    {/loop}
+                </select>
+                <label for="categoria">Categoria</label>
+            </div>
+            <div class="input-field col s12">
+                <select id = "usuario" name = "usuario">
+                    <option value="{$noticia.Id_Usuario_FK}" selected>{function="getNameUser($noticia.Id_Usuario_FK)"}</option>
+                    {loop="$usuarios"}
+                    {if="$value.Id != $noticia.Id_Usuario_FK"}
+                    <option value = {$value.Id}>{$value.Nome}</option>
+                    {/if}
+                    {/loop}
+                </select>
+                <label for="categoria">Usuário</label>
+            </div>
+            <input type="hidden" id="id" name="id" value={$noticia.Id}>
+
+
+<hr>
+        <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Editar</button>
+        <a href="/admin" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+        </form>
+    </div>
+</div>

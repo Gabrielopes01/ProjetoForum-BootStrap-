@@ -15,6 +15,30 @@ function formatDate($date){
 }
 
 
+function getNameCategorie($id){
+
+    $sql = new Sql;
+
+    $resultado = $sql->select("SELECT * FROM Categoria WHERE id = :id", [
+        ":id"=>$id
+    ]);
+
+    return $resultado[0]["Nome"];
+
+}
+
+function getNameUser($id){
+
+    $sql = new Sql;
+
+    $resultado = $sql->select("SELECT * FROM Usuario WHERE id = :id", [
+        ":id"=>$id
+    ]);
+
+    return $resultado[0]["Nome"];
+
+}
+
 
 
 ?>

@@ -29,6 +29,16 @@ class User{
 
     }
 
+    public static function getALLUsers(){
+
+        $sql = new Sql();
+
+        $resultado = $sql->select("SELECT * FROM Usuario");
+
+        return $resultado;
+
+    }
+
     public static function verifyLogin($user, $password){
 
         $sql = new Sql();
