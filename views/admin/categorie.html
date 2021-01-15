@@ -1,0 +1,61 @@
+{if="$message != ''"}
+<script>
+    window.onload = function(){
+        M.toast({html: '{$message}'});
+    }
+</script>
+{/if}
+
+<div class="row">
+    <div class="col s12 m6 push-m3">
+        <h3 class="light"; align="left">Categorias</h3>
+<form method="POST">
+        <ul class="listaFiltro">
+            <li class="tituloFiltro">Busca: </li>
+            <li class="busca">
+                {if="$filtros.nome != ''"}
+                <div class="input-field col s12">
+                <input type="text" name="nome" id="nome" style="color: white; width: 50%" value="{$filtros.nome}">
+                <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="1">
+                {else}
+                <button class="btn gray" style="margin-top: 21px;" id="buscaNome" onclick="searchName()">Nome</button>
+                <div class="input-field col s12">
+                <input type="hidden" name="nome" id="nome" style="color: white; width: 50% ">
+                <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="0">
+                {/if}
+                <label for="nome" style="color: white; width: 50%">Nome</label>
+                </div>
+            </li>
+
+        </ul>
+        <a href="/adminCat" class="btn red" style="float: right; margin-left: 10px">Limpar Busca</a>
+        <button type="submit" class="btn gray" style="float: right;"><i class="material-icons">search</i></button>
+</form>
+        <table class="striped">
+            <thead>
+                <th>Nome</th>
+            </thead>
+            <tbody>
+                {loop="$categorias"}
+                <tr>
+                    <td>{$value.Nome}</td>
+                    <td><a href="/adminCat/edit/{$value.Id}" class="btn yellow" style="float: right;"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/adminCat/delete/{$value.Id}" class="btn red" ><i class="material-icons">delete</i></a></td>
+                </tr>
+                {/loop}
+            </tbody>
+
+        </table>
+<hr>
+
+        <a href="/adminCat/add" class="btn" style="float: right"><i class="material-icons">add_circle</i> Adicionar Categoria</a>
+    </div>
+</div>
+
+<script>
+function searchName() {
+  document.getElementById("buscaNome").remove();
+  document.getElementById('nome').type = "text";
+  document.getElementById('verBuscaNome').value = 1;
+}
+</script>

@@ -14,6 +14,7 @@ $app->config('debug', true);
 require_once("home.php");
 require_once("admin.php");
 require_once("login.php");
+require_once("categorie.php");
 
 $app->run();
 

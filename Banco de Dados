@@ -14,5 +14,20 @@ CREATE TABLE Usuario(
 INSERT Usuario VALUES
 ('Gabriel', 'gabrielperinotto@hotmail.com', DEFAULT, 'senhateste');
 
+CREATE TABLE Categoria(
+    Id INT PRIMARY KEY IDENTITY,
+    Nome VARCHAR(200) NOT NULL
+);
+
+INSERT Categoria VALUES
+('Esportes'),
+('Política'),
+('Economia'),
+('Esportes'),
+('Crime');
+
 SELECT *
 FROM Usuario;
+
+SELECT *
+FROM Categoria;

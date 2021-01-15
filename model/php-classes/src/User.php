@@ -9,13 +9,13 @@ class User{
 
     public function getUserById($id){
 
-    $sql = new Sql;
+        $sql = new Sql;
 
-    $resultado = $sql->select("SELECT * FROM Usuario WHERE id = :id", [
-        ":id"=>$id
-    ]);
+        $resultado = $sql->select("SELECT * FROM Usuario WHERE id = :id", [
+            ":id"=>$id
+        ]);
 
-    return $resultado[0];
+        return $resultado[0];
 
     }
 
@@ -72,7 +72,7 @@ class User{
 
     public static function logout(){
 
-        $_SESSION['nome'] = "";
+        session_destroy();
         header("Location: /");
         exit;
 

@@ -1,0 +1,24 @@
+{if="$erro != ''"}
+<script>
+    window.onload = function(){
+        M.toast({html: '{$erro}'});
+    }
+</script>
+{/if}
+<div class="row">
+    <div class="col s12 m6 push-m3">
+        <form method="POST">
+            <h3 class="light"; align="left">Editar Usuário</h3>
+            <div class="input-field col s12">
+                <input type="text" name="nome" id="nome", value="{$categoria.Nome}">
+                <label for="nome">Nome</label>
+            </div>
+            <input type="hidden" id="id" name="id" value={$categoria.Id}>
+
+
+<hr>
+        <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Editar</button>
+        <a href="/adminCat" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+        </form>
+    </div>
+</div>
