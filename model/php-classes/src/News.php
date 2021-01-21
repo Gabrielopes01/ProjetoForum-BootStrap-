@@ -98,14 +98,14 @@ class News{
         //Verificando se o campo Titulo foi preenchido
         if($parametros["titulo"] === ""){
             $_SESSION['mensagem'] = "Campo Titulo Obrigatório";
-            header("Location: /adminNews/add");
+            header("Location: /adminNews/edit/$id");
             exit;
         }
 
         //Verificando se o campo Corpo foi preenchido
         if($parametros["corpo"] === ""){
             $_SESSION['mensagem'] = "Campo Corpo Obrigatório";
-            header("Location: /adminNews/add");
+            header("Location: /adminNews/edit/$id");
             exit;
         }
 

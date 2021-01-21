@@ -39,6 +39,12 @@ function getNameUser($id){
 
 }
 
+function removeTags($text){
+
+    $newText = strip_tags($text);
+    return $newText;
+
+}
 
 
 ?>
