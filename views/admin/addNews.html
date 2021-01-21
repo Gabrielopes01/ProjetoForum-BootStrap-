@@ -28,13 +28,7 @@
                 <label for="categoria">Categoria</label>
             </div>
             <div class="input-field col s12">
-                <select id = "usuario" name = "usuario">
-                    <option value="" disabled selected>Escolha o Usuário</option>
-                    {loop="$usuarios"}
-                    <option value = {$value.Id}>{$value.Nome}</option>
-                    {/loop}
-                </select>
-                <label for="usuario">Usuário</label>
+                <input type="hidden" name="usuario" id="usuario" value="{$usuario}">
             </div>
 
 

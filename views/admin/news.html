@@ -46,12 +46,12 @@
                 <input type="text" name="usuario" id="usuario" style="color: white; width: 50%" value="{$filtros.usuario}">
                 <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="1">
                 {else}
-                <button class="btn gray" style="margin-top: 21px;" id="buscaUsuario" onclick="searchUser()">Usuário</button>
+                <button class="btn gray" style="margin-top: 21px;" id="buscaUsuario" onclick="searchUser()">Autor</button>
                 <div class="input-field col s12">
                 <input type="hidden" name="usuario" id="usuario" style="color: white; width: 50% ">
                 <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="0">
                 {/if}
-                <label for="nome" style="color: white; width: 50%">Usuário</label>
+                <label for="nome" style="color: white; width: 50%">Autor</label>
                 </div>
             </li>
             <li class="busca2">
@@ -79,7 +79,7 @@
                 <th>Título</th>
                 <th>Corpo</th>
                 <th>Categoria</th>
-                <th>Usuário</th>
+                <th>Autor</th>
                 <th>Data</th>
             </thead>
             <tbody>
@@ -90,8 +90,13 @@
                     <td>{$value.Categoria}</td>
                     <td>{$value.Usuario}</td>
                     <td>{function="formatDate($value.Data)"}</td>
+                    {if="$value.Usuario == $usuario"}
                     <td><a href="/adminNews/edit/{$value.Id}" class="btn yellow" style="float: right;"><i class="material-icons">edit</i></a></td>
                     <td><a href="/adminNews/delete/{$value.Id}" class="btn red" ><i class="material-icons">delete</i></a></td>
+                    {else}
+                    <td><a href="#" class="btn gray" style="float: right;" disabled><i class="material-icons">edit</i></a></td>
+                    <td><a href="#" class="btn gray" disabled><i class="material-icons">delete</i></a></td>
+                    {/if}
                 </tr>
                 {/loop}
             </tbody>

@@ -72,16 +72,13 @@ class News{
             exit;
         }
 
-        //Verificando se o usuario foi inserido corretamente
-        if(!isset($parametros["usuario"])){
-            $_SESSION['mensagem'] = "Selecione 1 usuário";
-            header("Location: /adminNews/add");
-            exit;
-        }
+        $usuarioID = $sql->select("SELECT Id FROM Usuario WHERE Nome = :usuario", array(
+            ":usuario"=>$parametros["usuario"]
+        ));
 
         $sql->query("INSERT INTO Noticia (Id_Categoria_FK, Id_Usuario_FK, Titulo, Corpo) VALUES (:categoria, :usuario, :titulo, :corpo)", array(
             ":categoria"=>$parametros["categoria"],
-            ":usuario"=>$parametros["usuario"],
+            ":usuario"=>$usuarioID[0]["Id"],
             ":titulo"=>$parametros["titulo"],
             ":corpo"=>$parametros["corpo"]
         ));
@@ -112,9 +109,8 @@ class News{
             exit;
         }
 
-        $sql->query("UPDATE Noticia SET Id_Categoria_FK = :categoria, Id_Usuario_FK = :usuario, Titulo = :titulo, Corpo = :corpo WHERE Id = :id", array(
+        $sql->query("UPDATE Noticia SET Id_Categoria_FK = :categoria, Titulo = :titulo, Corpo = :corpo WHERE Id = :id", array(
             ":categoria"=>$parametros["categoria"],
-            ":usuario"=>$parametros["usuario"],
             ":titulo"=>$parametros["titulo"],
             ":corpo"=>$parametros["corpo"],
             ":id"=>$parametros["id"]

@@ -28,23 +28,12 @@
                 </select>
                 <label for="categoria">Categoria</label>
             </div>
-            <div class="input-field col s12">
-                <select id = "usuario" name = "usuario">
-                    <option value="{$noticia.Id_Usuario_FK}" selected>{function="getNameUser($noticia.Id_Usuario_FK)"}</option>
-                    {loop="$usuarios"}
-                    {if="$value.Id != $noticia.Id_Usuario_FK"}
-                    <option value = {$value.Id}>{$value.Nome}</option>
-                    {/if}
-                    {/loop}
-                </select>
-                <label for="categoria">Usuário</label>
-            </div>
             <input type="hidden" id="id" name="id" value={$noticia.Id}>
 
 
 <hr>
         <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Editar</button>
-        <a href="/admin" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+        <a href="/adminNews" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
         </form>
     </div>
 </div>

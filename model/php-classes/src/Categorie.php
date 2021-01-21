@@ -64,14 +64,14 @@ class Categorie {
         //Verificando se o campo Nome foi preenchido
         if($parametros["nome"] === ""){
             $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-            header("Location: /adminCat/add");
+            header('Location: /adminCat');
             exit;
         }
 
         //Verificando se a Categoria ja esta cadastrado
         if(Categorie::verifyCategorie($parametros["nome"])){
             $_SESSION['mensagem'] = "Categoria ja Cadastrada";
-            header("Location: /adminCat/add");
+            header('Location: /adminCat');
             exit;
         }
 
@@ -94,14 +94,14 @@ class Categorie {
         //Verificando se o campo Nome foi preenchido
         if($parametros["nome"] === ""){
             $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-            header("Location: /adminCat/add");
+            header("Location: /adminCat/edit/$id");
             exit;
         }
 
         //Verificando se a Categoria ja esta cadastrado
         if(Categorie::verifyCategorie($parametros["nome"])){
             $_SESSION['mensagem'] = "Categoria ja Cadastrada";
-            header("Location: /adminCat/add");
+            header("Location: /adminCat/edit/$id");
             exit;
         }
 

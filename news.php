@@ -25,7 +25,8 @@ $app->get("/adminNews", function(){
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>['titulo' => "", 'categoria' => "", "usuario"=>"", "data" => ""],
         "categorias"=>$categorias,
-        "usuarios"=>$usuarios
+        "usuarios"=>$usuarios,
+        "usuario"=>$_SESSION['nome']
     ]);
 
 });
@@ -45,7 +46,8 @@ $app->post("/adminNews", function(){
     $page->setTpl('news',[
         "noticias"=>$resultado[0],
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
-        "filtros"=>$resultado[1]
+        "filtros"=>$resultado[1],
+        "usuario"=>$_SESSION['nome']
     ]);
 
 });
@@ -67,7 +69,8 @@ $app->get("/adminNews/add", function(){
     $page->setTpl('addNews', [
         "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "categorias"=>$categorias,
-        "usuarios"=>$usuarios
+        "usuarios"=>$usuarios,
+        "usuario"=>$_SESSION['nome']
     ]);
 
 });
@@ -102,7 +105,8 @@ $app->get("/adminNews/edit/:id", function($id){
         "noticia"=>$resultado,
         "usuarios"=>$usuarios,
         "categorias"=>$categorias,
-        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:''
+        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "usuario"=>$_SESSION['nome']
     ]);
 
 });
