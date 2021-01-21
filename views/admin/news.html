@@ -86,8 +86,7 @@
                 {loop="$noticias"}
                 <tr>
                     <td>{$value.Titulo}</td>
-                    <!--<td>{function="removeTags($value.Corpo)"}</td>-->
-                    <td>{$value.Corpo}</td>
+                    <td>{function="removeTags($value.Corpo)"}</td>
                     <td>{$value.Categoria}</td>
                     <td>{$value.Usuario}</td>
                     <td>{function="formatDate($value.Data)"}</td>
