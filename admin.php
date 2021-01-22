@@ -42,10 +42,14 @@ $app->post("/admin/search/:num", function($num){
 
     $resultado = User::filter($parametros);
 
+
     $page->setTpl('home',[
         "usuarios"=>$resultado[0],
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
-        "filtros"=>$resultado[1]
+        "filtros"=>$resultado[1],
+        "paginas"=>"",
+        "numPags"=>"",
+        "pagina"=>$num
     ]);
 
 });
