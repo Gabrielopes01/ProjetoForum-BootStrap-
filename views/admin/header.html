@@ -7,6 +7,8 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import Materialize.css-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <!--Custom CSS-->
+      <link rel="stylesheet" type="text/css" href="../../res/site/style.css">
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -20,98 +22,14 @@
 
 
     </head>
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: sticky;
-  top: 0;
-  width: 100%;
-}
 
-li {
-  float: left;
-  border-right:1px solid #bbb;
-}
-
-.lilogin{
-  float: right;
-  border-left: 1px solid #bbb;
-}
-
-li:last-child {
-  border-right: none;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  background-color: #111
-}
-
-.titulo {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-.tituloFiltro {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 32px 16px;
-  text-decoration: none;
-}
-
-.busca{
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 1px 7px;
-  text-decoration: none;
-  border-right:none;
-  width: 25%;
-}
-
-.busca2{
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 1px 7px;
-  text-decoration: none;
-  border-right:none;
-  width: 20%;
-}
-
-.listaFiltro{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: static;
-  top: 0;
-  width: 100%;
-}
-
-</style>
     <body>
-<ul>
+<ul class="#263238 z-depth-3">
+  <li><img src="../../res/site/images/logo.png" class="imagem"></li>
   <li class="titulo">Gerenciamento do Forum</li>
-  <li><a href="/" style="background-color: black; color:white;">Home</a></li>
+  <li><a href="/" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Home</a></li>
   {if="$nome != ''"}
-  <li class="lilogin"><a href="/logout">Logout</a></li>
-  {/if}
-  {if="$nome == ''"}
-  <li class="lilogin"><a href="/login">Login</a></li>
+  <li class="lilogin"><a href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Logout</a></li>
   {/if}
 </ul>
 
