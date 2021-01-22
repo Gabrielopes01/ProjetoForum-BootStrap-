@@ -94,8 +94,8 @@
                     <td>{$value.Usuario}</td>
                     <td>{function="formatDate($value.Data)"}</td>
                     {if="$value.Usuario == $usuario"}
-                    <td><a href="/adminNews/edit/{$value.Id}" class="btn yellow" style="float: right;"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/adminNews/delete/{$value.Id}" class="btn red" ><i class="material-icons">delete</i></a></td>
+                    <td><a href="/adminNews/edit/{$value.Id}" class="btn yellow hoverable" style="float: right;"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/adminNews/delete/{$value.Id}" class="btn red hoverable" ><i class="material-icons">delete</i></a></td>
                     {else}
                     <td><a href="#" class="btn gray" style="float: right;" disabled><i class="material-icons">edit</i></a></td>
                     <td><a href="#" class="btn gray" disabled><i class="material-icons">delete</i></a></td>

@@ -16,17 +16,17 @@
 
 <body>
 <div>
-  <ul class="#263238 z-depth-3">
-  <li><img src="./res/site/images/logo.png" class="imagem"></li>
+  <ul class="menu #263238 z-depth-3">
+  <li class="itemMenu"><img src="../../res/site/images/logo.png" class="imagem responsive-img"></li>
   <li class="titulo">Forum CRM</li>
   {if="$nome != ''"}
-  <li><a href="/admin" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin</a></li>
-  <li><a href="/adminCat" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin Categorias</a></li>
-  <li><a href="/adminNews" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin Notícias</a></li>
-  <li class="lilogin"><a href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Logout</a></li>
+  <li class="itemMenu"><a class="selecaoMenu" href="/admin" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin</a></li>
+  <li class="itemMenu"><a class="selecaoMenu" href="/adminCat" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin Categorias</a></li>
+  <li class="itemMenu"><a class="selecaoMenu" href="/adminNews" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin Notícias</a></li>
+  <li class="lilogin"><a class="selecaoMenu" href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Logout</a></li>
   {/if}
   {if="$nome == ''"}
-  <li class="lilogin" onmouseover="mouseSobre()"><a href="/login" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Login</a></li>
+  <li class="lilogin" onmouseover="mouseSobre()"><a class="selecaoMenu" href="/login" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Login</a></li>
   {/if}
   </ul>
 </div>

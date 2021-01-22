@@ -24,12 +24,12 @@
     </head>
 
     <body>
-<ul class="#263238 z-depth-3">
-  <li><img src="../../res/site/images/logo.png" class="imagem"></li>
+<ul class="menu #263238 z-depth-3">
+  <li class="itemMenu"><img src="../../res/site/images/logo.png" class="imagem responsive-img"></li>
   <li class="titulo">Gerenciamento do Forum</li>
-  <li><a href="/" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Home</a></li>
+  <li class="itemMenu"><a class="selecaoMenu" href="/" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Home</a></li>
   {if="$nome != ''"}
-  <li class="lilogin"><a href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Logout</a></li>
+  <li class="lilogin"><a class="selecaoMenu" href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Logout</a></li>
   {/if}
 </ul>
 

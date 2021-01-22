@@ -7,7 +7,7 @@ Use \Classes\User;
 $app->get("/admin", function(){
 
     $page = new PageAdmin([
-        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:'',
     ]);
 
     User::checkLogin();

@@ -73,16 +73,24 @@
                     <td>{$value.Nome}</td>
                     <td>{$value.Email}</td>
                     <td>{function="formatDate($value.Data)"}</td>
-                    <td><a href="/admin/edit/{$value.Id}" class="btn yellow"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/admin/delete/{$value.Id}" class="btn red"><i class="material-icons">delete</i></a></td>
+                    <td><a href="/admin/edit/{$value.Id}" class="btn yellow hoverable"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/admin/delete/{$value.Id}" class="btn red hoverable"><i class="material-icons">delete</i></a></td>
                 </tr>
                 {/loop}
             </tbody>
 
         </table>
 <hr>
-
-        <a href="/admin/add" class="btn" style="float: right"><i class="material-icons">add_circle</i> Adicionar Usuário</a>
+  <ul class="paginacao pagination">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"><a href="#!">1</a></li>
+    <li class="waves-effect hoverable"><a href="/2">2</a></li>
+    <li class="waves-effect hoverable"><a href="#!">3</a></li>
+    <li class="waves-effect hoverable"><a href="#!">4</a></li>
+    <li class="waves-effect hoverable"><a href="#!">5</a></li>
+    <li class="waves-effect hoverable"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+        <a href="/admin/add" class="btn" style="float: right; margin-top: 10px"><i class="material-icons">add_circle</i> Adicionar Usuário</a>
         <br>
         <br>
         <br>
