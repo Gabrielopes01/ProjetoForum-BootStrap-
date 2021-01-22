@@ -19,11 +19,14 @@ class User{
 
     }
 
-    public static function getUsers(){
+    public static function getUsers($num){
 
         $sql = new Sql();
 
-        $resultado = $sql->select("SELECT TOP 10 * FROM Usuario");
+        $forResult = $num * 10;
+
+
+        $resultado = $sql->select("SELECT TOP 10 * FROM Usuario WHERE Id NOT IN (Select TOP $forResult Id From Usuario)", );
 
         return $resultado;
 
@@ -230,7 +233,7 @@ class User{
 
 
         $_SESSION['mensagem'] = "Usuário Cadastrado com Sucesso";
-        header("Location: /admin");
+        header("Location: /admin/search/0");
         exit;
 
     }
@@ -264,7 +267,7 @@ class User{
         ));
 
         $_SESSION['mensagem'] = "Usuário Alterado com Sucessoo";
-        header("Location: /admin");
+        header("Location: /admin/search/0");
         exit;
     }
 
@@ -277,7 +280,7 @@ class User{
         ));
 
         $_SESSION['mensagem'] = "Usuário Deletado com Sucesso";
-        header("Location: /admin");
+        header("Location: /admin/search/0");
         exit;
     }
 

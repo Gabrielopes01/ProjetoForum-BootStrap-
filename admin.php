@@ -4,7 +4,7 @@ Use \Classes\PageAdmin;
 Use \Classes\User;
 
 //Home da Parte Administrativa
-$app->get("/admin", function(){
+$app->get("/admin/search/:num", function($num){
 
     $page = new PageAdmin([
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:'',
@@ -12,18 +12,22 @@ $app->get("/admin", function(){
 
     User::checkLogin();
 
-    $usuarios = User::getUsers();
+    $usuarios = User::getUsers($num);
+
+    $numberPages = generatePages(ceil(count(User::getALLUsers()) / 10));
 
     $page->setTpl('home',[
         "usuarios"=>$usuarios,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
-        "filtros"=>['nome' => "", 'email' => "", 'data' => ""]
+        "filtros"=>['nome' => "", 'email' => "", 'data' => ""],
+        "paginas"=>$numberPages,
+        "pagina"=>$num
     ]);
 
 });
 
 //Usando Filtros
-$app->post("/admin", function(){
+$app->post("/admin/search/:num", function($num){
 
     $page = new PageAdmin([
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''

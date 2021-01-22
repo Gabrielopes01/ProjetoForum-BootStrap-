@@ -47,4 +47,16 @@ function removeTags($text){
 }
 
 
+function generatePages($num){
+
+    $pages = [];
+
+    for ($i = 1; $i <= $num; $i++){
+        array_push($pages, $i);
+    }
+
+    return $pages;
+
+}
+
 ?>
