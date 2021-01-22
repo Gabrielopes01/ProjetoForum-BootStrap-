@@ -14,13 +14,16 @@ $app->get("/admin/search/:num", function($num){
 
     $usuarios = User::getUsers($num);
 
-    $numberPages = generatePages(ceil(count(User::getALLUsers()) / 10));
+    $numPags = ceil(count(User::getALLUsers()) / 10);
+
+    $pages = generatePages($numPags);
 
     $page->setTpl('home',[
         "usuarios"=>$usuarios,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>['nome' => "", 'email' => "", 'data' => ""],
-        "paginas"=>$numberPages,
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
         "pagina"=>$num
     ]);
 
