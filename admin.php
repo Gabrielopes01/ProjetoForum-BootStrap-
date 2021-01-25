@@ -29,6 +29,87 @@ $app->get("/admin/search/:num", function($num){
 
 });
 
+//Home da parte administrativa com filtro e paginaçao
+$app->get("/admin/search/filter/:num", function($num){
+
+    $page = new PageAdmin([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    User::checkLogin();
+
+    $parametros = $_SESSION["parametros"];
+
+    $resultado = User::filter($parametros,$num);
+
+    $resultadoF = [];
+
+    for ($i= 10 * $num; $i < 10 * ($num + 1); $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
+    $page->setTpl('homeFilter',[
+        "usuarios"=>$resultadoF,
+        "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "filtros"=>$resultado[1],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
+    ]);
+
+});
+
+//Usando Filtros
+$app->post("/admin/search/filter/:num", function($num){
+
+    $page = new PageAdmin([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    User::checkLogin();
+
+    $_SESSION["parametros"] = $_POST;
+
+    $resultado = User::filter($_SESSION["parametros"],$num);
+
+    $resultadoF = [];
+
+    for ($i= 10 * $num; $i < 10 * ($num + 1); $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
+    $num = 0;
+
+
+    $page->setTpl('homeFilter',[
+        "usuarios"=>$resultadoF,
+        "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "filtros"=>$resultado[1],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
+    ]);
+
+});
+
 //Usando Filtros
 $app->post("/admin/search/:num", function($num){
 
@@ -38,18 +119,35 @@ $app->post("/admin/search/:num", function($num){
 
     User::checkLogin();
 
-    $parametros = $_POST;
+    $_SESSION["parametros"] = $_POST;
 
-    $resultado = User::filter($parametros);
+    $resultado = User::filter($_SESSION["parametros"],$num);
+
+    $resultadoF = [];
+
+    for ($i= 10 * $num; $i < 10 * ($num + 1); $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
+    $num = 0;
 
 
-    $page->setTpl('home',[
-        "usuarios"=>$resultado[0],
+    $page->setTpl('homeFilter',[
+        "usuarios"=>$resultadoF,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>$resultado[1],
-        "paginas"=>"",
-        "numPags"=>"",
-        "pagina"=>$num
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>1
     ]);
 
 });

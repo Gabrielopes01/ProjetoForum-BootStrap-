@@ -93,40 +93,61 @@
   </ul>
 -->
     <ul class="paginacao pagination">
-    {if="$pagina == 0"}
-    <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="0">1</a></li>
-    {loop="$paginas"}
-    {if="$value <= $pagina+3"}  <!--Altera o numero de resultados a aprecer-->
-        {if="$value != 1"}
-        <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-        {/if}
-    {/if}
-    {/loop}
-    {if="$numPags != 1"}
-    <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-    {else}
-    <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
-    {/if}
-
-    {else}
-    <li class="waves-effect hoverable"><a href="{$pagina-1}"><i class="material-icons">chevron_left</i></a></li>
-    {loop="$paginas"}
-        {if="$value <= $pagina+2"}<!--Altera o numero de resultados a aprecer-->
-            {if="$value-1 >= $pagina"}
-                {if="($value-1) == $pagina"}
-                <li class="waves-effect hoverable"><a href="{$value-2}">{$value-1}</a></li>
-                    <li class="active"><a href="{$value-1}">{$value}</a></li>
-                {else}
-                <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-                {/if}
+    {if="$post == 1"}
+        {if="$pagina == 0"}
+        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="filter/0">1</a></li>
+        {loop="$paginas"}
+        {if="$value <= $pagina+3"}  <!--Altera o numero de resultados a aprecer-->
+            {if="$value != 1"}
+            <li class="waves-effect hoverable"><a href="filter/{$value-1}">{$value}</a></li>
             {/if}
         {/if}
-    {/loop}
-        {if="$pagina+1 < $numPags"}
+        {/loop}
+        {if="$numPags != 1"}
+        <li class="waves-effect hoverable"><a href="filter/{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
+        {else}
+        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
+        {/if}
+        {/if}
+
+    {else}
+
+        {if="$pagina == 0"}
+        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="0">1</a></li>
+        {loop="$paginas"}
+        {if="$value <= $pagina+3"}  <!--Altera o numero de resultados a aprecer-->
+            {if="$value != 1"}
+            <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
+            {/if}
+        {/if}
+        {/loop}
+        {if="$numPags != 1"}
         <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
         {else}
         <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
+        {/if}
+
+        {else}
+        <li class="waves-effect hoverable"><a href="{$pagina-1}"><i class="material-icons">chevron_left</i></a></li>
+        {loop="$paginas"}
+            {if="$value <= $pagina+2"}<!--Altera o numero de resultados a aprecer-->
+                {if="$value-1 >= $pagina"}
+                    {if="($value-1) == $pagina"}
+                    <li class="waves-effect hoverable"><a href="{$value-2}">{$value-1}</a></li>
+                        <li class="active"><a href="{$value-1}">{$value}</a></li>
+                    {else}
+                    <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
+                    {/if}
+                {/if}
+            {/if}
+        {/loop}
+            {if="$pagina+1 < $numPags"}
+            <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
+            {else}
+            <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
+            {/if}
         {/if}
     {/if}
   </ul>
