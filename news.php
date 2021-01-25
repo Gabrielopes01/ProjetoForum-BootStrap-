@@ -5,8 +5,8 @@ Use \Classes\User;
 Use \Classes\Categorie;
 Use \Classes\News;
 
-//Home da Parte Administrativa
-$app->get("/adminNews", function(){
+//Home da Parte de noticias
+$app->get("/adminNews/search/:num", function($num){
 
     $page = new PageAdmin([
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
@@ -14,11 +14,15 @@ $app->get("/adminNews", function(){
 
     User::checkLogin();
 
-    $noticias = News::getNews();
+    $noticias = News::getNews($num);
 
     $usuarios = User::getALLUsers();
 
     $categorias = Categorie::getALLCategorie();
+
+    $numPags = ceil(count(News::getALLNews()) / 10);
+
+    $pages = generatePages($numPags);
 
     $page->setTpl('news',[
         "noticias"=>$noticias,
@@ -26,12 +30,17 @@ $app->get("/adminNews", function(){
         "filtros"=>['titulo' => "", 'categoria' => "", "usuario"=>"", "data" => ""],
         "categorias"=>$categorias,
         "usuarios"=>$usuarios,
-        "usuario"=>$_SESSION['nome']
+        "usuario"=>$_SESSION['nome'],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
     ]);
 
 });
 
-$app->post("/adminNews", function(){
+//Home da parte de noticias com filtro e paginaçao
+$app->get("/adminNews/search/filter/:num", function($num){
 
     $page = new PageAdmin([
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
@@ -39,15 +48,119 @@ $app->post("/adminNews", function(){
 
     User::checkLogin();
 
-    $parametros = $_POST;
+    $parametros = $_SESSION["parametrosNEW"];
 
     $resultado = News::filter($parametros);
 
+    $resultadoF = [];
+
+    for ($i= 10 * $num; $i < 10 * ($num + 1); $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
     $page->setTpl('news',[
-        "noticias"=>$resultado[0],
+        "noticias"=>$resultadoF,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>$resultado[1],
-        "usuario"=>$_SESSION['nome']
+        "usuario"=>$_SESSION['nome'],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
+    ]);
+
+});
+
+//Usando Filtros do POST Filter
+$app->post("/adminNews/search/filter/:num", function($num){
+
+    $page = new PageAdmin([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    User::checkLogin();
+
+    $_SESSION["parametrosNEW"] = $_POST;
+
+    $num = 0;
+
+    $resultado = News::filter($_SESSION["parametrosNEW"]);
+
+    $resultadoF = [];
+
+
+    for ($i = 0; $i < 10; $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
+
+    $page->setTpl('news',[
+        "noticias"=>$resultadoF,
+        "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "filtros"=>$resultado[1],
+        "usuario"=>$_SESSION['nome'],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
+    ]);
+
+});
+
+//Usando Filros do POST da Home
+$app->post("/adminNews/search/:num", function($num){
+
+    $page = new PageAdmin([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    User::checkLogin();
+
+    $_SESSION["parametrosNEW"] = $_POST;
+
+    $num = 0;
+
+    $resultado = News::filter($_SESSION["parametrosNEW"]);
+
+    $resultadoF = [];
+
+    for ($i= 0; $i < 10; $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
+    $page->setTpl('news',[
+        "noticias"=>$resultadoF,
+        "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "filtros"=>$resultado[1],
+        "usuario"=>$_SESSION['nome'],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>1
     ]);
 
 });

@@ -18,15 +18,18 @@ class News{
 
     }
 
-    public static function getNews(){
+    public static function getNews($num){
 
         $sql = new Sql();
+
+        $forResult = $num * 10;
 
         $resultado = $sql->select("
             SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
             FROM Noticia
             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
+            WHERE Noticia.Id NOT IN (Select TOP $forResult Id From Noticia)
             ");
 
         return $resultado;
@@ -337,7 +340,7 @@ class News{
                     }
                 }
             } else {
-                //Nenhum dos 3 estao preenchidos
+                //Nenhum dos 4 estao preenchidos
                 $resultado2 = $sql->select(
                     "
                     SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
