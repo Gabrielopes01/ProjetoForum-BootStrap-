@@ -4,8 +4,8 @@ Use \Classes\PageAdmin;
 Use \Classes\User;
 Use \Classes\Categorie;
 
-//Home da Parte Administrativa
-$app->get("/adminCat", function(){
+//Home da Parte de categorias
+$app->get("/adminCat/search/:num", function($num){
 
     $page = new PageAdmin([
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
@@ -13,18 +13,26 @@ $app->get("/adminCat", function(){
 
     User::checkLogin();
 
-    $categorias = Categorie::getCategorie();
+    $categorias = Categorie::getCategorie($num);
+
+    $numPags = ceil(count(Categorie::getALLCategorie()) / 10);
+
+    $pages = generatePages($numPags);
 
     $page->setTpl('categorie',[
         "categorias"=>$categorias,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
-        "filtros"=>['nome' => ""]
+        "filtros"=>['nome' => ""],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
     ]);
 
 });
 
-//Usando Filtros
-$app->post("/adminCat", function(){
+//Home da parte de categorias com filtro e paginaçao
+$app->get("/adminCat/search/filter/:num", function($num){
 
     $page = new PageAdmin([
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
@@ -32,14 +40,116 @@ $app->post("/adminCat", function(){
 
     User::checkLogin();
 
-    $parametros = $_POST;
+    $parametros = $_SESSION["parametrosCAT"];
 
     $resultado = Categorie::filter($parametros);
 
+    $resultadoF = [];
+
+    for ($i= 10 * $num; $i < 10 * ($num + 1); $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
     $page->setTpl('categorie',[
-        "categorias"=>$resultado[0],
+        "categorias"=>$resultadoF,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
-        "filtros"=>$resultado[1]
+        "filtros"=>$resultado[1],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
+    ]);
+
+});
+
+//Usando Filtros do POST Filter
+$app->post("/adminCat/search/filter/:num", function($num){
+
+    $page = new PageAdmin([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    User::checkLogin();
+
+    $_SESSION["parametrosCAT"] = $_POST;
+
+    $num = 0;
+
+    $resultado = Categorie::filter($_SESSION["parametrosCAT"]);
+
+    $resultadoF = [];
+
+
+    for ($i = 0; $i < 10; $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
+
+    $page->setTpl('categorie',[
+        "categorias"=>$resultadoF,
+        "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "filtros"=>$resultado[1],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>0
+    ]);
+
+});
+
+//Usando Filtros no Post da Home
+$app->post("/adminCat/search/:num", function($num){
+
+    $page = new PageAdmin([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    User::checkLogin();
+
+    $_SESSION["parametrosCAT"] = $_POST;
+
+    $num = 0;
+
+    $resultado = Categorie::filter($_SESSION["parametrosCAT"]);
+
+    $resultadoF = [];
+
+    for ($i= 0; $i < 10; $i++) {
+        if (isset($resultado[0][$i])){
+            array_push($resultadoF, $resultado[0][$i]);
+        }else{
+            break;
+        }
+    }
+
+    $numPags = ceil(count($resultado[0]) / 10);
+
+    $pages = generatePages($numPags);
+
+    $page->setTpl('categorie',[
+        "categorias"=>$resultadoF,
+        "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "filtros"=>$resultado[1],
+        "paginas"=>$pages,
+        "numPags"=>$numPags,
+        "pagina"=>$num,
+        "post"=>1
     ]);
 
 });

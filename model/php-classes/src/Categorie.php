@@ -20,11 +20,13 @@ class Categorie {
     }
 
 
-    public static function getCategorie(){
+    public static function getCategorie($num){
 
         $sql = new Sql();
 
-        $resultado = $sql->select("SELECT TOP 10 * FROM Categoria");
+        $forResult = $num * 10;
+
+        $resultado = $sql->select("SELECT TOP 10 * FROM Categoria WHERE Id NOT IN (Select TOP $forResult Id From Categoria)");
 
         return $resultado;
 

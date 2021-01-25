@@ -25,7 +25,6 @@ class User{
 
         $forResult = $num * 10;
 
-
         $resultado = $sql->select("SELECT TOP 10 * FROM Usuario WHERE Id NOT IN (Select TOP $forResult Id From Usuario)", );
 
         return $resultado;
@@ -102,11 +101,9 @@ class User{
 
 
     //Esta função ira filtrar os usuarios e exibir a pesquisa
-    public static function filter($parametros, $num){
+    public static function filter($parametros){
 
         $sql = new Sql();
-
-        $forResult = $num * 10;
 
         $filtros = ["nome"=>$parametros['nome'], "email"=>$parametros['email'], "data"=>$parametros['data']];
         $resultadoFiltro = [];
@@ -119,7 +116,7 @@ class User{
         //Verificando se os 3 campos estão preenchidos com parametros de busca
         if($parametros['verBuscaNome'] == 1 && $parametros['verBuscaEmail'] == 1 && $parametros['verBuscaData'] == 1 && $name != "|" && $email != "|" && $data != "|"){
             if($parametros['nome'] !== "" && $parametros['email'] !== "" && $parametros['data'] !== ""){
-                    $resultadoALL = $sql->select("SELECT * FROM Usuario WHERE Id NOT IN (Select TOP $forResult Id From Usuario) AND Nome LIKE CONCAT('%', :nome, '%') AND Email LIKE CONCAT('%', :email, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
+                    $resultadoALL = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND Email LIKE CONCAT('%', :email, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
                         ":nome"=>$name,
                         ":email"=>$email,
                         ":data"=>$data
@@ -146,7 +143,7 @@ class User{
                         array_push($resultadoFiltro, $resultadoND);
                     } else {
                         //Apenas o Nome esta preenchido
-                    $resultadoN = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND Id NOT IN (Select TOP $forResult Id From Usuario)", [
+                    $resultadoN = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%')", [
                         ":nome"=>$name
                     ]);
                         array_push($resultadoFiltro, $resultadoN);

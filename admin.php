@@ -24,7 +24,8 @@ $app->get("/admin/search/:num", function($num){
         "filtros"=>['nome' => "", 'email' => "", 'data' => ""],
         "paginas"=>$pages,
         "numPags"=>$numPags,
-        "pagina"=>$num
+        "pagina"=>$num,
+        "post"=>0
     ]);
 
 });
@@ -40,7 +41,7 @@ $app->get("/admin/search/filter/:num", function($num){
 
     $parametros = $_SESSION["parametros"];
 
-    $resultado = User::filter($parametros,$num);
+    $resultado = User::filter($parametros);
 
     $resultadoF = [];
 
@@ -56,7 +57,7 @@ $app->get("/admin/search/filter/:num", function($num){
 
     $pages = generatePages($numPags);
 
-    $page->setTpl('homeFilter',[
+    $page->setTpl('home',[
         "usuarios"=>$resultadoF,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>$resultado[1],
@@ -68,7 +69,7 @@ $app->get("/admin/search/filter/:num", function($num){
 
 });
 
-//Usando Filtros
+//Usando Filtros do POST Filter
 $app->post("/admin/search/filter/:num", function($num){
 
     $page = new PageAdmin([
@@ -79,11 +80,14 @@ $app->post("/admin/search/filter/:num", function($num){
 
     $_SESSION["parametros"] = $_POST;
 
-    $resultado = User::filter($_SESSION["parametros"],$num);
+    $num = 0;
+
+    $resultado = User::filter($_SESSION["parametros"]);
 
     $resultadoF = [];
 
-    for ($i= 10 * $num; $i < 10 * ($num + 1); $i++) {
+
+    for ($i = 0; $i < 10; $i++) {
         if (isset($resultado[0][$i])){
             array_push($resultadoF, $resultado[0][$i]);
         }else{
@@ -95,10 +99,8 @@ $app->post("/admin/search/filter/:num", function($num){
 
     $pages = generatePages($numPags);
 
-    $num = 0;
 
-
-    $page->setTpl('homeFilter',[
+    $page->setTpl('home',[
         "usuarios"=>$resultadoF,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>$resultado[1],
@@ -110,7 +112,7 @@ $app->post("/admin/search/filter/:num", function($num){
 
 });
 
-//Usando Filtros
+//Usando Filtros do POST da home
 $app->post("/admin/search/:num", function($num){
 
     $page = new PageAdmin([
@@ -121,11 +123,13 @@ $app->post("/admin/search/:num", function($num){
 
     $_SESSION["parametros"] = $_POST;
 
-    $resultado = User::filter($_SESSION["parametros"],$num);
+    $num = 0;
+
+    $resultado = User::filter($_SESSION["parametros"]);
 
     $resultadoF = [];
 
-    for ($i= 10 * $num; $i < 10 * ($num + 1); $i++) {
+    for ($i= 0; $i < 10; $i++) {
         if (isset($resultado[0][$i])){
             array_push($resultadoF, $resultado[0][$i]);
         }else{
@@ -137,10 +141,8 @@ $app->post("/admin/search/:num", function($num){
 
     $pages = generatePages($numPags);
 
-    $num = 0;
 
-
-    $page->setTpl('homeFilter',[
+    $page->setTpl('home',[
         "usuarios"=>$resultadoF,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>$resultado[1],
