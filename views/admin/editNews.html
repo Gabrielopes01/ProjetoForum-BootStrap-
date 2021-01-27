@@ -20,6 +20,10 @@
                 <textarea name="corpo" id="corpo">{$noticia.Corpo}</textarea>
             </div>
             <div class="input-field col s12">
+                <input type="text" name="resumo" id="resumo", value="{$noticia.Resumo}">
+                <label for="nome">Resumo</label>
+            </div>
+            <div class="input-field col s12">
                 <select id = "categoria" name = "categoria">
                     <option value="{$noticia.Id_Categoria_FK}" selected>{function="getNameCategorie($noticia.Id_Categoria_FK)"}</option>
                     {loop="$categorias"}

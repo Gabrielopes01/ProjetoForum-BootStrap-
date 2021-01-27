@@ -53,3 +53,30 @@ SELECT Categoria.Nome
 FROM Noticia
 INNER JOIN Categoria
 ON Noticia.Id_Categoria_FK = Categoria.Id;
+
+
+
+
+#Temporario
+ALTER TABLE Noticia
+ADD Resumo VARCHAR(250);
+
+ALTER TABLE Noticia
+ADD Imagem VARCHAR(300);
+
+
+#Nova Tabela
+/*
+CREATE TABLE Noticia(
+    Id INT PRIMARY KEY IDENTITY,
+    Id_Categoria_FK INT,
+    FOREIGN KEY (Id_Categoria_FK) REFERENCES Categoria(Id),
+    Id_Usuario_FK INT,
+    FOREIGN KEY (Id_Usuario_FK) REFERENCES Usuario(Id),
+    Titulo VARCHAR(200) NOT NULL,
+    Corpo VARCHAR(8000) NOT NULL,
+    Data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Resumo VARCHAR(250) NOT NULL,
+    Imagem VARCHAR(300) NOT NULL
+);
+*/

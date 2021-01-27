@@ -41,7 +41,7 @@ class News{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Imagem AS 'Imagem'
             FROM Noticia
             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id");
@@ -68,6 +68,13 @@ class News{
             exit;
         }
 
+        //Verificando se o campo Resumo foi preenchido
+        if($parametros["resumo"] === ""){
+            $_SESSION['mensagem'] = "Campo Resumo Obrigatório";
+            header("Location: /adminNews/add");
+            exit;
+        }
+
         //Verificando se a categoria foi inserida corretamente
         if(!isset($parametros["categoria"])){
             $_SESSION['mensagem'] = "Selecione 1 categoria";
@@ -75,20 +82,30 @@ class News{
             exit;
         }
 
+        //Verificando se o tipo de arquivo esta correto, se estiver correto ele salva a imagem no diretorio
+        if(!verifyImage($_FILES)){
+            $_SESSION['mensagem'] = "Formato de Arquivo Inválido";
+            header("Location: /adminNews/add");
+            exit;
+        }
+
+
         $usuarioID = $sql->select("SELECT Id FROM Usuario WHERE Nome = :usuario", array(
             ":usuario"=>$parametros["usuario"]
         ));
 
-        $sql->query("INSERT INTO Noticia (Id_Categoria_FK, Id_Usuario_FK, Titulo, Corpo) VALUES (:categoria, :usuario, :titulo, :corpo)", array(
+        $sql->query("INSERT INTO Noticia (Id_Categoria_FK, Id_Usuario_FK, Titulo, Corpo, Resumo, Imagem) VALUES (:categoria, :usuario, :titulo, :corpo, :resumo, :imagem)", array(
             ":categoria"=>$parametros["categoria"],
             ":usuario"=>$usuarioID[0]["Id"],
             ":titulo"=>$parametros["titulo"],
-            ":corpo"=>$parametros["corpo"]
+            ":corpo"=>$parametros["corpo"],
+            ":resumo"=>$parametros["resumo"],
+            ":imagem"=>$_SESSION["nomeImagem"]
         ));
 
 
         $_SESSION['mensagem'] = "Notícia Criada com Sucesso";
-        header("Location: /adminNews");
+        header("Location: /adminNews/search/0");
         exit;
 
     }
@@ -112,15 +129,16 @@ class News{
             exit;
         }
 
-        $sql->query("UPDATE Noticia SET Id_Categoria_FK = :categoria, Titulo = :titulo, Corpo = :corpo WHERE Id = :id", array(
+        $sql->query("UPDATE Noticia SET Id_Categoria_FK = :categoria, Titulo = :titulo, Corpo = :corpo, Resumo = :resumo WHERE Id = :id", array(
             ":categoria"=>$parametros["categoria"],
             ":titulo"=>$parametros["titulo"],
             ":corpo"=>$parametros["corpo"],
+            ":resumo"=>$parametros["resumo"],
             ":id"=>$parametros["id"]
         ));
 
-        $_SESSION['mensagem'] = "Noticia Alterada com Sucessoo";
-        header("Location: /adminNews");
+        $_SESSION['mensagem'] = "Noticia Alterada com Sucesso";
+        header("Location: /adminNews/search/0");
         exit;
     }
 
@@ -133,7 +151,7 @@ class News{
         ));
 
         $_SESSION['mensagem'] = "Notícia Deletada com Sucesso";
-        header("Location: /adminNews");
+        header("Location: /adminNews/search/0");
         exit;
     }
 

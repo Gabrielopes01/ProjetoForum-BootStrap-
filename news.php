@@ -191,9 +191,7 @@ $app->get("/adminNews/add", function(){
 //Adiconar
 $app->post("/adminNews/add", function(){
 
-    $parametros = $_POST;
-
-    News::addNews($parametros);
+    News::addNews($_POST);
 
 });
 
@@ -205,6 +203,8 @@ $app->get("/adminNews/edit/:id", function($id){
     ]);
 
     User::checkLogin();
+
+    User::checkPermission($id);
 
     $usuarios = User::getALLUsers();
 
@@ -242,11 +242,16 @@ $app->get("/adminNews/delete/:id", function($id){
 
     User::checkLogin();
 
+    User::checkPermission($id);
+
     $page->setTpl('deleteNews');
 
 });
 
 $app->post("/adminNews/delete/:id", function($id){
+
+    var_dump($_SESSION);
+    exit;
 
     News::deleteNews($id);
 

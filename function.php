@@ -59,4 +59,29 @@ function generatePages($num){
 
 }
 
+
+function verifyImage($archive){
+
+    $permitido = array("png", "jpg", "jpeg");
+    $extensao = pathinfo($archive["imagem"]["name"], PATHINFO_EXTENSION);
+
+    if (in_array($extensao, $permitido)){
+
+        $pasta = "res/site/images/";
+        $temporario = $archive["imagem"]["tmp_name"];
+        $novoNome = uniqid().".$extensao";
+
+        $_SESSION["nomeImagem"] = $novoNome;
+
+        move_uploaded_file($temporario, $pasta.$novoNome);
+
+        return true;
+
+    } else {
+        return false;
+    }
+
+}
+
+
 ?>

@@ -2,3 +2,41 @@
 {if="$nome != ''"}
 <p>Bem Vindo(a) {$nome}</p>
 {/if}
+<br>
+
+<h2 class="light center"; align="left">Notícias</h2>
+<hr style="border: 1px solid black;">
+      <div class="row black">
+
+        {loop="$noticias"}
+        <div class="col s12 m6 l2">
+          <div class="card grey darken-1" style="width: 200px; height: 350px">
+
+            <div class="card-image">
+              {if="isset($value.Imagem)"}
+              <a href="#"><img src="../../res/site/images/{$value.Imagem}"  style="width: 200px; height: 150px"></a>
+              {else}
+              <a href="#"><img src="../../res/site/images/default.jpg" style="width: 200px; height: 180px"></a>
+              {/if}
+            </div>
+
+            <div class="card-content">
+              <span class="card-title activator">{$value.Titulo} <i class="material-icons right">more_vert</i></span>
+              {if="isset($value.Resumo)"}
+              <p>{$value.Resumo}</p>
+              {else}
+              <p>Sem Resumo</p>
+              {/if}
+            </div>
+
+            <div class="card-reveal">
+              <span class="card-title"><i class="material-icons right">close</i></span>
+              <p>{function="removeTags($value.Corpo)"}</p>
+              <a href="#">Acessar Notícia</a>
+            </div>
+
+          </div>
+        </div>
+        {/loop}
+
+      </div>

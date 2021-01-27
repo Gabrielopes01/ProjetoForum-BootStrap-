@@ -53,6 +53,7 @@ class User{
             if(password_verify($password, $resultado[0]["Senha"])){
 
                 $_SESSION['nome'] = $resultado[0]["Nome"];
+                $_SESSION['email']= $resultado[0]["Email"];
 
                 header("Location: /");
                 exit;
@@ -285,6 +286,27 @@ class User{
         $_SESSION['mensagem'] = "Usuário Deletado com Sucesso";
         header("Location: /admin/search/0");
         exit;
+    }
+
+    public static function checkPermission($id){
+
+        $sql = new Sql();
+
+        $email = $sql->select("
+                SELECT Usuario.Email
+                From Noticia
+                INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
+                WHERE Noticia.Id = :id
+            ", [
+                ":id"=>$id
+            ]);
+
+        if (!($email[0]["Email"] === $_SESSION["email"])){
+            $_SESSION["mensagem"] = "Você não tem permissão para acessar esta notícia";
+            header("Location: /adminNews/search/0");
+            exit;
+        }
+
     }
 
 
