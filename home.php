@@ -10,7 +10,7 @@ $app->get("/", function(){
     ]);
 
     $page->setTpl('home', [
-    "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
     ]);
 
 });

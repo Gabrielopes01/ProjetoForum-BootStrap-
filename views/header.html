@@ -15,19 +15,28 @@
 </head>
 
 <body>
-<div>
-  <ul class="menu #263238 z-depth-3">
-  <li class="itemMenu"><img src="../../res/site/images/logo.png" class="imagem responsive-img"></li>
-  <li class="titulo">Forum CRM</li>
-  {if="$nome != ''"}
-  <li class="itemMenu"><a class="selecaoMenu" href="/admin/search/0" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin</a></li>
-  <li class="itemMenu"><a class="selecaoMenu" href="/adminCat/search/0" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin Categorias</a></li>
-  <li class="itemMenu"><a class="selecaoMenu" href="/adminNews/search/0" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Admin Notícias</a></li>
-  <li class="lilogin"><a class="selecaoMenu" href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Logout</a></li>
-  {/if}
-  {if="$nome == ''"}
-  <li class="lilogin" onmouseover="mouseSobre()"><a class="selecaoMenu" href="/login" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Login</a></li>
-  {/if}
-  </ul>
+
+
+<div class="navbar-fixed">
+    <nav>
+    <div class="nav-wrapper grey darken-4">
+      <a href="/" class="logo brand-logo center"><img src="../../res/site/images/logo.png" class="imagem responsive-img center"></a>
+      <ul id="nav-main" class="left hide-on-med-and-down">
+        <li class="titulo grey darken-2">Forum CRM</li>
+        {if="$nome != ''"}
+        <li class="itemMenu"><a href="/admin/search/0" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)"> <i class="material-icons left">people</i> Admin</a></li>
+        <li class="itemMenu"><a href="/adminCat/search/0" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)"> <i class="material-icons left">bookmark</i> Admin Categorias</a></li>
+        <li class="itemMenu"><a  href="/adminNews/search/0" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)"> <i class="material-icons left">book</i> Admin Notícias</a></li>
+        {/if}
+      </ul>
+      <ul id="nav-login" class="right hide-on-med-and-down">
+        {if="$nome == ''"}
+        <li class="lilogin" onmouseover="mouseSobre()"><a href="/login" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)"><i class="material-icons right">person</i> Login</a></li>
+        {else}
+        <li class="lilogin"><a href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)"><i class="material-icons right">close</i> Logout</a></li>
+        {/if}
+      </ul>
+    </div>
+  </nav>
 </div>
 

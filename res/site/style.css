@@ -19,26 +19,13 @@
   border-left: 1px solid #bbb;
 }
 
-li:last-child {
-  border-right: none;
-}
-
-.selecaoMenu {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  background-color: #111
-}
-
 .titulo {
-   float: left;
+  float: left;
   border-right:1px solid #bbb;
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 0px 10px;
   text-decoration: none;
 }
 
@@ -86,11 +73,29 @@ li:last-child {
 }
 
 .imagem{
-  width: 45px;
-  height: 45px;
+  width: 70px;
+  height: 70px;
 }
 
 .paginacao{
   width: 40%;
   float: left;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  z-index:9999;
+  background-color: #263238;
+}
+
+.header{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index:9999;
 }

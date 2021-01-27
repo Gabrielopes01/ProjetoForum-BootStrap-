@@ -24,13 +24,21 @@
     </head>
 
     <body>
-<ul class="menu #263238 z-depth-3">
-  <li class="itemMenu"><img src="../../../res/site/images/logo.png" class="imagem responsive-img"></li>
-  <li class="titulo">Gerenciamento do Forum</li>
-  <li class="itemMenu"><a class="selecaoMenu" href="/" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Home</a></li>
-  {if="$nome != ''"}
-  <li class="lilogin"><a class="selecaoMenu" href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)">Logout</a></li>
-  {/if}
-</ul>
 
+<div class="navbar-fixed">
+    <nav>
+    <div class="nav-wrapper grey darken-4">
+      <a href="/" class="logo brand-logo center"><img src="../../res/site/images/logo.png" class="imagem responsive-img center"></a>
+      <ul id="nav-main" class="left hide-on-med-and-down">
+        <li class="titulo grey darken-2">Gerenciamento do Forum</li>
+        <li class="itemMenu"><a href="/" style="background-color: black; color:white;" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)"><i class="material-icons left">home</i> Home</a></li>
+      </ul>
+      <ul id="nav-login" class="right hide-on-med-and-down">
+        {if="$nome != ''"}
+        <li class="lilogin"><a href="/logout" onmouseover="mouseSobre(this)" onmouseout="mouseSaiu(this)"><i class="material-icons right">close</i> Logout</a></li>
+        {/if}
+      </ul>
+    </div>
+  </nav>
+</div>
 

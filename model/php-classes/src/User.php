@@ -64,6 +64,10 @@ class User{
             }
         }
 
+        $_SESSION['mensagem'] = "Usuário e/ou Senha Inválidos";
+        header("Location: /login");
+        exit;
+
     }
 
     public static function verifyEmail($email){
@@ -188,7 +192,7 @@ class User{
 
         $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
 
-        //Verifocando se o campo Nome foi preenchido
+        //Verificando se o campo Nome foi preenchido
         if($parametros["nome"] === ""){
             $_SESSION['mensagem'] = "Campo Nome Obrigatório";
             header("Location: /admin/add");
