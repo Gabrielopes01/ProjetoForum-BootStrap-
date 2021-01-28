@@ -111,7 +111,7 @@ class User{
     public static function checkLogin(){
         if(!isset($_SESSION['nome']) || $_SESSION['nome'] === ""){
             $_SESSION['mensagem'] = "Faça o login para acessar a página";
-            header("Location: /login");
+            header("Location: /0/login");
             exit;
         }
     }

@@ -87,7 +87,7 @@ INSERT Noticia VALUES
 */
 
 
-
+/*
 CREATE TABLE Favorito(
     Id INT PRIMARY KEY IDENTITY,
     Id_Usuario_FK INT,
@@ -95,3 +95,6 @@ CREATE TABLE Favorito(
     Id_Noticia_FK INT,
     FOREIGN KEY (Id_Noticia_FK) REFERENCES Noticia(Id)
 );
+*/
+
+#INSERT Favorito VALUES (27, 15);
