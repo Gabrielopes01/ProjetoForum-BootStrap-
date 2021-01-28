@@ -17,6 +17,7 @@ class Favorite{
             FROM Favorito
             INNER JOIN Usuario ON Favorito.Id_Usuario_FK = Usuario.Id
             INNER JOIN Noticia ON Favorito.Id_Noticia_FK = Noticia.Id
+            ORDER BY Noticia.Data
             ",);
 
         return $resultado;
