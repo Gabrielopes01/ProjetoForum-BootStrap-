@@ -16,6 +16,7 @@ require_once("admin.php");
 require_once("login.php");
 require_once("categorie.php");
 require_once("news.php");
+require_once("favorite.php");
 
 $app->run();
 

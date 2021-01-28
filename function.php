@@ -4,6 +4,7 @@ Use \Slim\Slim;
 Use \Classes\Page;
 Use \Classes\PageAdmin;
 Use \Classes\Sql;
+Use \Classes\Favorite;
 
 function formatDate($date){
 
@@ -93,6 +94,21 @@ function generatePag($num){
     }
 
     return $pags;
+
+}
+
+
+function isInFavorite($id){
+
+    $favorito = Favorite::verifyFavorite($id);
+
+    if($favorito == 1){
+       $_SESSION["favorito"] = 1;
+    } else if ($favorito == 0) {
+        $_SESSION["favorito"] = 0;
+    } else {
+        $_SESSION["favorito"] = 2;
+    }
 
 }
 

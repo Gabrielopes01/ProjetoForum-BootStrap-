@@ -19,7 +19,6 @@ $app->post("/0/login", function(){
 
     User::verifyLogin($_POST["email"],$_POST["senha"]);
 
-
 });
 
 $app->get("/0/logout", function(){

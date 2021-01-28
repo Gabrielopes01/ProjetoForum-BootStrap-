@@ -19,6 +19,18 @@ class User{
 
     }
 
+    public function getUserByEmail($email){
+
+        $sql = new Sql;
+
+        $resultado = $sql->select("SELECT * FROM Usuario WHERE Email = :email", [
+            ":email"=>$email
+        ]);
+
+        return $resultado[0];
+
+    }
+
     public static function getUsers($num){
 
         $sql = new Sql();
@@ -60,13 +72,13 @@ class User{
 
             } else {
                 $_SESSION['mensagem'] = "Usuário e/ou Senha Inválidos";
-                header("Location: /login");
+                header("Location: /0/login");
                 exit;
             }
         }
 
         $_SESSION['mensagem'] = "Usuário e/ou Senha Inválidos";
-        header("Location: /login");
+        header("Location: /0/login");
         exit;
 
     }

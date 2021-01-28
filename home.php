@@ -3,6 +3,7 @@
 Use \Classes\Page;
 Use \Classes\News;
 Use \Classes\User;
+Use \Classes\Favorite;
 
 //Home de Site
 $app->get("/", function(){
