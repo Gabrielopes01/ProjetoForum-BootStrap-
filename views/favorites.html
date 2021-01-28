@@ -53,7 +53,7 @@
     <li class="active"><a href="/0/myFavorites">1</a></li>
     <li class="white-text">. </li>
     {else}
-    <li class="waves-effect"><a href="/{$pagina-1}" class="white-text"><i class="material-icons">chevron_left</i></a></li>
+    <li class="waves-effect"><a href="/{$pagina-1}/myFavorites" class="white-text"><i class="material-icons">chevron_left</i></a></li>
     <li class="waves-effect"><a href="/0/myFavorites" class="white-text">1</a></li>
     <li class="white-text">. </li>
     {/if}
@@ -89,7 +89,7 @@
       <li class="waves-effect"><a class="white-text" href="/{$numPags-1}/myFavorites">{$numPags}</a></li>
         <!--Verificando se é o fim da pagina e inserindo a chave-->
         {if="($pagina+1) != $numPags"}
-        <li class="waves-effect"><a class="white-text" href="{$pagina+1}/myFavorites"><i class="material-icons">chevron_right</i></a></li>
+        <li class="waves-effect"><a class="white-text" href="/{$pagina+1}/myFavorites"><i class="material-icons">chevron_right</i></a></li>
         {/if}
       {/if}
     {/if}
