@@ -20,6 +20,8 @@ $app->get("/:num", function($num){
     $noticias = News::getALLNews();
 
     $resultado = [];
+    $numPags = (int) ceil(count($noticias)/24);
+    $paginas = generatePag($numPags);
 
     for ($i = 24 * $num; $i < 24 * ($num + 1); $i++) {
         if($i == count($noticias) || $i > count($noticias)){
@@ -32,7 +34,10 @@ $app->get("/:num", function($num){
 
     $page->setTpl('home', [
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:'',
-        "noticias"=>$resultado
+        "noticias"=>$resultado,
+        "pagina"=>$num,
+        "paginas"=>$paginas,
+        "numPags"=>$numPags
     ]);
 
 });

@@ -80,3 +80,8 @@ CREATE TABLE Noticia(
     Imagem VARCHAR(300) NOT NULL
 );
 */
+
+/*
+INSERT Noticia VALUES
+(1, 2, 'Vitória do Cruzeiro', 'Descrição da notícia', DEFAULT, "Resumo da Notícia", "a.png");
+*/

@@ -35,17 +35,53 @@
         </div>
         {/loop}
 
-  <ul class="pagination">
-    <li class="disabled"><a href="#!" ><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="#!">1</a></li>
-    <li class="waves-effect"><a class="white-text" href="#!">2</a></li>
-    <li class="waves-effect"><a class="white-text" href="#!">3</a></li>
-    <li class="waves-effect"><a class="white-text" href="#!">4</a></li>
-    <li class="waves-effect"><a class="white-text" href="#!">5</a></li>
-    <li class="waves-effect"><a class="white-text" href="#!"><i class="material-icons">chevron_right</i></a></li>
-  </ul>
 
       </div>
 
+<ul class="pagination center grey darken-3">
+    {if="$pagina == 0"}
+    <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"><a href="/0">1</a></li>
+    <li class="white-text">. </li>
+    {else}
+    <li class="waves-effect"><a href="/{$pagina-1}" class="white-text"><i class="material-icons">chevron_left</i></a></li>
+    <li class="waves-effect"><a href="/0" class="white-text">1</a></li>
+    <li class="white-text">. </li>
+    {/if}
+    {loop="$paginas"}
+    {if="$value < $pagina-2"}
+        {continue}
+    {/if}
+    {if="$value == $pagina+2"}
+        {break}
+    {else}
+        {if="$value == $pagina"}
+        {if="$value+1 == $numPags"}
+            {break}
+        {/if}
+        <li class="active"><a href="/{$value}">{$value+1}</a></li>
+        {else}
+        {if="$value+1 == $numPags"}
+            {break}
+        {/if}
+        <li class="waves-effect"><a class="white-text" href="/{$value}">{$value+1}</a></li>
+        {/if}
+    {/if}
+    {/loop}
+    {if="$pagina+1 == $numPags"}
+    <li class="white-text">. </li>
+    <li class="active"><a class="white-text" href="/{$numPags-1}">{$numPags}</a></li>
+    {else}
+    <li class="white-text">. </li>
+    <li class="waves-effect"><a class="white-text" href="/{$numPags-1}">{$numPags}</a></li>
+    {/if}
+    {if="$pagina+1 == $numPags"}
+    <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+    {else}
+    <li class="waves-effect"><a class="white-text" href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
+    {/if}
+  </ul>
+
+<br>
 <br>
 <br>

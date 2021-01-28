@@ -84,4 +84,17 @@ function verifyImage($archive){
 }
 
 
+function generatePag($num){
+
+    $pags = [];
+
+    for ($i=1; $i < $num; $i++) {
+        array_push($pags, $i);
+    }
+
+    return $pags;
+
+}
+
+
 ?>
