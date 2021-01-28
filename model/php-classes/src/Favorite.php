@@ -12,7 +12,8 @@ class Favorite{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT Noticia.Id AS 'Id', Usuario.Email AS 'Email'
+            SELECT Noticia.Imagem AS 'Imagem', Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Resumo AS 'Resumo',
+            Noticia.Data AS 'Data', Usuario.Nome AS 'Usuario', Noticia.Corpo AS 'Corpo'
             FROM Favorito
             INNER JOIN Usuario ON Favorito.Id_Usuario_FK = Usuario.Id
             INNER JOIN Noticia ON Favorito.Id_Noticia_FK = Noticia.Id
@@ -51,7 +52,7 @@ class Favorite{
 
     }
 
-    public static function addFavorites($id, $pag){
+    public static function addFavorites($id){
 
         $sql = new Sql();
 
@@ -65,14 +66,11 @@ class Favorite{
                 ":id"=>$id
             ]);
 
-        header("Location: /$pag");
-        exit;
-
 
     }
 
 
-    public static function removeFavorite($id, $pag){
+    public static function removeFavorite($id){
 
         $sql = new Sql();
 
@@ -86,8 +84,6 @@ class Favorite{
                 ":user"=>$usuario["Id"]
             ]);
 
-        header("Location: /$pag");
-        exit;
 
 
     }

@@ -1,6 +1,7 @@
 <?php
 
 Use \Classes\Favorite;
+Use \Classes\Page;
 require_once("function.php");
 
 $app->get("/:pag/favorite/:id", function($pag, $id){
@@ -8,10 +9,53 @@ $app->get("/:pag/favorite/:id", function($pag, $id){
     $ver = Favorite::verifyFavorite($id);
 
     if($ver == 1){
-        Favorite::removeFavorite($id, $pag);
+        Favorite::removeFavorite($id);
+        header("Location: /$pag");
+        exit;
     } else {
-        Favorite::addFavorites($id, $pag);
+        Favorite::addFavorites($id);
+        header("Location: /$pag");
+        exit;
     }
+
+});
+
+$app->get("/:pag/favoriteRemove/:id", function($pag, $id){
+
+    Favorite::removeFavorite($id, $pag);
+
+    header("Location: /$pag/myFavorites");
+    exit;
+
+});
+
+
+$app->get("/:pag/myFavorites", function($pag){
+
+    $page = new Page([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    $favoritos = Favorite::getALLFavorites();
+
+    $resultado = [];
+    $numPags = (int) ceil(count($favoritos)/24);
+    $paginas = generatePag($numPags);
+
+    for ($i = 24 * $pag; $i < 24 * ($pag + 1); $i++) {
+        if($i == count($favoritos) || $i > count($favoritos)){
+            break;
+        } else {
+            array_push($resultado, $favoritos[$i]);
+        }
+    }
+
+    $page->setTpl("favorites", [
+        "favoritos"=>$resultado,
+        "pagina"=>$pag,
+        "paginas"=>$paginas,
+        "numPags"=>$numPags
+    ]);
 
 });
 

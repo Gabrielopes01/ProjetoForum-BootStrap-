@@ -1,10 +1,8 @@
-
-
-<h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: #ffd9b3"> Notícias</h2>
+<h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: #ffd9b3"> Favoritos</h2>
 
       <div class="row grey darken-3">
 
-        {loop="$noticias"}
+        {loop="$favoritos"}
         <div class="col s12 m6 l2">
           <div class="card black white-text hoverable" style="width: 200px; height: 350px">
 
@@ -17,21 +15,9 @@
               {/if}
               <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
               {function="isInFavorite($value.Id)"}
-              {if="$_SESSION['favorito'] == 1"}
-                <a href="/{$pagina}/favorite/{$value.Id}" class="btn-floating halfway-fab waves-effect waves-light yellow pulse">
-                <i class="material-icons black-text">star</i>
-                </a>
-              {else}
-                {if="$_SESSION['favorito'] == 0"}
-                    <a href="/{$pagina}/favorite/{$value.Id}" class="btn-floating halfway-fab waves-effect waves-light yellow">
-                    <i class="material-icons white-text">star</i>
-                    </a>
-                {else}
-                    <a href="#" class="btn-floating halfway-fab disabled">
-                    <i class="material-icons white-text">star</i>
-                    </a>
-                {/if}
-              {/if}
+              <a href="/{$pagina}/favoriteRemove/{$value.Id}" class="btn-floating halfway-fab waves-effect waves-light yellow pulse">
+              <i class="material-icons black-text">star</i>
+              </a>
             </div>
 
             <!--Parte frontal do card da noticia onde ha o texto e o botão para mais informações-->
@@ -60,16 +46,15 @@
 
       </div>
 
-<!--Paginação-->
 <ul class="pagination center grey darken-3">
     <!--Caso seja a primeria pagina-->
     {if="$pagina == 0"}
     <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="/0">1</a></li>
+    <li class="active"><a href="/0/myFavorites">1</a></li>
     <li class="white-text">. </li>
     {else}
     <li class="waves-effect"><a href="/{$pagina-1}" class="white-text"><i class="material-icons">chevron_left</i></a></li>
-    <li class="waves-effect"><a href="/0" class="white-text">1</a></li>
+    <li class="waves-effect"><a href="/0/myFavorites" class="white-text">1</a></li>
     <li class="white-text">. </li>
     {/if}
     <!--Paginação do Meio-->
@@ -84,27 +69,27 @@
         {if="$value+1 == $numPags"}
             {break}
         {/if}
-        <li class="active"><a href="/{$value}">{$value+1}</a></li>
+        <li class="active"><a href="/{$value}/myFavorites">{$value+1}</a></li>
         {else}
         {if="$value+1 == $numPags"}
             {break}
         {/if}
-        <li class="waves-effect"><a class="white-text" href="/{$value}">{$value+1}</a></li>
+        <li class="waves-effect"><a class="white-text" href="/{$value}/myFavorites">{$value+1}</a></li>
         {/if}
     {/if}
     {/loop}
     {if="$pagina+1 == $numPags"}
     <li class="white-text">. </li>
-    <li class="active"><a class="white-text" href="/{$numPags-1}">{$numPags}</a></li>
+    <li class="active"><a class="white-text" href="/{$numPags-1}/myFavorites">{$numPags}</a></li>
     <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
     {else}
     <!--Verificando se ha mais de 1 pagina-->
       {if="$numPags > 0"}
       <li class="white-text">. </li>
-      <li class="waves-effect"><a class="white-text" href="/{$numPags-1}">{$numPags}</a></li>
+      <li class="waves-effect"><a class="white-text" href="/{$numPags-1}/myFavorites">{$numPags}</a></li>
         <!--Verificando se é o fim da pagina e inserindo a chave-->
         {if="($pagina+1) != $numPags"}
-        <li class="waves-effect"><a class="white-text" href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
+        <li class="waves-effect"><a class="white-text" href="{$pagina+1}/myFavorites"><i class="material-icons">chevron_right</i></a></li>
         {/if}
       {/if}
     {/if}
