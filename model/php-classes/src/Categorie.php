@@ -84,7 +84,7 @@ class Categorie {
 
 
         $_SESSION['mensagem'] = "Categoria Cadastrada com Sucesso";
-        header("Location: /adminCat");
+        header("Location: /adminCat/search/0");
         exit;
 
     }
@@ -114,7 +114,7 @@ class Categorie {
         ));
 
         $_SESSION['mensagem'] = "Categoria Alterado com Sucessoo";
-        header("Location: /adminCat");
+        header("Location: /adminCat/search/0");
         exit;
     }
 
@@ -126,7 +126,7 @@ class Categorie {
         ));
 
         $_SESSION['mensagem'] = "Categoria Deletada com Sucesso";
-        header("Location: /adminCat");
+        header("Location: /adminCat/search/0");
         exit;
     }
 
