@@ -85,3 +85,13 @@ CREATE TABLE Noticia(
 INSERT Noticia VALUES
 (1, 2, 'Vitória do Cruzeiro', 'Descrição da notícia', DEFAULT, "Resumo da Notícia", "a.png");
 */
+
+
+
+CREATE TABLE Favorito(
+    Id INT PRIMARY KEY IDENTITY,
+    Id_Usuario_FK INT,
+    FOREIGN KEY (Id_Usuario_FK) REFERENCES Usuario(Id),
+    Id_Noticia_FK INT,
+    FOREIGN KEY (Id_Noticia_FK) REFERENCES Noticia(Id)
+);

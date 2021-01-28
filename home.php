@@ -2,6 +2,7 @@
 
 Use \Classes\Page;
 Use \Classes\News;
+Use \Classes\User;
 
 //Home de Site
 $app->get("/", function(){
