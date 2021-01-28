@@ -3,7 +3,7 @@
 Use \Classes\PageAdmin;
 Use \Classes\User;
 
-$app->get("/login", function(){
+$app->get("/0/login", function(){
 
     $page = new PageAdmin([
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
@@ -15,14 +15,14 @@ $app->get("/login", function(){
 
 });
 
-$app->post("/login", function(){
+$app->post("/0/login", function(){
 
     User::verifyLogin($_POST["email"],$_POST["senha"]);
 
 
 });
 
-$app->get("/logout", function(){
+$app->get("/0/logout", function(){
 
     User::logout();
 
