@@ -10,7 +10,12 @@ class News{
 
         $sql = new Sql;
 
-        $resultado = $sql->select("SELECT * FROM Noticia WHERE id = :id", [
+        $resultado = $sql->select("
+            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data' 
+            FROM Noticia
+            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
+            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
+            WHERE Noticia.Id = :id", [
             ":id"=>$id
         ]);
 
