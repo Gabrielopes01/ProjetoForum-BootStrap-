@@ -9,8 +9,6 @@ $app->get("/news/:num", function($num){
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
     ]);
 
-
-
     require_once("pageNews.php");
 
 });

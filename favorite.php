@@ -20,6 +20,22 @@ $app->get("/:pag/favorite/:id", function($pag, $id){
 
 });
 
+$app->get("/:pag/favoriteOne/:id", function($pag, $id){
+
+    $ver = Favorite::verifyFavorite($id);
+
+    if($ver == 1){
+        Favorite::removeFavorite($id);
+        header("Location: /news/$id");
+        exit;
+    } else {
+        Favorite::addFavorites($id);
+        header("Location: /news/$id");
+        exit;
+    }
+
+});
+
 $app->get("/:pag/favoriteRemove/:id", function($pag, $id){
 
     Favorite::removeFavorite($id, $pag);
