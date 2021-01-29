@@ -250,9 +250,6 @@ $app->get("/adminNews/delete/:id", function($id){
 
 $app->post("/adminNews/delete/:id", function($id){
 
-    var_dump($_SESSION);
-    exit;
-
     News::deleteNews($id);
 
 });
