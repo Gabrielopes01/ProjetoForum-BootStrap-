@@ -1,0 +1,26 @@
+{if="$erro != ''"}
+<script>
+    window.onload = function(){
+        M.toast({html: '{$erro}'});
+    }
+</script>
+{/if}
+
+
+
+<p class="white">Bem Vindo aos Testes {$nome}</p>
+
+<div class="input-field col s12">
+<form method="POST">
+    <input type="text" class="datepicker">
+    <button type="submit">Acessar Post</button>
+</form>
+</div>
+
+
+
+<script>
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>

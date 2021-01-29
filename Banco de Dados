@@ -26,6 +26,7 @@ INSERT Categoria VALUES
 ('Esportes'),
 ('Crime');
 
+#Antiga Tabela de Notícia
 CREATE TABLE Noticia(
     Id INT PRIMARY KEY IDENTITY,
     Id_Categoria_FK INT,
@@ -57,16 +58,19 @@ ON Noticia.Id_Categoria_FK = Categoria.Id;
 
 
 
-#Temporario
+#Alterações
 ALTER TABLE Noticia
 ADD Resumo VARCHAR(250);
 
 ALTER TABLE Noticia
 ADD Imagem VARCHAR(300);
 
+ALTER TABLE Noticia
+ADD Visualizacao INT DEFAULT 0;
 
-#Nova Tabela
-/*
+
+#Nova Tabela de Noticia
+
 CREATE TABLE Noticia(
     Id INT PRIMARY KEY IDENTITY,
     Id_Categoria_FK INT,
@@ -77,9 +81,10 @@ CREATE TABLE Noticia(
     Corpo VARCHAR(8000) NOT NULL,
     Data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Resumo VARCHAR(250) NOT NULL,
-    Imagem VARCHAR(300) NOT NULL
+    Imagem VARCHAR(300) NOT NULL,
+    Vizualizacao INT DEFAULT 0
 );
-*/
+
 
 /*
 INSERT Noticia VALUES
@@ -87,7 +92,7 @@ INSERT Noticia VALUES
 */
 
 
-/*
+
 CREATE TABLE Favorito(
     Id INT PRIMARY KEY IDENTITY,
     Id_Usuario_FK INT,
@@ -95,6 +100,6 @@ CREATE TABLE Favorito(
     Id_Noticia_FK INT,
     FOREIGN KEY (Id_Noticia_FK) REFERENCES Noticia(Id)
 );
-*/
+
 
 #INSERT Favorito VALUES (27, 15);

@@ -83,6 +83,7 @@
                 <th>Corpo</th>
                 <th>Categoria</th>
                 <th>Autor</th>
+                <th>Vizualizações</th>
                 <th>Data</th>
             </thead>
             <tbody>
@@ -92,6 +93,7 @@
                     <td>{function="removeTags($value.Corpo)"}</td>
                     <td>{$value.Categoria}</td>
                     <td>{$value.Usuario}</td>
+                    <td class="center">{$value.Visualizacao}</td>
                     <td>{function="formatDate($value.Data)"}</td>
                     {if="$value.Usuario == $usuario"}
                     <td><a href="/adminNews/edit/{$value.Id}" class="btn yellow hoverable" style="float: right;"><i class="material-icons">edit</i></a></td>

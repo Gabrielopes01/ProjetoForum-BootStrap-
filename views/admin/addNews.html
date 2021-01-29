@@ -42,7 +42,17 @@
                 <label>Imagem da Notícia</label>
                 <br>
                 <br>
-                <input type="file" name="imagem" id="imagem" required="">
+                <div class="file-field input-field"> 
+                    <div class="btn">
+                        <span>Upload</span>
+                        <input type="file" name="imagem" id="imagem" required="">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+                <br>
+                <br>
             </div>
             <div class="input-field col s12">
                 <input type="hidden" name="usuario" id="usuario" value="{$usuario}">

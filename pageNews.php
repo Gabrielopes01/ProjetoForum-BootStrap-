@@ -18,7 +18,7 @@
     }
 
     echo "<div class='row grey darken-3' style='height: 100%''>";
-    echo "<p class='grey darken-1 center' style='font-size:20px'>Publicado por <strong>".$noticia['Usuario']."</strong>, no dia ".formatDate($noticia['Data'])."</p>";
+    echo "<p class='grey darken-1 center' style='font-size:20px'>Publicado por <strong>".$noticia['Usuario']."</strong>, no dia ".formatDate($noticia['Data'])."<a class='right white-text grey darken-3'>Acessos: ".$noticia["Visualizacao"]."</a></p>";
     echo "<div class='white-text' style='font-size: 25px; color: white; height: 100%'>".$noticia["Corpo"]."</div>";
     echo "</div>";
     echo "<br>";

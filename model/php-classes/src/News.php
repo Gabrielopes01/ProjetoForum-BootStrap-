@@ -11,7 +11,7 @@ class News{
         $sql = new Sql;
 
         $resultado = $sql->select("
-            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data' 
+            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Noticia.Id_Categoria_FK AS 'Id_Categoria_FK', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Visualizacao AS 'Visualizacao'
             FROM Noticia
             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -30,7 +30,7 @@ class News{
         $forResult = $num * 10;
 
         $resultado = $sql->select("
-            SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+            SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Visualizacao AS 'Visualizacao'
             FROM Noticia
             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -46,12 +46,22 @@ class News{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Imagem AS 'Imagem'
+            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Imagem AS 'Imagem', Noticia.Visualizacao AS 'Visualizacao'
             FROM Noticia
             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id");
 
         return $resultado;
+
+    }
+
+    public static function addView($num){
+
+        $sql = new Sql();
+
+        $sql->query("UPDATE Noticia SET Visualizacao = Visualizacao + 1 WHERE Id = :id", array(
+            ":id"=>$num
+        ));
 
     }
 
