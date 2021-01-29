@@ -18,7 +18,14 @@
 <script>
   $(document).ready(function(){
     $('select').formSelect();
+    $('.datepicker').datepicker({
+      format: 'd/m/yyyy',
+      i18n: {
+        cancel: 'Cancelar'
+      }
+    });
   });
+
 
   function mouseSobre(variavel){
     variavel.style.backgroundColor = "#37474f";

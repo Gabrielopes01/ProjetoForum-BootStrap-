@@ -19,7 +19,10 @@ $app->get("/0/testes", function(){
 
 $app->post("/0/testes", function(){
 
-    $_SESSION["mensagem"] = "Acessou o Post";
+    var_dump($_POST["data"]);
+    exit;
+
+    $_SESSION["mensagem"] = "Acessou o Post em ".$_POST["data"];
 
     header("Location: /0/testes");
     exit;
