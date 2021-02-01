@@ -4,6 +4,24 @@
 
       <div class="row grey darken-3">
 
+        {if="$maisVistos != []"}
+        <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey"> Mais Acessadas</h2>
+
+        <div class="carousel">
+          {loop="$maisVistos"}
+          {if="isset($value.Imagem)"}
+          <a class="carousel-item white-text" href="/news/{$value.Id}"><img src="../../res/site/images/{$value.Imagem}">{$value.Titulo} ({$value.Visualizacao} Acessos)</a>
+          {else}
+          <a class="carousel-item white-text" href="/news/{$value.Id}"><img src="../../res/site/images/default.jpg">{$value.Titulo} ({$value.Visualizacao} Acessos)</a>
+          {/if}
+          {/loop}
+
+        </div>
+        {/if}
+
+
+        <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey"> Novidades</h2>
+
         {loop="$noticias"}
         <div class="col s12 m6 l2">
           <div class="card black white-text hoverable" style="width: 200px; height: 350px">

@@ -33,13 +33,16 @@ $app->get("/:num", function($num){
         }
     }
 
+    $maisVistos = News::getTOPNews();
+
 
     $page->setTpl('home', [
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:'',
         "noticias"=>$resultado,
         "pagina"=>$num,
         "paginas"=>$paginas,
-        "numPags"=>$numPags
+        "numPags"=>$numPags,
+        "maisVistos"=>$maisVistos
     ]);
 
 });
