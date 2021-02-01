@@ -15,7 +15,7 @@
               <img src="../../res/site/images/{$value.Imagem}">
               <div class="caption center-align" style="background-color: black; border: 3px solid white">
                 <h3>{$value.Titulo}</h3>
-                <a href="/news/{$value.Id}"><h5 class="light grey-text text-lighten-3">Acessar Notícia</h5></a>
+                <a href="/news/{$value.Id}" class="blue-text"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
               </div>
             </li>
           {else}
@@ -23,7 +23,7 @@
                 <img src="../../res/site/images/default.jpg">
                 <div class="caption center-align" style="background-color: black; border: 3px solid white">
                   <h3>{$value.Titulo}</h3>
-                  <a href="/news/{$value.Id}"><h5 class="light grey-text text-lighten-3">Acessar Notícia</h5></a>
+                  <a href="/news/{$value.Id}" class="blue-text"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
                 </div>
               </li>
           {/if}
