@@ -27,6 +27,7 @@ INSERT Categoria VALUES
 ('Crime');
 
 #Antiga Tabela de Notícia
+/*
 CREATE TABLE Noticia(
     Id INT PRIMARY KEY IDENTITY,
     Id_Categoria_FK INT,
@@ -37,9 +38,11 @@ CREATE TABLE Noticia(
     Corpo VARCHAR(8000) NOT NULL,
     Data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
+*/
+/*
 INSERT Noticia VALUES
 (1, 2, 'Vitória do Cruzeiro', 'Descrição da notícia', DEFAULT);
+*/
 
 SELECT *
 FROM Usuario;
@@ -54,8 +57,6 @@ SELECT Categoria.Nome
 FROM Noticia
 INNER JOIN Categoria
 ON Noticia.Id_Categoria_FK = Categoria.Id;
-
-
 
 
 #Alterações
@@ -88,7 +89,7 @@ CREATE TABLE Noticia(
 
 /*
 INSERT Noticia VALUES
-(1, 2, 'Vitória do Cruzeiro', 'Descrição da notícia', DEFAULT, "Resumo da Notícia", "a.png");
+(1, 2, 'Vitória do Cruzeiro', 'Descrição da notícia', DEFAULT, "Resumo da Notícia", "a.png", DEFAULT);
 */
 
 
@@ -103,3 +104,11 @@ CREATE TABLE Favorito(
 
 
 #INSERT Favorito VALUES (27, 15);
+
+CREATE TABLE Acesso(
+    Id INT PRIMARY KEY IDENTITY,
+    Id_Usuario_FK INT,
+    FOREIGN KEY (Id_Usuario_FK) REFERENCES Usuario(Id),
+    Id_Noticia_FK INT,
+    FOREIGN KEY (Id_Noticia_FK) REFERENCES Noticia(Id)
+);

@@ -59,9 +59,32 @@ class News{
 
         $sql = new Sql();
 
-        $sql->query("UPDATE Noticia SET Visualizacao = Visualizacao + 1 WHERE Id = :id", array(
-            ":id"=>$num
-        ));
+        $resultado = $sql->select("
+            SELECT *
+            FROM Acesso
+            INNER JOIN Usuario ON Acesso.Id_Usuario_FK = Usuario.Id
+            INNER JOIN Noticia ON Acesso.Id_Noticia_FK = Noticia.Id
+            WHERE Usuario.Email = :email AND Acesso.Id_Noticia_FK = :id
+            ", [
+                ":email"=>isset($_SESSION["email"]) ? $_SESSION["email"] : "",
+                ":id"=>$num
+            ]);
+
+
+        if(!(count($resultado) > 0) && isset($_SESSION["email"])) {
+
+            $usuario = User::getUserByEmail($_SESSION["email"]);
+
+            $sql->query("INSERT Acesso VALUES (:user, :id)", [
+                ":user"=>$usuario["Id"],
+                ":id"=>$num
+            ]);
+
+            $sql->query("UPDATE Noticia SET Visualizacao = Visualizacao + 1 WHERE Id = :id", array(
+                ":id"=>$num
+            ));
+        }
+
 
     }
 
