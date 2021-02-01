@@ -61,6 +61,16 @@
   width: 20%;
 }
 
+.buscaData{
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 1px 7px;
+  text-decoration: none;
+  border-right:none;
+  width: 20%;
+}
+
 .listaFiltro{
   list-style-type: none;
   margin: 0;

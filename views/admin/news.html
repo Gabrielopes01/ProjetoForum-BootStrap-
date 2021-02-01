@@ -54,22 +54,20 @@
                 <label for="usuario" style="color: white; width: 50%">Autor</label>
                 </div>
             </li>
-            <li class="busca2">
+            <li class="buscaData">
                 {if="$filtros.data != ''"}
                 <div class="input-field col s12">
-                <input type="text" name="data" id="data" style="color: white; width: 50%" value="{$filtros.data}">
+                <input type="text" class="datepicker" name="data" id="data" style="color: white; width: 50% " value="{$filtros.data}">
                 <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
                 {else}
                 <button class="btn gray" style="margin-top: 21px;" id="buscaData" onclick="searchDate()">Data</button>
                 <div class="input-field col s12">
-                <input type="hidden" name="data" id="data" style="color: white; width: 50% ">
+                <input type="hidden" class="datepicker" name="data" id="data" style="color: white; width: 50% ">
                 <input type="hidden" name="verBuscaData" id="verBuscaData" value="0">
                 {/if}
                 <label for="data" style="color: white; width: 50%">Data</label>
                 </div>
             </li>
-
-
         </ul>
         <br>
         <a href="/adminNews/search/0" class="btn red" style="float: right; margin-left: 10px; margin-top: -15px">Limpar Busca</a>

@@ -12,6 +12,17 @@
 <script>
     $(document).ready(function(){
         $('select').formSelect();
+        $(".dropdown-trigger").dropdown();
+        $('.datepicker').datepicker({
+          format: 'dd/mm/yyyy',
+          i18n: {
+            cancel: 'Cancelar',
+            monthsShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+            months: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+            weekdaysShort: [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab' ],
+            weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
+          }
+        });
     });
 
   function mouseSobre(variavel){

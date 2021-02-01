@@ -212,7 +212,7 @@ class News{
                 $resultadoALL = $sql->select(
                     "
                     SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria',
-                    Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                    Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                     FROM Noticia
                     INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                     INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -234,7 +234,7 @@ class News{
                     $resultadoTC = $sql->select(
                         "
                         SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                         FROM Noticia
                         INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                         INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -250,7 +250,7 @@ class News{
                     $resultadoTU = $sql->select(
                         "
                         SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                         FROM Noticia
                         INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                         INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -266,7 +266,7 @@ class News{
                     $resultadoTD = $sql->select(
                         "
                         SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                         FROM Noticia
                         INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                         INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -282,7 +282,7 @@ class News{
                     $resultadoT = $sql->select(
                         "
                         SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                         FROM Noticia
                         INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                         INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -299,7 +299,7 @@ class News{
                     $resultadoCU = $sql->select(
                         "
                         SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                         FROM Noticia
                         INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                         INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -317,7 +317,7 @@ class News{
                         $resultadoCD = $sql->select(
                         "
                         SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                         FROM Noticia
                         INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                         INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -334,7 +334,7 @@ class News{
                         $resultadoC = $sql->select(
                             "
                             SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                             FROM Noticia
                             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -351,7 +351,7 @@ class News{
                     $resultadoUD = $sql->select(
                         "
                         SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                         FROM Noticia
                         INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                         INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -367,7 +367,7 @@ class News{
                         $resultadoU = $sql->select(
                             "
                             SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                             FROM Noticia
                             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -384,7 +384,7 @@ class News{
                         $resultadoD = $sql->select(
                             "
                             SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                             FROM Noticia
                             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                             INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -399,7 +399,7 @@ class News{
                 //Nenhum dos 4 estao preenchidos
                 $resultado2 = $sql->select(
                     "
-                    SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data'
+                    SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                     FROM Noticia
                     INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                     INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
@@ -407,7 +407,9 @@ class News{
                 $resultadoFiltro[0] = $resultado2;
             }
 
-            return [$resultadoFiltro[0], $filtros];
+            $resultadoFinal = isset($resultadoFiltro[0])?$resultadoFiltro[0]:[];
+
+            return [$resultadoFinal, $filtros];
     }
 
 }
