@@ -17,8 +17,8 @@
 
 <script>
   $(document).ready(function(){
-    $('select').formSelect();
-    $('.datepicker').datepicker({
+    $('select').formSelect();  //Usado no Select do Materalize
+    $('.datepicker').datepicker({   //Usado nas buscas com o calendário
       format: 'dd/mm/yyyy',
       i18n: {
         cancel: 'Cancelar',
@@ -28,13 +28,15 @@
         weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ]
       }
     });
-    $('.carousel').carousel({
+    $('.carousel').carousel({  //Usado na pagina inicial para exibir as noticias mais acessadas, esta sendo usado em teste, mas pode ser removido
       shift: 50,
       dist: 30,
       duration: 2000,
       padding: 10,
       indicators: true
     });
+    $('.materialboxed').materialbox();  //Usado para fazer as imagens se ampliarem
+     $('.slider').slider(); //Usado para gerar a aba de mais acessados da home
   });
 
 

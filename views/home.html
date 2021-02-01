@@ -7,12 +7,25 @@
         {if="$maisVistos != []"}
         <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey"> Mais Acessadas</h2>
 
-        <div class="carousel">
+        <div class="slider">
+          <ul class="slides">
           {loop="$maisVistos"}
           {if="isset($value.Imagem)"}
-          <a class="carousel-item white-text" href="/news/{$value.Id}"><img src="../../res/site/images/{$value.Imagem}" style="width: 100%; height: 100%"><strong>{$value.Titulo}</strong> ({$value.Visualizacao} Acessos)</a>
+              <li>
+              <img src="../../res/site/images/{$value.Imagem}">
+              <div class="caption center-align" style="background-color: black; border: 3px solid white">
+                <h3>{$value.Titulo}</h3>
+                <a href="/news/{$value.Id}"><h5 class="light grey-text text-lighten-3">Acessar Notícia</h5></a>
+              </div>
+            </li>
           {else}
-          <a class="carousel-item white-text" href="/news/{$value.Id}"><img src="../../res/site/images/default.jpg" style="width: 100%; height: 100%"><strong>{$value.Titulo}</strong> ({$value.Visualizacao} Acessos)</a>
+              <li>
+                <img src="../../res/site/images/default.jpg">
+                <div class="caption center-align" style="background-color: black; border: 3px solid white">
+                  <h3>{$value.Titulo}</h3>
+                  <a href="/news/{$value.Id}"><h5 class="light grey-text text-lighten-3">Acessar Notícia</h5></a>
+                </div>
+              </li>
           {/if}
           {/loop}
 
@@ -29,9 +42,9 @@
             <div class="card-image">
             <!--Verificando se há uma imagem cadastrada, se não houver ele usa a base-->
               {if="isset($value.Imagem)"}
-              <a href="/news/{$value.Id}"><img src="../../res/site/images/{$value.Imagem}"  style="width: 200px; height: 150px; background-color: grey"></a>
+              <img class="materialboxed" src="../../res/site/images/{$value.Imagem}"  style="width: 200px; height: 150px; background-color: grey">
               {else}
-              <a href="/news/{$value.Id}"><img src="../../res/site/images/default.jpg" style="width: 200px; height: 180px"></a>
+              <img class="materialboxed" src="../../res/site/images/default.jpg" style="width: 200px; height: 180px">
               {/if}
               <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
               {function="isInFavorite($value.Id)"}
