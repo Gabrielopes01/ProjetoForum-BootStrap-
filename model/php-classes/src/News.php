@@ -49,7 +49,8 @@ class News{
             SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Imagem AS 'Imagem', Noticia.Visualizacao AS 'Visualizacao'
             FROM Noticia
             INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id");
+            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
+            ORDER BY Noticia.Data DESC");
 
         return $resultado;
 
