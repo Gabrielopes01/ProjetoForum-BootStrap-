@@ -1,4 +1,4 @@
-#Criando o Banco de Dados
+#-------------------------------------------------------------Criando o Banco de Dados
 DROP DATABASE Forum;
 CREATE DATABASE Forum;
 USE Forum;
