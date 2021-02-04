@@ -148,6 +148,7 @@ class News{
             ":usuario"=>$parametros["usuario"]
         ));
 
+
         $sql->query("INSERT INTO Noticia (Id_Categoria_FK, Id_Usuario_FK, Titulo, Corpo, Resumo, Imagem) VALUES (:categoria, :usuario, :titulo, :corpo, :resumo, :imagem)", array(
             ":categoria"=>$parametros["categoria"],
             ":usuario"=>$usuarioID[0]["Id"],

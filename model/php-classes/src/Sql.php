@@ -7,7 +7,7 @@ class Sql {
     const HOSTNAME = "CRMNOTE_18\SQLEXPRESS3";
     const USERNAME = "";
     const PASSWORD = "";
-    const DBNAME = "Forum";
+    const DBNAME = "Forum2";
 
     private $conn;
 

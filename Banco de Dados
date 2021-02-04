@@ -27,9 +27,9 @@ CREATE TABLE Noticia(
     Titulo VARCHAR(200) NOT NULL,
     Corpo VARCHAR(8000) NOT NULL,
     Data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    Resumo VARCHAR(250) NOT NULL,
+    Resumo VARCHAR(200) NOT NULL,
     Imagem VARCHAR(300) NOT NULL,
-    Vizualizacao INT DEFAULT 0
+    Visualizacao INT DEFAULT 0
 );
 
 CREATE TABLE Favorito(
@@ -61,7 +61,7 @@ INSERT Categoria VALUES
 ('Crime');
 
 INSERT Noticia VALUES
-(1, 2, 'Vitória do Cruzeiro', 'Descrição da notícia', DEFAULT, "Resumo da Notícia", "a.png", DEFAULT);
+(1, 2, 'Vitória do Cruzeiro', 'Descrição da notícia', DEFAULT, 'Resumo da Notícia', 'a.png', DEFAULT);
 
 INSERT Favorito VALUES (27, 15);
 
