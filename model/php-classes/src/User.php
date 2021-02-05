@@ -70,11 +70,8 @@ class User{
                 header("Location: /");
                 exit;
 
-            } else {
-                $_SESSION['mensagem'] = "Usuário e/ou Senha Inválidos";
-                header("Location: /0/login");
-                exit;
             }
+
         }
 
         $_SESSION['mensagem'] = "Usuário e/ou Senha Inválidos";
@@ -93,9 +90,9 @@ class User{
 
         if(count($resultado) > 0){
             return true;
-        }else{
-            return false;
         }
+
+        return false;
 
     }
 
