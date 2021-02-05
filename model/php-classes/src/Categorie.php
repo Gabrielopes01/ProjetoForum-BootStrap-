@@ -114,10 +114,8 @@ class Categorie {
         //Clausula de SQL padrão
         $select = "SELECT * FROM Categoria WHERE 1 = 1";
 
-        //Verificando se os campos estão definidos e dando valores a eles
         $name = isset($parametros['nome']) && !$parametros['nome'] == ""? $parametros['nome']:"";
 
-        //Verificando se os 3 campos estão preenchidos com parametros de busca
         if($parametros['verBuscaNome'] == 1 && $name != ""){
 
             $select .= " AND nome LIKE CONCAT('%', '" . $name . "', '%')";
