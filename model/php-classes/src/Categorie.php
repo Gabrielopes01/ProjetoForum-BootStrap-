@@ -46,15 +46,16 @@ class Categorie {
 
         $sql = new Sql();
 
-        $resultado = $sql->select("SELECT * FROM Usuario WHERE nome = :nome", array(
+        $resultado = $sql->select("SELECT * FROM Categoria WHERE nome = :nome", array(
             ":nome"=>$category
         ));
 
         if(count($resultado) > 0){
             return true;
-        }else{
-            return false;
         }
+
+        return false;
+
 
     }
 
@@ -63,20 +64,7 @@ class Categorie {
 
         $sql = new Sql();
 
-        //Verificando se o campo Nome foi preenchido
-        if($parametros["nome"] === ""){
-            $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-            header('Location: /adminCat');
-            exit;
-        }
-
-        //Verificando se a Categoria ja esta cadastrado
-        if(Categorie::verifyCategorie($parametros["nome"])){
-            $_SESSION['mensagem'] = "Categoria ja Cadastrada";
-            header('Location: /adminCat');
-            exit;
-        }
-
+        Categorie::verifyCategorieInfo($parametros, 'add');
 
         $sql->query("INSERT INTO Categoria VALUES (:nome)", array(
             ":nome"=>$parametros["nome"],
@@ -93,20 +81,7 @@ class Categorie {
 
         $sql = new Sql();
 
-        //Verificando se o campo Nome foi preenchido
-        if($parametros["nome"] === ""){
-            $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-            header("Location: /adminCat/edit/$id");
-            exit;
-        }
-
-        //Verificando se a Categoria ja esta cadastrado
-        if(Categorie::verifyCategorie($parametros["nome"])){
-            $_SESSION['mensagem'] = "Categoria ja Cadastrada";
-            header("Location: /adminCat/edit/$id");
-            exit;
-        }
-
+        Categorie::verifyCategorieInfo($parametros, 'edit', $id);
 
         $sql->query("UPDATE Categoria SET nome = :nome WHERE id = :id", array(
             ":nome"=>$parametros["nome"],
@@ -152,6 +127,43 @@ class Categorie {
         $resultadoF = $sql->select($select);
 
         return [$resultadoF, $filtros];
+    }
+
+    public static function verifyCategorieInfo ($parametros, $tipo, $id = 0) {
+
+
+        if($tipo == 'edit') {
+
+            if($parametros["nome"] === ""){
+                $_SESSION['mensagem'] = "Campo Nome Obrigatório";
+                header("Location: /adminCat/edit/$id");
+                exit;
+            }
+
+            if(Categorie::verifyCategorie($parametros["nome"])){
+                $_SESSION['mensagem'] = "Categoria ja Cadastrada";
+                header("Location: /adminCat/edit/$id");
+                exit;
+            }
+
+        }
+
+        if($tipo == 'add'){
+
+            if($parametros["nome"] === ""){
+                $_SESSION['mensagem'] = "Campo Nome Obrigatório";
+                header('Location: /adminCat/add');
+                exit;
+            }
+
+            if(Categorie::verifyCategorie($parametros["nome"])){
+                $_SESSION['mensagem'] = "Categoria ja Cadastrada";
+                header('Location: /adminCat/add');
+                exit;
+            }
+
+        }
+
     }
 
 
