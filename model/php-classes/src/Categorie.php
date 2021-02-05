@@ -105,7 +105,6 @@ class Categorie {
         exit;
     }
 
-    //Esta função ira filtrar as categorias e exibir a pesquisa
     public static function filter($parametros){
 
         $sql = new Sql();
