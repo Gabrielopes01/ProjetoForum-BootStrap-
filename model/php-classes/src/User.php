@@ -157,41 +157,7 @@ class User{
 
         $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
 
-        //Verificando se o campo Nome foi preenchido
-        if($parametros["nome"] === ""){
-            $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-            header("Location: /admin/add");
-            exit;
-        }
-
-        //Verificando se o Email esta correto
-        if (!preg_match($checkEmail, $parametros["email"])) {
-            $_SESSION['mensagem'] = "Email Inválido";
-            header("Location: /admin/add");
-            exit;
-        }
-
-        //Verificando se o Email ja esta cadastrado
-        if(User::verifyEmail($parametros["email"])){
-            $_SESSION['mensagem'] = "Email ja Cadastrado";
-            header("Location: /admin/add");
-            exit;
-        }
-
-        //Verificando se o campo Senha foi preenchido
-        if($parametros["senha"] === ""){
-            $_SESSION['mensagem'] = "Campo Senha Obrigatório";
-            header("Location: /admin/add");
-            exit;
-        }
-
-        //Verificando se a Senha bate com o Confirmar Senha
-        if($parametros["senha"] !== $parametros["csenha"]){
-            $_SESSION['mensagem'] = "Senhas não Conferem";
-            header("Location: /admin/add");
-            exit;
-        }
-
+        User::verifyUserInfo($parametros, 'add');
 
         $sql->query("INSERT INTO Usuario (Nome, Email, Senha) VALUES (:nome,:email,:senha)", array(
             ":nome"=>$parametros["nome"],
@@ -213,20 +179,7 @@ class User{
 
         $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
 
-        //Verificando se o campo Nome foi preenchido
-        if($parametros["nome"] === ""){
-            $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-            header("Location: /admin/edit/$id");
-            exit;
-        }
-
-        //Verificando se o Email esta correto
-        if (!preg_match($checkEmail, $parametros["email"])) {
-            $_SESSION['mensagem'] = "Email Inválido";
-            header("Location: /admin/edit/$id");
-            exit;
-        }
-
+        User::verifyUserInfo($parametros, 'edit', $id);
 
         $sql->query("UPDATE Usuario SET Nome = :nome, Email = :email WHERE Id = :id", array(
             ":nome"=>$parametros["nome"],
@@ -270,6 +223,62 @@ class User{
             header("Location: /adminNews/search/0");
             exit;
         }
+
+    }
+
+    public static function verifyUserInfo($parametros, $tipo, $id = 0) {
+
+        $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
+
+        if($tipo == 'edit') {
+
+            if($parametros["nome"] === ""){
+                $_SESSION['mensagem'] = "Campo Nome Obrigatório";
+                header("Location: /admin/edit/$id");
+                exit;
+            }
+
+            if (!preg_match($checkEmail, $parametros["email"])) {
+                $_SESSION['mensagem'] = "Email Inválido";
+                header("Location: /admin/edit/$id");
+                exit;
+            }
+
+        }
+
+        if($tipo == 'add'){
+
+            if($parametros["nome"] === ""){
+                $_SESSION['mensagem'] = "Campo Nome Obrigatório";
+                header("Location: /admin/add");
+                exit;
+            }
+
+            if (!preg_match($checkEmail, $parametros["email"])) {
+                $_SESSION['mensagem'] = "Email Inválido";
+                header("Location: /admin/add");
+                exit;
+            }
+
+            if(User::verifyEmail($parametros["email"])){
+                $_SESSION['mensagem'] = "Email ja Cadastrado";
+                header("Location: /admin/add");
+                exit;
+            }
+
+            if($parametros["senha"] === ""){
+                $_SESSION['mensagem'] = "Campo Senha Obrigatório";
+                header("Location: /admin/add");
+                exit;
+            }
+
+            if($parametros["senha"] !== $parametros["csenha"]){
+                $_SESSION['mensagem'] = "Senhas não Conferem";
+                header("Location: /admin/add");
+                exit;
+            }
+        }
+
 
     }
 
