@@ -20,7 +20,7 @@
             </li>
           {else}
               <li>
-                <img src="../../res/site/images/default.jpg">
+                <img src="../../res/site/defaults/default.jpg">
                 <div class="caption center-align" style="background-color: black; border: 3px solid white">
                   <h3>{$value.Titulo}</h3>
                   <a href="/news/{$value.Id}" class="blue-text"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
@@ -44,7 +44,7 @@
               {if="isset($value.Imagem)"}
               <img class="materialboxed" src="../../res/site/images/{$value.Imagem}"  style="width: 200px; height: 150px; background-color: grey">
               {else}
-              <img class="materialboxed" src="../../res/site/images/default.jpg" style="width: 200px; height: 180px">
+              <img class="materialboxed" src="../../res/site/defaults/default.jpg" style="width: 200px; height: 180px">
               {/if}
               <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
               {function="isInFavorite($value.Id)"}

@@ -1,3 +1,4 @@
 views-cache/
 vendor/
-res/site/images/
+res/site/images/*.jpg
+res/site/images/*.png
