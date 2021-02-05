@@ -210,223 +210,54 @@ class News{
         exit;
     }
 
+
      public static function filter($parametros){
 
         $sql = new Sql();
 
+
         $filtros = ["titulo"=>$parametros['titulo'], "categoria"=>$parametros['categoria'], "usuario"=>$parametros['usuario'], "data"=>$parametros['data']];
-        $resultadoFiltro = [];
-
-        //Verificando se os campos estão definidos e dando valores a eles
-        $title = isset($parametros['titulo']) && !$parametros['titulo'] == ""? $parametros['titulo']:"|";
-        $categorie = isset($parametros['categoria']) && !$parametros['categoria'] == ""? $parametros['categoria']:"|";
-        $user = isset($parametros['usuario']) && !$parametros['usuario'] == ""? $parametros['usuario']:"|";
-        $date = isset($parametros['data']) && !$parametros['data'] == ""? $parametros['data']:"|";
-
-        //Verificando se os 3 campos estão preenchidos com parametros de busca
-        if($parametros['verBuscaTitulo'] == 1 && $parametros['verBuscaCategoria'] == 1 && $parametros['verBuscaUsuario'] == 1 && $parametros['verBuscaData'] == 1 && $title != "|" && $categorie != "|" && $user != "|" && $date != "|"){
-
-                $resultadoALL = $sql->select(
-                    "
-                    SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria',
+        $select = "SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria',
                     Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
                     FROM Noticia
                     INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
                     INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                    WHERE Noticia.Titulo LIKE CONCAT('%', :titulo, '%') AND Categoria.Nome LIKE CONCAT('%', :categoria, '%') AND
-                    Usuario.Nome LIKE CONCAT('%', :usuario, '%') AND
-                    SUBSTRING(CONVERT(varchar, Noticia.Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))
-                    ", [
-                    ":titulo"=>$title,
-                    ":categoria"=>$categorie,
-                    ":usuario"=>$user,
-                    ":data"=>$date
-                ]);
-                array_push($resultadoFiltro, $resultadoALL);
+                    WHERE 1 = 1";
 
-        } elseif ($title != "|" || $categorie != "|" || $user != "|" || $date != "|") {
-                if($parametros['verBuscaTitulo'] == 1 && $title != "|"){
-                    //Verificando se o Titulo e Categoria estao preenchidos
-                    if($parametros['verBuscaCategoria'] == 1 && $categorie != "|"){
-                    $resultadoTC = $sql->select(
-                        "
-                        SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                        FROM Noticia
-                        INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                        INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                        WHERE Noticia.Titulo LIKE CONCAT('%', :titulo, '%') AND Categoria.Nome LIKE CONCAT('%', :categoria, '%') 
-                        ", [
-                        ":titulo"=>$title,
-                        ":categoria"=>$categorie
-                    ]);
-                        array_push($resultadoFiltro, $resultadoTC);
+        //Verificando se os campos estão definidos e dando valores a eles
+        $title = isset($parametros['titulo']) && !$parametros['titulo'] == ""? $parametros['titulo']:"";
+        $categorie = isset($parametros['categoria']) && !$parametros['categoria'] == ""? $parametros['categoria']:"";
+        $user = isset($parametros['usuario']) && !$parametros['usuario'] == ""? $parametros['usuario']:"";
+        $date = isset($parametros['data']) && !$parametros['data'] == ""? $parametros['data']:"";
 
-                    //Verificando se o Titulo e Usuario estao preenchidos
-                    } elseif ($parametros['verBuscaUsuario'] == 1 && $user != "|") {
-                    $resultadoTU = $sql->select(
-                        "
-                        SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                        FROM Noticia
-                        INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                        INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                        WHERE Noticia.Titulo LIKE CONCAT('%', :titulo, '%') AND Usuario.Nome LIKE CONCAT('%', :usuario, '%')
-                        ", [
-                        ":titulo"=>$title,
-                        ":usuario"=>$user
-                    ]);
-                        array_push($resultadoFiltro, $resultadoTU);
+        //Verificando se os campos estão preenchidos com parametros de busca
+        if($parametros['verBuscaTitulo'] == 1 && $title != ""){
 
-                    //Verificando se o Titulo e Data estao preenchidos
-                    } elseif ($parametros['verBuscaData'] == 1 && $date != "|") {
-                    $resultadoTD = $sql->select(
-                        "
-                        SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                        FROM Noticia
-                        INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                        INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                        WHERE Noticia.Titulo LIKE CONCAT('%', :titulo, '%') AND SUBSTRING(CONVERT(varchar, Noticia.Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))
-                        ", [
-                        ":titulo"=>$title,
-                        ":data"=>$date
-                    ]);
-                        array_push($resultadoFiltro, $resultadoTD);
+                $select .= " AND Noticia.titulo LIKE CONCAT('%', '" . $title . "', '%')";
 
-                    } else {
-                        //Apenas o Titulo esta preenchido
-                    $resultadoT = $sql->select(
-                        "
-                        SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                        FROM Noticia
-                        INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                        INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                        WHERE Noticia.Titulo LIKE CONCAT('%', :titulo, '%')
-                        ", [
-                        ":titulo"=>$title
-                    ]);
-                        array_push($resultadoFiltro, $resultadoT);
-                    }
+        }
 
-                } elseif ($parametros['verBuscaCategoria'] == 1 && $categorie != "|") {
-                    //Verificando se o Categoria e Usuario estao preenchidos
-                    if($parametros['verBuscaUsuario'] == 1 && $user != "|"){
-                    $resultadoCU = $sql->select(
-                        "
-                        SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                        FROM Noticia
-                        INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                        INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                        WHERE Categoria.Nome LIKE CONCAT('%', :categoria, '%') AND 
-                        Usuario.Nome LIKE CONCAT('%', :usuario, '%')
-                        ", [
-                        ":categoria"=>$categorie,
-                        ":usuario"=>$user
-                    ]);
-                        array_push($resultadoFiltro, $resultadoCU);
+        if($parametros['verBuscaCategoria'] == 1 && $categorie != ""){
 
-                    //Verificando se o Categoria e Data estao preenchidos
-                    } elseif ($parametros['verBuscaData'] == 1 && $date != "|") {
+                $select .= " AND Categoria.nome LIKE CONCAT('%', '" . $categorie . "', '%')";
 
-                        $resultadoCD = $sql->select(
-                        "
-                        SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                        FROM Noticia
-                        INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                        INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                        WHERE Categoria.Nome LIKE CONCAT('%', :categoria, '%') AND
-                        SUBSTRING(CONVERT(varchar, Noticia.Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))
-                        ", [
-                        ":categoria"=>$categorie,
-                        ":data"=>$date
-                    ]);
-                        array_push($resultadoFiltro, $resultadoCD);
+        }
 
-                    } else {
-                        //Apenas a Categoria esta preenchida
-                        $resultadoC = $sql->select(
-                            "
-                            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                            FROM Noticia
-                            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                            WHERE Categoria.Nome LIKE CONCAT('%', :categoria, '%')
-                            ", [
-                            ":categoria"=>$categorie
-                        ]);
-                        array_push($resultadoFiltro, $resultadoC);
-                    }
+        if($parametros['verBuscaUsuario'] == 1 && $user != ""){
 
-                } elseif ($parametros['verBuscaUsuario'] == 1 && $user != "|") {
-                    //Verificando se Usuario e Data estão preenchidos
-                    if($parametros['verBuscaData'] == 1 && $date != "|"){
-                    $resultadoUD = $sql->select(
-                        "
-                        SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                        Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                        FROM Noticia
-                        INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                        INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                        WHERE Usuario.Nome LIKE CONCAT('%', :usuario, '%') AND
-                        SUBSTRING(CONVERT(varchar, Noticia.Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))
-                        ", [
-                        ":usuario"=>$user,
-                        ":data"=>$date
-                    ]);
-                        array_push($resultadoFiltro, $resultadoUD);
-                    } else {
-                        //Apenas a Usuario esta preenchido
-                        $resultadoU = $sql->select(
-                            "
-                            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                            FROM Noticia
-                            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                            WHERE Usuario.Nome LIKE CONCAT('%', :usuario, '%')
-                            ", [
-                            ":usuario"=>$user
-                        ]);
-                        array_push($resultadoFiltro, $resultadoU);
-                    }
+                $select .= " AND Usuario.nome LIKE CONCAT('%', '" . $user . "', '%')";
 
-                } else {
-                    //Apenas a Data esta preenchido
-                    if($parametros['verBuscaData'] == 1 && $date != "|"){
-                        $resultadoD = $sql->select(
-                            "
-                            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', 
-                            Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                            FROM Noticia
-                            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                            WHERE SUBSTRING(CONVERT(varchar, Noticia.Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))
-                            ", [
-                            ":data"=>$date
-                        ]);
-                        array_push($resultadoFiltro, $resultadoD);
-                    }
-                }
-            } else {
-                //Nenhum dos 4 estao preenchidos
-                $resultado2 = $sql->select(
-                    "
-                    SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
-                    FROM Noticia
-                    INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                    INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                    ");
-                $resultadoFiltro[0] = $resultado2;
-            }
+        }
 
-            $resultadoFinal = isset($resultadoFiltro[0])?$resultadoFiltro[0]:[];
+        if($parametros['verBuscaData'] == 1 && $date != ""){
 
-            return [$resultadoFinal, $filtros];
+                $select .= " AND SUBSTRING(CONVERT(varchar, Noticia.data, 103), 0, 11) LIKE CONCAT('%', '" . $date . "', '%')";
+
+        }
+
+        $resultadoF = $sql->select($select);
+
+        return [$resultadoF, $filtros];
     }
 
 }

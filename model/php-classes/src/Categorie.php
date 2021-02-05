@@ -26,7 +26,7 @@ class Categorie {
 
         $forResult = $num * 10;
 
-        $resultado = $sql->select("SELECT TOP 10 * FROM Categoria WHERE Id NOT IN (Select TOP $forResult Id From Categoria)");
+        $resultado = $sql->select("SELECT TOP 10 * FROM Categoria WHERE id NOT IN (Select TOP $forResult id From Categoria)");
 
         return $resultado;
 
@@ -36,7 +36,7 @@ class Categorie {
 
         $sql = new Sql();
 
-        $resultado = $sql->select("SELECT* FROM Categoria");
+        $resultado = $sql->select("SELECT * FROM Categoria");
 
         return $resultado;
 
@@ -46,7 +46,7 @@ class Categorie {
 
         $sql = new Sql();
 
-        $resultado = $sql->select("SELECT * FROM Usuario WHERE Nome = :nome", array(
+        $resultado = $sql->select("SELECT * FROM Usuario WHERE nome = :nome", array(
             ":nome"=>$category
         ));
 
@@ -108,7 +108,7 @@ class Categorie {
         }
 
 
-        $sql->query("UPDATE Categoria SET Nome = :nome WHERE Id = :id", array(
+        $sql->query("UPDATE Categoria SET nome = :nome WHERE id = :id", array(
             ":nome"=>$parametros["nome"],
             ":id"=>$parametros["id"]
         ));
@@ -121,7 +121,7 @@ class Categorie {
     public static function deleteCategorie($id){
             $sql = new Sql();
 
-        $sql->query("DELETE FROM Categoria WHERE Id = :id", array(
+        $sql->query("DELETE FROM Categoria WHERE id = :id", array(
             ":id"=>$id
         ));
 
@@ -136,27 +136,22 @@ class Categorie {
         $sql = new Sql();
 
         $filtros = ["nome"=>$parametros['nome']];
-        $resultadoFiltro = [];
+        //Clausula de SQL padrão
+        $select = "SELECT * FROM Categoria WHERE 1 = 1";
 
         //Verificando se os campos estão definidos e dando valores a eles
-        $name = isset($parametros['nome']) && !$parametros['nome'] == ""? $parametros['nome']:"|";
+        $name = isset($parametros['nome']) && !$parametros['nome'] == ""? $parametros['nome']:"";
 
         //Verificando se os 3 campos estão preenchidos com parametros de busca
-        if($parametros['verBuscaNome'] == 1 && $name != "|"){
-            if($parametros['nome'] !== ""){
-                    $resultadoN = $sql->select("SELECT * FROM Categoria WHERE Nome LIKE CONCAT('%', :nome, '%')", [
-                        ":nome"=>$name,
-                    ]);
-                    array_push($resultadoFiltro, $resultadoN);
-            }
+        if($parametros['verBuscaNome'] == 1 && $name != ""){
 
-        } else {
-            //Nenhum dos 3 estao preenchidos
-            $resultado2 = $sql->select("SELECT TOP 10 * FROM Categoria");
-            $resultadoFiltro[0] = $resultado2;
+            $select .= " AND nome LIKE CONCAT('%', '" . $name . "', '%')";
+
         }
 
-        return [$resultadoFiltro[0], $filtros];
+        $resultadoF = $sql->select($select);
+
+        return [$resultadoF, $filtros];
     }
 
 

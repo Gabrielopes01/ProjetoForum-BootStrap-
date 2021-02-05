@@ -23,7 +23,7 @@ class User{
 
         $sql = new Sql;
 
-        $resultado = $sql->select("SELECT * FROM Usuario WHERE Email = :email", [
+        $resultado = $sql->select("SELECT * FROM Usuario WHERE email = :email", [
             ":email"=>$email
         ]);
 
@@ -37,7 +37,7 @@ class User{
 
         $forResult = $num * 10;
 
-        $resultado = $sql->select("SELECT TOP 10 * FROM Usuario WHERE Id NOT IN (Select TOP $forResult Id From Usuario)", );
+        $resultado = $sql->select("SELECT TOP 10 * FROM Usuario WHERE id NOT IN (Select TOP $forResult id From Usuario)", );
 
         return $resultado;
 
@@ -57,7 +57,7 @@ class User{
 
         $sql = new Sql();
 
-        $resultado = $sql->select("SELECT * FROM Usuario WHERE Email = :user", array(
+        $resultado = $sql->select("SELECT * FROM Usuario WHERE email = :user", array(
             ":user"=>$user
         ));
 
@@ -87,7 +87,7 @@ class User{
 
         $sql = new Sql();
 
-        $resultado = $sql->select("SELECT * FROM Usuario WHERE Email = :email", array(
+        $resultado = $sql->select("SELECT * FROM Usuario WHERE email = :email", array(
             ":email"=>$email
         ));
 
@@ -123,80 +123,35 @@ class User{
         $sql = new Sql();
 
         $filtros = ["nome"=>$parametros['nome'], "email"=>$parametros['email'], "data"=>$parametros['data']];
-        $resultadoFiltro = [];
+        $select = "SELECT * FROM Usuario WHERE 1 = 1";
 
         //Verificando se os campos estão definidos e dando valores a eles
-        $name = isset($parametros['nome']) && !$parametros['nome'] == ""? $parametros['nome']:"|";
-        $email = isset($parametros['email']) && !$parametros['email'] == ""? $parametros['email']:"|";
-        $data = isset($parametros['data']) && !$parametros['data'] == ""? $parametros['data']:"|";
+        $name = isset($parametros['nome']) && !$parametros['nome'] == ""? $parametros['nome']:"";
+        $email = isset($parametros['email']) && !$parametros['email'] == ""? $parametros['email']:"";
+        $date = isset($parametros['data']) && !$parametros['data'] == ""? $parametros['data']:"";
 
-        //Verificando se os 3 campos estão preenchidos com parametros de busca
-        if($parametros['verBuscaNome'] == 1 && $parametros['verBuscaEmail'] == 1 && $parametros['verBuscaData'] == 1 && $name != "|" && $email != "|" && $data != "|"){
-            if($parametros['nome'] !== "" && $parametros['email'] !== "" && $parametros['data'] !== ""){
-                    $resultadoALL = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND Email LIKE CONCAT('%', :email, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
-                        ":nome"=>$name,
-                        ":email"=>$email,
-                        ":data"=>$data
-                    ]);
-                    array_push($resultadoFiltro, $resultadoALL);
-            }
+        //Verificando se os campos estão preenchidos com parametros de busca
+        if($parametros['verBuscaNome'] == 1 && $name != ""){
 
-            } elseif ($name != "|" || $email != "|" || $data != "|") {
-                if($parametros['verBuscaNome'] == 1 && $name != "|"){
-                    //Verificando se o Nome e Email estao preenchidos
-                    if($parametros['verBuscaEmail'] == 1 && $email != "|"){
-                    $resultadoNE = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND Email LIKE CONCAT('%', :email, '%')", [
-                        ":nome"=>$name,
-                        ":email"=>$email
-                    ]);
-                        array_push($resultadoFiltro, $resultadoNE);
+            $select .= " AND nome LIKE CONCAT('%', '" . $name . "', '%')";
 
-                    //Verificando se o Nome e Data estao preenchidos
-                    } elseif ($parametros['verBuscaData'] == 1 && $data != "|") {
-                    $resultadoND = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
-                        ":nome"=>$name,
-                        ":data"=>$data
-                    ]);
-                        array_push($resultadoFiltro, $resultadoND);
-                    } else {
-                        //Apenas o Nome esta preenchido
-                    $resultadoN = $sql->select("SELECT * FROM Usuario WHERE Nome LIKE CONCAT('%', :nome, '%')", [
-                        ":nome"=>$name
-                    ]);
-                        array_push($resultadoFiltro, $resultadoN);
-                    }
+        }
 
-                } elseif ($parametros['verBuscaEmail'] == 1 && $email != "|") {
-                    //Verificando se o Email e Data estao preenchidos
-                    if($parametros['verBuscaData'] == 1 && $data != "|"){
-                    $resultadoED = $sql->select("SELECT * FROM Usuario WHERE Email LIKE CONCAT('%', :email, '%') AND SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
-                        ":email"=>$email,
-                        ":data"=>$data
-                    ]);
-                        array_push($resultadoFiltro, $resultadoED);
-                    } else {
-                        //Apenas o Email esta preenchido
-                        $resultadoE = $sql->select("SELECT * FROM Usuario WHERE Email LIKE CONCAT('%', :email, '%')", [
-                            ":email"=>$email
-                        ]);
-                        array_push($resultadoFiltro, $resultadoE);
-                    }
-                } else {
-                    //Apenas a Data esta preenchido
-                    if($parametros['verBuscaData'] == 1 && $data != "|"){
-                        $resultadoD = $sql->select("SELECT * FROM Usuario WHERE SUBSTRING(CONVERT(varchar, Data, 103), 0, 11) LIKE (CONCAT('%', :data, '%'))", [
-                            ":data"=>$data
-                        ]);
-                        array_push($resultadoFiltro, $resultadoD);
-                    }
-                }
-            } else {
-                //Nenhum dos 3 estao preenchidos
-                $resultado2 = $sql->select("SELECT TOP 10 * FROM Usuario");
-                $resultadoFiltro[0] = $resultado2;
-            }
+        if($parametros['verBuscaEmail'] == 1 && $email != ""){
 
-            return [$resultadoFiltro[0], $filtros];
+            $select .= " AND email LIKE CONCAT('%', '" . $email . "', '%')";
+
+        }
+
+        if($parametros['verBuscaData'] == 1 && $date != ""){
+
+            $select .= " AND SUBSTRING(CONVERT(varchar, data, 103), 0, 11) LIKE CONCAT('%', '" . $date . "', '%')";
+
+        }
+
+        $resultadoF = $sql->select($select);
+
+        return [$resultadoF, $filtros];
     }
 
     public static function addUser($parametros){

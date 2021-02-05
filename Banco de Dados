@@ -6,46 +6,46 @@ USE Forum;
 
 #-------------------------------------------------------------Criando Tabelas
 CREATE TABLE Usuario(
-    Id INT PRIMARY KEY IDENTITY,
-    Nome VARCHAR(200) NOT NULL,
-    Email VARCHAR(200) NOT NULL,
-    Data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    Senha VARCHAR(900) NOT NULL
+    id INT PRIMARY KEY IDENTITY,
+    nome VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL,
+    data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    senha VARCHAR(900) NOT NULL
 );
 
 CREATE TABLE Categoria(
-    Id INT PRIMARY KEY IDENTITY,
-    Nome VARCHAR(200) NOT NULL
+    id INT PRIMARY KEY IDENTITY,
+    nome VARCHAR(200) NOT NULL
 );
 
 CREATE TABLE Noticia(
-    Id INT PRIMARY KEY IDENTITY,
-    Id_Categoria_FK INT,
-    FOREIGN KEY (Id_Categoria_FK) REFERENCES Categoria(Id),
-    Id_Usuario_FK INT,
-    FOREIGN KEY (Id_Usuario_FK) REFERENCES Usuario(Id),
-    Titulo VARCHAR(200) NOT NULL,
-    Corpo VARCHAR(8000) NOT NULL,
-    Data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    Resumo VARCHAR(200) NOT NULL,
-    Imagem VARCHAR(300) NOT NULL,
-    Visualizacao INT DEFAULT 0
+    id INT PRIMARY KEY IDENTITY,
+    id_categoria INT,
+    FOREIGN KEY (id_categoria) REFERENCES Categoria(id),
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
+    titulo VARCHAR(200) NOT NULL,
+    corpo VARCHAR(8000) NOT NULL,
+    data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    resumo VARCHAR(200) NOT NULL,
+    imagem VARCHAR(300) NOT NULL,
+    visualizacao INT DEFAULT 0
 );
 
 CREATE TABLE Favorito(
-    Id INT PRIMARY KEY IDENTITY,
-    Id_Usuario_FK INT,
-    FOREIGN KEY (Id_Usuario_FK) REFERENCES Usuario(Id),
-    Id_Noticia_FK INT,
-    FOREIGN KEY (Id_Noticia_FK) REFERENCES Noticia(Id)
+    id INT PRIMARY KEY IDENTITY,
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
+    id_noticia INT,
+    FOREIGN KEY (id_noticia) REFERENCES Noticia(id)
 );
 
 CREATE TABLE Acesso(
-    Id INT PRIMARY KEY IDENTITY,
-    Id_Usuario_FK INT,
-    FOREIGN KEY (Id_Usuario_FK) REFERENCES Usuario(Id),
-    Id_Noticia_FK INT,
-    FOREIGN KEY (Id_Noticia_FK) REFERENCES Noticia(Id)
+    id INT PRIMARY KEY IDENTITY,
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
+    id_noticia INT,
+    FOREIGN KEY (id_noticia) REFERENCES Noticia(id)
 );
 
 
