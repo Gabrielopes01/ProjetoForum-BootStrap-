@@ -62,10 +62,10 @@ class User{
         ));
 
         if(count($resultado) > 0){
-            if(password_verify($password, $resultado[0]["Senha"])){
+            if(password_verify($password, $resultado[0]["senha"])){
 
-                $_SESSION['nome'] = $resultado[0]["Nome"];
-                $_SESSION['email']= $resultado[0]["Email"];
+                $_SESSION['nome'] = $resultado[0]["nome"];
+                $_SESSION['email']= $resultado[0]["email"];
 
                 header("Location: /");
                 exit;

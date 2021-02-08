@@ -24,7 +24,7 @@ function getNameCategorie($id){
         ":id"=>$id
     ]);
 
-    return $resultado[0]["Nome"];
+    return $resultado[0]["nome"];
 
 }
 
@@ -36,7 +36,7 @@ function getNameUser($id){
         ":id"=>$id
     ]);
 
-    return $resultado[0]["Nome"];
+    return $resultado[0]["nome"];
 
 }
 

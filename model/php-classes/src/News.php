@@ -92,7 +92,7 @@ class News{
             $usuario = User::getUserByEmail($_SESSION["email"]);
 
             $sql->query("INSERT Acesso VALUES (:user, :id)", [
-                ":user"=>$usuario["Id"],
+                ":user"=>$usuario["id"],
                 ":id"=>$num
             ]);
 
@@ -154,6 +154,14 @@ class News{
      public static function deleteNews($id){
 
         $sql = new Sql();
+
+        $sql->query("DELETE FROM Acesso WHERE id_noticia = :id", array(
+            ":id"=>$id
+        ));
+
+        $sql->query("DELETE FROM Favorito WHERE id_noticia = :id", array(
+            ":id"=>$id
+        ));
 
         $sql->query("DELETE FROM Noticia WHERE id = :id", array(
             ":id"=>$id

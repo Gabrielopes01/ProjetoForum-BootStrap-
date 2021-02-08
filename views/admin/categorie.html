@@ -41,9 +41,9 @@
             <tbody>
                 {loop="$categorias"}
                 <tr>
-                    <td>{$value.Nome}</td>
-                    <td><a href="/adminCat/edit/{$value.Id}" class="btn yellow hoverable" style="float: right;"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/adminCat/delete/{$value.Id}" class="btn red hoverable" ><i class="material-icons">delete</i></a></td>
+                    <td>{$value.nome}</td>
+                    <td><a href="/adminCat/edit/{$value.id}" class="btn yellow hoverable" style="float: right;"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/adminCat/delete/{$value.id}" class="btn red hoverable" ><i class="material-icons">delete</i></a></td>
                 </tr>
                 {/loop}
             </tbody>

@@ -27,8 +27,8 @@
                 <select id = "categoria" name = "categoria">
                     <option value="{$noticia.Id_Categoria_FK}" selected>{function="getNameCategorie($noticia.Id_Categoria_FK)"}</option>
                     {loop="$categorias"}
-                    {if="$value.Id != $noticia.Id_Categoria_FK"}
-                    <option value = {$value.Id}>{$value.Nome}</option>
+                    {if="$value.id != $noticia.Id_Categoria_FK"}
+                    <option value = {$value.id}>{$value.nome}</option>
                     {/if}
                     {/loop}
                 </select>
@@ -46,3 +46,4 @@
      <br>
      <br>
      <br>
+

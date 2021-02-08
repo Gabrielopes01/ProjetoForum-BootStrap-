@@ -70,11 +70,11 @@
             <tbody>
                 {loop="$usuarios"}
                 <tr>
-                    <td>{$value.Nome}</td>
-                    <td>{$value.Email}</td>
-                    <td>{function="formatDate($value.Data)"}</td>
-                    <td><a href="/admin/edit/{$value.Id}" class="btn yellow hoverable"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/admin/delete/{$value.Id}" class="btn red hoverable"><i class="material-icons">delete</i></a></td>
+                    <td>{$value.nome}</td>
+                    <td>{$value.email}</td>
+                    <td>{function="formatDate($value.data)"}</td>
+                    <td><a href="/admin/edit/{$value.id}" class="btn yellow hoverable"><i class="material-icons">edit</i></a></td>
+                    <td><a href="/admin/delete/{$value.id}" class="btn red hoverable"><i class="material-icons">delete</i></a></td>
                 </tr>
                 {/loop}
             </tbody>
