@@ -62,7 +62,7 @@ class Favorite{
             INSERT Favorito
             Values (:user, :id)
             ", [
-                ":user"=>$usuario["Id"],
+                ":user"=>$usuario["id"],
                 ":id"=>$id
             ]);
 
@@ -81,7 +81,7 @@ class Favorite{
             WHERE id_noticia = :id AND id_usuario = :user
             ", [
                 ":id"=>$id,
-                ":user"=>$usuario["Id"]
+                ":user"=>$usuario["id"]
             ]);
 
 
