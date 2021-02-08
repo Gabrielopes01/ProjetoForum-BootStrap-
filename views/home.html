@@ -2,10 +2,10 @@
 
 <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: #ffd9b3"> Notícias</h2>
 
-      <div class="row grey darken-3" style="margin: 10px 10px 0 10px">
+      <div class="row grey darken-3" style="margin: 10px 10px 0 10px; border-radius: 25px">
 
         {if="$maisVistos != []"}
-        <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey"> Mais Acessadas</h2>
+        <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey; border-radius: 15px 15px 0px 0px"> Mais Acessadas</h2>
 
         <div class="slider">
           <ul class="slides">
@@ -13,7 +13,7 @@
           {if="isset($value.Imagem)"}
               <li>
               <img src="../../res/site/images/{$value.Imagem}">
-              <div class="caption center-align" style="background-color: black; border: 3px solid white">
+              <div class="caption center-align" style="background-color: black; border: 3px solid white;">
                 <h3>{$value.Titulo}</h3>
                 <a href="/news/{$value.Id}" class="blue-text"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
               </div>
@@ -37,7 +37,7 @@
 
         {loop="$noticias"}
         <div class="col s12 m6 l2">
-          <div class="card black white-text hoverable" style="width: 200px; height: 350px">
+          <div class="card black white-text hoverable" style="width: 200px; height: 350px;  margin-left: 10px">
 
             <div class="card-image">
             <!--Verificando se há uma imagem cadastrada, se não houver ele usa a base-->
