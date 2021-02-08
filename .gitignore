@@ -2,3 +2,5 @@ views-cache/
 vendor/
 res/site/images/*.jpg
 res/site/images/*.png
+res/images/
+res/deafults/

@@ -178,7 +178,7 @@ $app->post("/admin/add", function(){
 
     $_SESSION['paramUser'] = $_POST;
 
-    User::addUser($_POST);
+    User::addUser($_POST, "/admin/search/0", "/admin/add");
 
 });
 
@@ -206,7 +206,7 @@ $app->post("/admin/edit/:id", function($id){
 
     $parametros = $_POST;
 
-    User::editUser($parametros, $id);
+    User::editUser($parametros, $id, "/admin/search/0", "/admin/edit/$id");
 
 });
 

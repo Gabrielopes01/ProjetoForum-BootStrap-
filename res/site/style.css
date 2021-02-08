@@ -109,3 +109,19 @@
   width: 100%;
   z-index:9999;
 }
+
+
+/* Paragrafo na pagina de Login */
+#createAccountP {
+  float: left;
+  margin-top: 0;
+}
+
+/* Footer GitHub */
+#nameGit {
+  color: #4d79ff;
+}
+
+#nameGit:hover {
+  color: #b3c6ff;
+}

@@ -151,13 +151,11 @@ class User{
         return [$resultadoF, $filtros];
     }
 
-    public static function addUser($parametros){
+    public static function addUser($parametros, $urlSuccess, $urlError){
 
         $sql = new Sql();
 
-        $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
-
-        User::verifyUserInfo($parametros, 'add');
+        User::verifyUserInfo($parametros, 'add', $urlError);
 
         $sql->query("INSERT INTO Usuario (nome, email, senha) VALUES (:nome,:email,:senha)", array(
             ":nome"=>$parametros["nome"],
@@ -167,19 +165,17 @@ class User{
 
 
         $_SESSION['mensagem'] = "Usuário Cadastrado com Sucesso";
-        header("Location: /admin/search/0");
+        header("Location: " . $urlSuccess);
         exit;
 
     }
 
 
-    public static function editUser($parametros, $id){
+    public static function editUser($parametros, $id, $urlSuccess, $urlError){
 
         $sql = new Sql();
 
-        $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
-
-        User::verifyUserInfo($parametros, 'edit', $id);
+        User::verifyUserInfo($parametros, 'edit', $urlError);
 
         $sql->query("UPDATE Usuario SET nome = :nome, email = :email WHERE id = :id", array(
             ":nome"=>$parametros["nome"],
@@ -188,7 +184,7 @@ class User{
         ));
 
         $_SESSION['mensagem'] = "Usuário Alterado com Sucessoo";
-        header("Location: /admin/search/0");
+        header("Location: " . $urlSuccess);
         exit;
     }
 
@@ -226,55 +222,42 @@ class User{
 
     }
 
-    public static function verifyUserInfo($parametros, $tipo, $id = 0) {
+    public static function verifyUserInfo($parametros, $tipo, $url) {
 
         $checkEmail = "/^[a-z0-9.\-\_]+@[a-z0-9.\-\_]+\.(com|br|.com.br|.org|.net)$/i";
 
-        if($tipo == 'edit') {
 
-            if($parametros["nome"] === ""){
-                $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-                header("Location: /admin/edit/$id");
-                exit;
-            }
-
-            if (!preg_match($checkEmail, $parametros["email"])) {
-                $_SESSION['mensagem'] = "Email Inválido";
-                header("Location: /admin/edit/$id");
-                exit;
-            }
-
+        if($parametros["nome"] === ""){
+            $_SESSION['mensagem'] = "Campo Nome Obrigatório";
+            header("Location: " . $url);
+            exit;
         }
+
+        if (!preg_match($checkEmail, $parametros["email"])) {
+            $_SESSION['mensagem'] = "Email Inválido";
+            header("Location: " . $url);
+            exit;
+        }
+
 
         if($tipo == 'add'){
 
-            if($parametros["nome"] === ""){
-                $_SESSION['mensagem'] = "Campo Nome Obrigatório";
-                header("Location: /admin/add");
-                exit;
-            }
-
-            if (!preg_match($checkEmail, $parametros["email"])) {
-                $_SESSION['mensagem'] = "Email Inválido";
-                header("Location: /admin/add");
-                exit;
-            }
 
             if(User::verifyEmail($parametros["email"])){
                 $_SESSION['mensagem'] = "Email ja Cadastrado";
-                header("Location: /admin/add");
+                header("Location: " . $url);
                 exit;
             }
 
             if($parametros["senha"] === ""){
                 $_SESSION['mensagem'] = "Campo Senha Obrigatório";
-                header("Location: /admin/add");
+                header("Location: " . $url);
                 exit;
             }
 
             if($parametros["senha"] !== $parametros["csenha"]){
                 $_SESSION['mensagem'] = "Senhas não Conferem";
-                header("Location: /admin/add");
+                header("Location: " . $url);
                 exit;
             }
         }

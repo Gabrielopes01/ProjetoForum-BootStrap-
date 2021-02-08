@@ -1,0 +1,40 @@
+{if="$erro != ''"}
+<script>
+    window.onload = function(){
+        M.toast({html: '{$erro}'});
+    }
+</script>
+{/if}
+
+<div class="row">
+    <div class="col s12 m6 push-m3">
+        <form method="POST">
+            <h3 class="light"; align="left">Criar Conta</h3>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">person</i>
+                <input type="text" name="nome" id="nome" required="" value="{$nome}">
+                <label for="nome">Nome</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">mail</i>
+                <input type="email" name="email" id="email" required="" value="{$email}">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" name="senha" id="senha" required="">
+                <label for="senha">Senha</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">lock_outline</i>
+                <input type="password" name="csenha" id="csenha" required="">
+                <label for="csenha">Confirmar Senha</label>
+            </div>
+
+
+<hr>
+        <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Adicionar</button>
+        <a href="/0/login" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+        </form>
+    </div>
+</div>
