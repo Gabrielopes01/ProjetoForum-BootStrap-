@@ -164,17 +164,20 @@ $app->get("/adminCat/add", function(){
     User::checkLogin();
 
     $page->setTpl('addCat', [
-        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:''
+        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "nome"=>isset($_SESSION['paramCat']['nome']) ? $_SESSION['paramCat']['nome'] : ''
     ]);
+
+    $_SESSION['paramCat'] = "";
 
 });
 
 
 $app->post("/adminCat/add", function(){
 
-    $parametros = $_POST;
+    $_SESSION['paramCat'] = $_POST;
 
-    Categorie::addCategorie($parametros);
+    Categorie::addCategorie($_POST);
 
 });
 

@@ -164,13 +164,19 @@ $app->get("/admin/add", function(){
     User::checkLogin();
 
     $page->setTpl('add', [
-        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:''
+        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "nome"=>isset($_SESSION['paramUser']['nome']) ? $_SESSION['paramUser']['nome'] : '',
+        "email"=>isset($_SESSION['paramUser']['email']) ? $_SESSION['paramUser']['email'] : ''
     ]);
+
+    $_SESSION['paramUser'] = "";
 
 });
 
 //Adiconar
 $app->post("/admin/add", function(){
+
+    $_SESSION['paramUser'] = $_POST;
 
     User::addUser($_POST);
 

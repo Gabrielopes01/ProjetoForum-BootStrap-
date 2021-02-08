@@ -183,13 +183,20 @@ $app->get("/adminNews/add", function(){
         "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "categorias"=>$categorias,
         "usuarios"=>$usuarios,
-        "usuario"=>$_SESSION['nome']
+        "usuario"=>$_SESSION['nome'],
+        "titulo"=>isset($_SESSION['paramNews']['titulo']) ? $_SESSION['paramNews']['titulo'] : "",
+        "corpo"=>isset($_SESSION['paramNews']['corpo']) ? $_SESSION['paramNews']['corpo'] : "",
+        "resumo"=>isset($_SESSION['paramNews']['resumo']) ? $_SESSION['paramNews']['resumo'] : ""
     ]);
+
+    $_SESSION['paramNews'] = "";
 
 });
 
 //Adiconar
 $app->post("/adminNews/add", function(){
+
+    $_SESSION['paramNews'] = $_POST;
 
     News::addNews($_POST);
 
