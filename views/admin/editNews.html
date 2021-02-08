@@ -10,17 +10,17 @@
         <form method="POST">
             <h3 class="light"; align="left">Editar Notícia</h3>
             <div class="input-field col s12">
-                <input type="text" name="titulo" id="titulo", value="{$noticia.Titulo}">
+                <input type="text" name="titulo" id="titulo", value="{$noticia.Titulo}" required="">
                 <label for="nome">Titulo</label>
             </div>
             <div class="input-field col s12">
                 <label>Corpo</label>
                 <br>
                 <br>
-                <textarea name="corpo" id="corpo">{$noticia.Corpo}</textarea>
+                <textarea name="corpo" id="corpo" required="">{$noticia.Corpo}</textarea>
             </div>
             <div class="input-field col s12">
-                <input type="text" name="resumo" id="resumo", value="{$noticia.Resumo}">
+                <input type="text" name="resumo" id="resumo", value="{$noticia.Resumo}" required="">
                 <label for="nome">Resumo</label>
             </div>
             <div class="input-field col s12">

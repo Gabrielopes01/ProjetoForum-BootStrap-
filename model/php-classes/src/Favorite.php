@@ -12,12 +12,12 @@ class Favorite{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT Noticia.Imagem AS 'Imagem', Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Resumo AS 'Resumo',
-            Noticia.Data AS 'Data', Usuario.Nome AS 'Usuario', Noticia.Corpo AS 'Corpo'
+            SELECT Noticia.imagem AS 'Imagem', Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.resumo AS 'Resumo',
+            Noticia.data AS 'Data', Usuario.nome AS 'Usuario', Noticia.corpo AS 'Corpo'
             FROM Favorito
-            INNER JOIN Usuario ON Favorito.Id_Usuario_FK = Usuario.Id
-            INNER JOIN Noticia ON Favorito.Id_Noticia_FK = Noticia.Id
-            ORDER BY Noticia.Data
+            INNER JOIN Usuario ON Favorito.id_usuario = Usuario.id
+            INNER JOIN Noticia ON Favorito.id_noticia = Noticia.id
+            ORDER BY Noticia.data
             ",);
 
         return $resultado;
@@ -31,11 +31,11 @@ class Favorite{
             $sql = new Sql();
 
             $resultado = $sql->select("
-                SELECT Usuario.Nome AS 'Nome', Noticia.Titulo AS 'Titulo'
+                SELECT Usuario.nome AS 'Nome', Noticia.titulo AS 'Titulo'
                 FROM Favorito
-                INNER JOIN Usuario ON Favorito.Id_Usuario_FK = Usuario.Id
-                INNER JOIN Noticia ON Favorito.Id_Noticia_FK = Noticia.Id
-                WHERE Usuario.Email = :email AND Favorito.Id_Noticia_FK = :id
+                INNER JOIN Usuario ON Favorito.id_usuario = Usuario.id
+                INNER JOIN Noticia ON Favorito.id_noticia = Noticia.id
+                WHERE Usuario.email = :email AND Favorito.id_noticia = :id
                 ", [
                     ":email"=>$_SESSION["email"],
                     ":id"=>$id
@@ -43,13 +43,12 @@ class Favorite{
 
             if (count($resultado) > 0) {
                 return 1;
-            } else {
-                return 0;
             }
-        } else {
-            return 2;
+            return 0;
+
         }
 
+        return 2;
 
     }
 
@@ -79,7 +78,7 @@ class Favorite{
 
         $sql->query("
             DELETE FROM Favorito
-            WHERE Id_Noticia_FK = :id AND Id_Usuario_FK = :user
+            WHERE id_noticia = :id AND id_usuario = :user
             ", [
                 ":id"=>$id,
                 ":user"=>$usuario["Id"]

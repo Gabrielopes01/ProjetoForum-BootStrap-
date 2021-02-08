@@ -126,7 +126,7 @@ class Categorie {
         return [$resultadoF, $filtros];
     }
 
-    public static function verifyCategorieInfo ($parametros, $tipo, $id = 0) {
+    public static function verifyCategorieInfo($parametros, $tipo, $id = 0) {
 
 
         if($tipo == 'edit') {

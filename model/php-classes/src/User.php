@@ -159,7 +159,7 @@ class User{
 
         User::verifyUserInfo($parametros, 'add');
 
-        $sql->query("INSERT INTO Usuario (Nome, Email, Senha) VALUES (:nome,:email,:senha)", array(
+        $sql->query("INSERT INTO Usuario (nome, email, senha) VALUES (:nome,:email,:senha)", array(
             ":nome"=>$parametros["nome"],
             ":email"=>$parametros["email"],
             ":senha"=>password_hash($parametros["senha"], PASSWORD_DEFAULT)
@@ -181,7 +181,7 @@ class User{
 
         User::verifyUserInfo($parametros, 'edit', $id);
 
-        $sql->query("UPDATE Usuario SET Nome = :nome, Email = :email WHERE Id = :id", array(
+        $sql->query("UPDATE Usuario SET nome = :nome, email = :email WHERE id = :id", array(
             ":nome"=>$parametros["nome"],
             ":email"=>$parametros["email"],
             ":id"=>$parametros["id"]
@@ -196,7 +196,7 @@ class User{
     public static function deleteUser($id){
             $sql = new Sql();
 
-        $sql->query("DELETE FROM Usuario WHERE Id = :id", array(
+        $sql->query("DELETE FROM Usuario WHERE id = :id", array(
             ":id"=>$id
         ));
 
@@ -210,15 +210,15 @@ class User{
         $sql = new Sql();
 
         $email = $sql->select("
-                SELECT Usuario.Email
+                SELECT Usuario.email
                 From Noticia
-                INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-                WHERE Noticia.Id = :id
+                INNER JOIN Usuario ON Noticia.id_usuario = Usuario.id
+                WHERE Noticia.id = :id
             ", [
                 ":id"=>$id
             ]);
 
-        if (!($email[0]["Email"] === $_SESSION["email"])){
+        if (!($email[0]["email"] === $_SESSION["email"])){
             $_SESSION["mensagem"] = "Você não tem permissão para acessar esta notícia";
             header("Location: /adminNews/search/0");
             exit;

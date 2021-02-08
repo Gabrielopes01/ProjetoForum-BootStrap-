@@ -11,11 +11,11 @@ class News{
         $sql = new Sql;
 
         $resultado = $sql->select("
-            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Noticia.Id_Categoria_FK AS 'Id_Categoria_FK', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Visualizacao AS 'Visualizacao'
+            SELECT Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.corpo AS 'Corpo', Noticia.id_categoria AS 'Id_Categoria_FK', Categoria.nome AS 'Categoria', Usuario.nome AS 'Usuario', Noticia.data AS 'Data', Noticia.resumo AS 'Resumo', Noticia.visualizacao AS 'Visualizacao'
             FROM Noticia
-            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-            WHERE Noticia.Id = :id", [
+            INNER JOIN Categoria ON Noticia.id_categoria = Categoria.id
+            INNER JOIN Usuario ON Noticia.id_usuario = Usuario.id
+            WHERE Noticia.id = :id", [
             ":id"=>$id
         ]);
 
@@ -30,11 +30,11 @@ class News{
         $forResult = $num * 10;
 
         $resultado = $sql->select("
-            SELECT TOP 10 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Visualizacao AS 'Visualizacao'
+            SELECT TOP 10 Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.corpo AS 'Corpo', Categoria.nome AS 'Categoria', Usuario.nome AS 'Usuario', Noticia.data AS 'Data', Noticia.resumo AS 'Resumo', Noticia.visualizacao AS 'Visualizacao'
             FROM Noticia
-            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-            WHERE Noticia.Id NOT IN (Select TOP $forResult Id From Noticia)
+            INNER JOIN Categoria ON Noticia.id_categoria = Categoria.id
+            INNER JOIN Usuario ON Noticia.id_usuario = Usuario.id
+            WHERE Noticia.id NOT IN (Select TOP $forResult id From Noticia)
             ");
 
         return $resultado;
@@ -46,11 +46,11 @@ class News{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Imagem AS 'Imagem', Noticia.Visualizacao AS 'Visualizacao'
+            SELECT Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.corpo AS 'Corpo', Categoria.nome AS 'Categoria', Usuario.nome AS 'Usuario', Noticia.data AS 'Data', Noticia.resumo AS 'Resumo', Noticia.imagem AS 'Imagem', Noticia.visualizacao AS 'Visualizacao'
             FROM Noticia
-            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-            ORDER BY Noticia.Data DESC");
+            INNER JOIN Categoria ON Noticia.id_categoria = Categoria.id
+            INNER JOIN Usuario ON Noticia.id_usuario = Usuario.id
+            ORDER BY Noticia.data DESC");
 
         return $resultado;
 
@@ -61,11 +61,11 @@ class News{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT TOP 5 Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria', Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Resumo AS 'Resumo', Noticia.Imagem AS 'Imagem', Noticia.Visualizacao AS 'Visualizacao'
+            SELECT TOP 5 Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.corpo AS 'Corpo', Categoria.nome AS 'Categoria', Usuario.nome AS 'Usuario', Noticia.data AS 'Data', Noticia.resumo AS 'Resumo', Noticia.imagem AS 'Imagem', Noticia.visualizacao AS 'Visualizacao'
             FROM Noticia
-            INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-            INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
-            ORDER BY Noticia.Visualizacao DESC");
+            INNER JOIN Categoria ON noticia.id_categoria = Categoria.id
+            INNER JOIN Usuario ON Noticia.id_usuario = Usuario.id
+            ORDER BY Noticia.visualizacao DESC");
 
         return $resultado;
 
@@ -78,9 +78,9 @@ class News{
         $resultado = $sql->select("
             SELECT *
             FROM Acesso
-            INNER JOIN Usuario ON Acesso.Id_Usuario_FK = Usuario.Id
-            INNER JOIN Noticia ON Acesso.Id_Noticia_FK = Noticia.Id
-            WHERE Usuario.Email = :email AND Acesso.Id_Noticia_FK = :id
+            INNER JOIN Usuario ON Acesso.id_usuario = Usuario.id
+            INNER JOIN Noticia ON Acesso.id_noticia = Noticia.id
+            WHERE Usuario.email = :email AND Acesso.id_noticia = :id
             ", [
                 ":email"=>isset($_SESSION["email"]) ? $_SESSION["email"] : "",
                 ":id"=>$num
@@ -96,7 +96,7 @@ class News{
                 ":id"=>$num
             ]);
 
-            $sql->query("UPDATE Noticia SET Visualizacao = Visualizacao + 1 WHERE Id = :id", array(
+            $sql->query("UPDATE Noticia SET visualizacao = visualizacao + 1 WHERE id = :id", array(
                 ":id"=>$num
             ));
         }
@@ -108,48 +108,14 @@ class News{
 
         $sql = new Sql();
 
-        //Verificando se o campo Titulo foi preenchido
-        if($parametros["titulo"] === ""){
-            $_SESSION['mensagem'] = "Campo Titulo Obrigatório";
-            header("Location: /adminNews/add");
-            exit;
-        }
+        News::verfiyNewsInfo($parametros, 'add');
 
-        //Verificando se o campo Corpo foi preenchido
-        if($parametros["corpo"] === ""){
-            $_SESSION['mensagem'] = "Campo Corpo Obrigatório";
-            header("Location: /adminNews/add");
-            exit;
-        }
-
-        //Verificando se o campo Resumo foi preenchido
-        if($parametros["resumo"] === ""){
-            $_SESSION['mensagem'] = "Campo Resumo Obrigatório";
-            header("Location: /adminNews/add");
-            exit;
-        }
-
-        //Verificando se a categoria foi inserida corretamente
-        if(!isset($parametros["categoria"])){
-            $_SESSION['mensagem'] = "Selecione 1 categoria";
-            header("Location: /adminNews/add");
-            exit;
-        }
-
-        //Verificando se o tipo de arquivo esta correto, se estiver correto ele salva a imagem no diretorio
-        if(!verifyImage($_FILES)){
-            $_SESSION['mensagem'] = "Formato de Arquivo Inválido";
-            header("Location: /adminNews/add");
-            exit;
-        }
-
-
-        $usuarioID = $sql->select("SELECT Id FROM Usuario WHERE Nome = :usuario", array(
+        $usuarioID = $sql->select("SELECT Id FROM Usuario WHERE nome = :usuario", array(
             ":usuario"=>$parametros["usuario"]
         ));
 
 
-        $sql->query("INSERT INTO Noticia (Id_Categoria_FK, Id_Usuario_FK, Titulo, Corpo, Resumo, Imagem) VALUES (:categoria, :usuario, :titulo, :corpo, :resumo, :imagem)", array(
+        $sql->query("INSERT INTO Noticia (id_categoria, id_usuario, titulo, corpo, resumo, imagem) VALUES (:categoria, :usuario, :titulo, :corpo, :resumo, :imagem)", array(
             ":categoria"=>$parametros["categoria"],
             ":usuario"=>$usuarioID[0]["Id"],
             ":titulo"=>$parametros["titulo"],
@@ -170,21 +136,9 @@ class News{
 
         $sql = new Sql();
 
-        //Verificando se o campo Titulo foi preenchido
-        if($parametros["titulo"] === ""){
-            $_SESSION['mensagem'] = "Campo Titulo Obrigatório";
-            header("Location: /adminNews/edit/$id");
-            exit;
-        }
+        News::verfiyNewsInfo($parametros, 'edit', $id);
 
-        //Verificando se o campo Corpo foi preenchido
-        if($parametros["corpo"] === ""){
-            $_SESSION['mensagem'] = "Campo Corpo Obrigatório";
-            header("Location: /adminNews/edit/$id");
-            exit;
-        }
-
-        $sql->query("UPDATE Noticia SET Id_Categoria_FK = :categoria, Titulo = :titulo, Corpo = :corpo, Resumo = :resumo WHERE Id = :id", array(
+        $sql->query("UPDATE Noticia SET id_categoria = :categoria, titulo = :titulo, corpo = :corpo, resumo = :resumo WHERE id = :id", array(
             ":categoria"=>$parametros["categoria"],
             ":titulo"=>$parametros["titulo"],
             ":corpo"=>$parametros["corpo"],
@@ -201,7 +155,7 @@ class News{
 
         $sql = new Sql();
 
-        $sql->query("DELETE FROM Noticia WHERE Id = :id", array(
+        $sql->query("DELETE FROM Noticia WHERE id = :id", array(
             ":id"=>$id
         ));
 
@@ -217,11 +171,11 @@ class News{
 
 
         $filtros = ["titulo"=>$parametros['titulo'], "categoria"=>$parametros['categoria'], "usuario"=>$parametros['usuario'], "data"=>$parametros['data']];
-        $select = "SELECT Noticia.Id AS 'Id', Noticia.Titulo AS 'Titulo', Noticia.Corpo AS 'Corpo', Categoria.Nome AS 'Categoria',
-                    Usuario.Nome AS 'Usuario', Noticia.Data AS 'Data', Noticia.Visualizacao AS 'Visualizacao'
+        $select = "SELECT Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.corpo AS 'Corpo', Categoria.nome AS 'Categoria',
+                    Usuario.nome AS 'Usuario', Noticia.data AS 'Data', Noticia.visualizacao AS 'Visualizacao'
                     FROM Noticia
-                    INNER JOIN Categoria ON Noticia.Id_Categoria_FK = Categoria.Id
-                    INNER JOIN Usuario ON Noticia.Id_Usuario_FK = Usuario.Id
+                    INNER JOIN Categoria ON Noticia.id_categoria = categoria.id
+                    INNER JOIN Usuario ON Noticia.id_usuario = usuario.id
                     WHERE 1 = 1";
 
         //Verificando se os campos estão definidos e dando valores a eles
@@ -258,6 +212,68 @@ class News{
         $resultadoF = $sql->select($select);
 
         return [$resultadoF, $filtros];
+    }
+
+
+    public static function verfiyNewsInfo($parametros, $tipo, $id = 0){
+
+        if($tipo == 'add') {
+
+            if($parametros["titulo"] === ""){
+                $_SESSION['mensagem'] = "Campo Titulo Obrigatório";
+                header("Location: /adminNews/add");
+                exit;
+            }
+
+            if($parametros["corpo"] === ""){
+                $_SESSION['mensagem'] = "Campo Corpo Obrigatório";
+                header("Location: /adminNews/add");
+                exit;
+            }
+
+            if($parametros["resumo"] === ""){
+                $_SESSION['mensagem'] = "Campo Resumo Obrigatório";
+                header("Location: /adminNews/add");
+                exit;
+            }
+
+            if(!isset($parametros["categoria"])){
+                $_SESSION['mensagem'] = "Selecione 1 categoria";
+                header("Location: /adminNews/add");
+                exit;
+            }
+
+            if(!verifyImage($_FILES)){
+                $_SESSION['mensagem'] = "Formato de Arquivo Inválido";
+                header("Location: /adminNews/add");
+                exit;
+            }
+
+        }
+
+
+        if($tipo == 'edit'){
+
+            if($parametros["titulo"] === ""){
+                $_SESSION['mensagem'] = "Campo Titulo Obrigatório";
+                header("Location: /adminNews/edit/$id");
+                exit;
+            }
+
+            if($parametros["corpo"] === ""){
+                $_SESSION['mensagem'] = "Campo Corpo Obrigatório";
+                header("Location: /adminNews/edit/$id");
+                exit;
+            }
+
+            if($parametros["resumo"] === ""){
+                $_SESSION['mensagem'] = "Campo Resumo Obrigatório";
+                header("Location: /adminNews/edit/$id");
+                exit;
+            }
+
+        }
+
     }
 
 }
