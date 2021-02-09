@@ -143,6 +143,18 @@
   border-radius: 10px
 }
 
+.card-content p {
+  bottom: 3px;
+  position: absolute;
+  margin: 0px 2px 0px 0px;
+  color: #bfbfbf;
+}
+
+.card-reveal a:hover {
+  color: #ccd9ff;
+}
+
+
 /* Footer*/
 #nameGit {
   color: #4d79ff;
