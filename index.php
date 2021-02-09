@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once("vendor/autoload.php");
+require_once("vendor/autoload.php");  //Carrega as dependências do projeto
 require_once("function.php");
 
 Use \Slim\Slim;
@@ -18,7 +18,7 @@ require_once("categorie.php");
 require_once("news.php");
 require_once("favorite.php");
 require_once("homeNews.php");
-require_once("testes.php");
+//require_once("testes.php");
 
 $app->run();
 
