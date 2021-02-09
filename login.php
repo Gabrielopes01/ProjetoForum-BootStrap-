@@ -10,12 +10,17 @@ $app->get("/0/login", function(){
     ]);
 
     $page->setTpl('login', [
-        'erro'=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:''
+        'erro'=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        'email'=>isset($_SESSION['logEmail'])? $_SESSION['logEmail']:''
     ]);
+
+    $_SESSION['logEmail'] = "";
 
 });
 
 $app->post("/0/login", function(){
+
+    $_SESSION['logEmail'] = $_POST["email"];
 
     User::verifyLogin($_POST["email"],$_POST["senha"]);
 

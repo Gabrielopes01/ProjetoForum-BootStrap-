@@ -111,13 +111,31 @@
 }
 
 
+/* Header */
+#dropDown {
+  background-color: black;
+  color:white;width: 220px;
+  text-align: center
+}
+
 /* Paragrafo na pagina de Login */
 #createAccountP {
   float: left;
   margin-top: 0;
 }
 
-/* Footer GitHub */
+
+/* Home Principal */
+#titleText {
+  font-family: 'Trebuchet MS', sans-serif;
+  background-color: #ffd9b3;
+  width: 20%;
+  margin-left: 40%;
+  border-radius: 50px;
+  border: 1px solid black;
+}
+
+/* Footer*/
 #nameGit {
   color: #4d79ff;
 }
