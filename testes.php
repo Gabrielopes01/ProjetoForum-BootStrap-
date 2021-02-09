@@ -1,6 +1,7 @@
 <?php
 
 Use \Classes\Page;
+Use \Novo\Teste;  //Os namespaces precisam ser definidos no composer
 
 $app->get("/0/testes", function(){
 
@@ -18,6 +19,8 @@ $app->get("/0/testes", function(){
 
 
 $app->post("/0/testes", function(){
+
+    Teste::say();
 
     var_dump($_POST["data"]);
     exit;

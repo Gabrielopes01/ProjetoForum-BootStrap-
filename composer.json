@@ -12,7 +12,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Classes\\": "model\\php-classes\\src"
+            "Classes\\": "model\\php-classes\\src",
+            "Novo\\": "model\\php-classes\\src"
         }
     }
 }

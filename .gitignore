@@ -4,3 +4,6 @@ res/site/images/*.jpg
 res/site/images/*.png
 res/images/
 res/deafults/
+model/php-classes/src/Teste.php
+views/testes.html
+testes.php
