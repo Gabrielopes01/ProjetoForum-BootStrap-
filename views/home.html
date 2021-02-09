@@ -12,7 +12,7 @@
           {if="isset($value.Imagem)"}
               <li>
               <img src="../../res/site/images/{$value.Imagem}">
-              <div class="caption center-align" style="background-color: black; border: 3px solid white;">
+              <div class="caption center-align"; id="slide-caption">
                 <h3>{$value.Titulo}</h3>
                 <a href="/news/{$value.Id}" class="blue-text"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
               </div>
@@ -67,6 +67,7 @@
             <!--Parte frontal do card da noticia onde ha o texto e o botão para mais informações-->
             <div class="card-content">
               <span class="card-title activator">{$value.Titulo} <i class="material-icons right">more_vert</i></span>
+              <p class="bottom">Publicado em: {function="formatDate($value.Data)"}</p>
             </div>
 
             <!--Card com mais informações da notícia-->
