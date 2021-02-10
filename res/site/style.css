@@ -1,86 +1,4 @@
-.menu {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: sticky;
-  top: 0;
-  width: 100%;
-}
 
-.itemMenu {
-  float: left;
-  border-right:1px solid #bbb;
-}
-
-.lilogin{
-  float: right;
-  border-left: 1px solid #bbb;
-}
-
-.titulo {
-  float: left;
-  border-right:1px solid #bbb;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 0px 10px;
-  text-decoration: none;
-}
-
-.tituloFiltro {
-  float: left;
-  border-right:1px solid #bbb;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 32px 16px;
-  text-decoration: none;
-}
-
-.busca{
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 1px 7px;
-  text-decoration: none;
-  border-right:none;
-  width: 25%;
-}
-
-.busca2{
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 1px 7px;
-  text-decoration: none;
-  border-right:none;
-  width: 20%;
-}
-
-.buscaData{
-  float: left;
-  color: black;
-  text-align: center;
-  padding: 1px 7px;
-  text-decoration: none;
-  border-right:none;
-  width: 20%;
-}
-
-.listaFiltro{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  position: static;
-  top: 0;
-  width: 100%;
-}
 
 .imagem{
   width: 70px;
@@ -102,14 +20,6 @@
   background-color: #263238;
 }
 
-.header{
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  z-index:9999;
-}
-
 
 /* Header */
 #dropDown {
@@ -117,6 +27,8 @@
   color:white;width: 220px;
   text-align: center
 }
+
+
 
 /* Paragrafo na pagina de Login */
 #createAccountP {
@@ -189,6 +101,22 @@ header, .navbar {
   color: #ccd9ff;
 }
 
+
+/* Admin */
+.buttonEdit{
+  color: #668cff;
+  font-size: 13px;
+}
+
+.buttonDelete{
+  color: red;
+  font-size: 13px;
+}
+
+.addButton{
+  float: right;
+  margin-top: -60px;
+}
 
 /* Footer*/
 #nameGit {

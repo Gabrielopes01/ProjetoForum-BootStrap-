@@ -61,111 +61,127 @@
 </form>
     <br>
     <hr>
-        <table class="striped">
-            <thead>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Criação</th>
+
+<hr>
+
+
+<br>
+<br>
+<br>
+
+
+
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2">
+        <h1 align="center">Usuários</h3>
+        <hr class="shadow">
+        <br>
+
+        <table class="table table-striped shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Criação</th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 {loop="$usuarios"}
                 <tr>
+                    <th>{$value.id}</th>
                     <td>{$value.nome}</td>
                     <td>{$value.email}</td>
                     <td>{function="formatDate($value.data)"}</td>
-                    <td><a href="/admin/edit/{$value.id}" class="btn yellow hoverable"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/admin/delete/{$value.id}" class="btn red hoverable"><i class="material-icons">delete</i></a></td>
+                    <td><a href="/admin/edit/{$value.id}" class="buttonEdit"><i class="fas fa-edit"></i> Editar</td>
+                    <td><a href="/admin/delete/{$value.id}" class="buttonDelete"><i class="fas fa-trash"></i> Excluir</a></td>
                 </tr>
                 {/loop}
             </tbody>
-
         </table>
-<hr>
-<!--
-  <ul class="paginacao pagination">
-    {loop="$paginas"}
-    {if="($value-1) == $pagina"}
-    <li class="active"><a href="{$value-1}">{$value}</a></li>
-    {else}
-    <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-    {/if}
-    {/loop}
-  </ul>
--->
 
-<ul class="paginacao pagination">
-    {if="$post == 1"}
-        {if="$pagina == 0"}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="filter/0">1</a></li>
-        {loop="$paginas"}
-        {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
-            {if="$value != 1"}
-            <li class="waves-effect hoverable"><a href="filter/{$value-1}">{$value}</a></li>
-            {/if}
-        {/if}
-        {/loop}
-        {if="$numPags != 1"}
-        <li class="waves-effect hoverable"><a href="filter/{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-        {else}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-        {/if}
+        <hr>
 
-    {else}
-
-        {if="$pagina == 0"}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="0">1</a></li>
-        {loop="$paginas"}
-        {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
-            {if="$value != 1"}
-            <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-            {/if}
-        {/if}
-        {/loop}
-        {if="$numPags != 1"}
-        <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-        {else}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-
-        {else}
-        <li class="waves-effect hoverable"><a href="{$pagina-1}"><i class="material-icons">chevron_left</i></a></li>
-        {loop="$paginas"}
-            {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aparecer-->
-                {if="$value-1 >= $pagina"}
-                    {if="($value-1) == $pagina"}
-                    {if="$pagina != 1"}
-                        <li class="waves-effect hoverable"><a href="{$value-3}">{$value-2}</a></li>
-                    {/if}
-                    <li class="waves-effect hoverable"><a href="{$value-2}">{$value-1}</a></li>
-                    <li class="active"><a href="{$value-1}">{$value}</a></li>
-                    {else}
-                    <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-                    {/if}
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {if="$post == 1"}
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disable><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+            {loop="$paginas"}
+            {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                {if="$value != 1"}
+                <li class="page-item"><a class="page-link" href="filter/{$value-1}">{$value}</a></li>
                 {/if}
             {/if}
-        {/loop}
-            {if="$pagina+1 < $numPags"}
-            <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
+            {/loop}
+            {if="$numPags != 1"}
+                <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
             {else}
-            <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+            {/if}
+            {/if}
+
+        {else}
+
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="0">1</a></li>
+                {loop="$paginas"}
+                {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                    {if="$value != 1"}
+                    <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                    {/if}
+                {/if}
+                {/loop}
+                {if="$numPags != 1"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+            {else}
+                <li class="page-item"><a class="page-link" href="{$pagina-1}"><i class="fas fa-chevron-left"></i></a></li>
+                {loop="$paginas"}
+                    {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aparecer-->
+                        {if="$value-1 >= $pagina"}
+                            {if="($value-1) == $pagina"}
+                            {if="$pagina != 1"}
+                                <li class="page-item"><a class="page-link" href="{$value-3}">{$value-2}</a></li>
+                            {/if}
+                            <li class="page-item"><a class="page-link" href="{$value-2}">{$value-1}</a></li>
+                            <li class="page-item active"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {else}
+                            <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/loop}
+                {if="$pagina+1 < $numPags"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+
             {/if}
         {/if}
-    {/if}
-  </ul>
-        <a href="/admin/add" class="btn" style="float: right;"><i class="material-icons left">add_circle</i> Adicionar Usuário</a>
-        <br>
-        <br>
-        <br>
+        </ul>
+        </nav>
+
+        <a href="/admin/add" class="btn btn-primary addButton"><i class="fas fa-plus-circle"></i> Adicionar Usuário</a>
     </div>
 </div>
 
+<br>
+<br>
+<br>
 
-<br>
-<br>
-<br>
+
+
+
 
 <script>
 function searchName() {
