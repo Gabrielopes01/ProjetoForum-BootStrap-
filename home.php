@@ -47,4 +47,3 @@ $app->get("/:num", function($num){
 
 });
 
-?>

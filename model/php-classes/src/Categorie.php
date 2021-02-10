@@ -94,7 +94,7 @@ class Categorie {
     }
 
     public static function deleteCategorie($id){
-            $sql = new Sql();
+        $sql = new Sql();
 
         $sql->query("DELETE FROM Categoria WHERE id = :id", array(
             ":id"=>$id
@@ -116,9 +116,7 @@ class Categorie {
         $name = isset($parametros['nome']) && !$parametros['nome'] == ""? $parametros['nome']:"";
 
         if($parametros['verBuscaNome'] == 1 && $name != ""){
-
             $select .= " AND nome LIKE CONCAT('%', '" . $name . "', '%')";
-
         }
 
         $resultadoF = $sql->select($select);
@@ -165,5 +163,3 @@ class Categorie {
 
 
 }
-
-?>

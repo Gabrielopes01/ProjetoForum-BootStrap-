@@ -227,5 +227,3 @@ $app->post("/adminCat/delete/:id", function($id){
     Categorie::deleteCategorie($id);
 
 });
-
-?>

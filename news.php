@@ -260,6 +260,3 @@ $app->post("/adminNews/delete/:id", function($id){
     News::deleteNews($id);
 
 });
-
-
-?>

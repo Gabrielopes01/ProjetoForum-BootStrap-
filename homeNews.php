@@ -15,6 +15,3 @@ $app->get("/news/:num", function($num){
     require_once("pageNews.php");
 
 });
-
-
-?>

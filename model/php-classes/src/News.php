@@ -194,27 +194,19 @@ class News{
 
         //Verificando se os campos estão preenchidos com parametros de busca
         if($parametros['verBuscaTitulo'] == 1 && $title != ""){
-
                 $select .= " AND Noticia.titulo LIKE CONCAT('%', '" . $title . "', '%')";
-
         }
 
         if($parametros['verBuscaCategoria'] == 1 && $categorie != ""){
-
                 $select .= " AND Categoria.nome LIKE CONCAT('%', '" . $categorie . "', '%')";
-
         }
 
         if($parametros['verBuscaUsuario'] == 1 && $user != ""){
-
                 $select .= " AND Usuario.nome LIKE CONCAT('%', '" . $user . "', '%')";
-
         }
 
         if($parametros['verBuscaData'] == 1 && $date != ""){
-
                 $select .= " AND SUBSTRING(CONVERT(varchar, Noticia.data, 103), 0, 11) LIKE CONCAT('%', '" . $date . "', '%')";
-
         }
 
         $resultadoF = $sql->select($select);
@@ -286,5 +278,3 @@ class News{
 
 }
 
-
-?>

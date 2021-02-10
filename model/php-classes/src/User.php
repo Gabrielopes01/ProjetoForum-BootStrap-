@@ -37,7 +37,7 @@ class User{
 
         $forResult = $num * 10;
 
-        $resultado = $sql->select("SELECT TOP 10 * FROM Usuario WHERE id NOT IN (Select TOP $forResult id From Usuario)", );
+        $resultado = $sql->select("SELECT TOP 10 * FROM Usuario WHERE id NOT IN (Select TOP $forResult id From Usuario)");
 
         return $resultado;
 
@@ -63,13 +63,11 @@ class User{
 
         if(count($resultado) > 0){
             if(password_verify($password, $resultado[0]["senha"])){
-
                 $_SESSION['nome'] = $resultado[0]["nome"];
                 $_SESSION['email']= $resultado[0]["email"];
 
                 header("Location: /");
                 exit;
-
             }
 
         }
@@ -129,21 +127,15 @@ class User{
 
         //Verificando se os campos estão preenchidos com parametros de busca
         if($parametros['verBuscaNome'] == 1 && $name != ""){
-
             $select .= " AND nome LIKE CONCAT('%', '" . $name . "', '%')";
-
         }
 
         if($parametros['verBuscaEmail'] == 1 && $email != ""){
-
             $select .= " AND email LIKE CONCAT('%', '" . $email . "', '%')";
-
         }
 
         if($parametros['verBuscaData'] == 1 && $date != ""){
-
             $select .= " AND SUBSTRING(CONVERT(varchar, data, 103), 0, 11) LIKE CONCAT('%', '" . $date . "', '%')";
-
         }
 
         $resultadoF = $sql->select($select);
@@ -270,4 +262,3 @@ class User{
 
 }
 
-?>

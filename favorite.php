@@ -75,5 +75,3 @@ $app->get("/:pag/myFavorites", function($pag){
 
 });
 
-
-?>

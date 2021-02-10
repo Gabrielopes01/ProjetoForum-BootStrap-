@@ -228,5 +228,3 @@ $app->post("/admin/delete/:id", function($id){
     User::deleteUser($id);
 
 });
-
-?>

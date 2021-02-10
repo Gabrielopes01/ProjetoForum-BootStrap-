@@ -31,6 +31,3 @@ $app->post("/0/testes", function(){
     exit;
 
 });
-
-
-?>

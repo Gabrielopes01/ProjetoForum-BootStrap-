@@ -21,7 +21,3 @@ require_once("homeNews.php");
 //require_once("testes.php");
 
 $app->run();
-
-
-
-?>

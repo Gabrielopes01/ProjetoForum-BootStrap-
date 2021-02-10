@@ -92,5 +92,3 @@ class Favorite{
 //Fim da Classe
 }
 
-
-?>
