@@ -126,6 +126,41 @@
 
 
 /* Home Principal */
+header, .navbar {
+  background-color: #353D41;
+}
+
+#nav-container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#item-menu {
+  margin: 0 auto;
+  color: gray;
+  font-size: 20px;
+}
+
+#item-menu:hover {
+  color: white;
+}
+
+#dropdownMenuOffset {
+  color: gray;
+  font-size: 20px;
+}
+
+#dropdownMenuOffset:hover {
+  color: white;
+  background-color: white;
+}
+
+
+#logo {
+  height: 70px;
+  width: 70px;
+}
+
 #titleText {
   font-family: 'Trebuchet MS', sans-serif;
   width: 20%;
@@ -158,6 +193,7 @@
 /* Footer*/
 #nameGit {
   color: #4d79ff;
+  text-decoration: none;
 }
 
 #nameGit:hover {
