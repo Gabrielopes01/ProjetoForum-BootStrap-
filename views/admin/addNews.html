@@ -6,62 +6,50 @@
 </script>
 {/if}
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="row">
-    <div class="col s12 m6 push-m3">
+    <div class="col-sm-12 col-md-6 offset-md-3">
         <form method="POST" enctype="multipart/form-data">
-            <h3 class="light"; align="left">Adicionar Notícia</h3>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">title</i>
-                <input type="text" name="titulo" id="titulo" required="" value="{$titulo}">
-                <label for="titulo">Titulo</label>
+            <h3 align="center">Adicionar Notícia</h3>
+            <hr>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input1"><i class="fas fa-paragraph"></i></span>
+                <input type="text" class="form-control form-control-lg" name="titulo" id="titulo" required="" value="{$titulo}" placeholder="Título da Notícia" aria-describedby="input1">
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">title</i>
-                <label>Corpo</label>
+            <div class="shadow-sm" style="margin-bottom: 10px">
+                <h4 align="center" style="margin-bottom: -30px">Corpo da Notícia</h4>
                 <br>
                 <br>
-                <textarea name="corpo" id="corpo">{$corpo}</textarea>
+                <textarea name="corpo" id="corpo" required="">{$corpo}</textarea>
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">title</i>
-                <input type="text" name="resumo" id="resumo" required="" value="{$resumo}" data-length="180">
-                <label for="resumo">Resumo</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input2"><i class="fas fa-paragraph"></i></span>
+                <input type="text" class="form-control form-control-lg" name="resumo" id="resumo" required="" value="{$resumo}" placeholder="Resumo da Notícia" aria-describedby="input2">
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">local_offer</i>
-                <select id = "categoria" name = "categoria">
-                    <option value="" disabled selected>Escolha a Categoria</option>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input3"><i class="fas fa-bookmark"></i></span>
+                <select class="form-select" id = "categoria" name = "categoria" aria-describedby="input3">
+                    <option value="" disabled selected>Selecione uma Categoria</option>
                     {loop="$categorias"}
-                    <option value = {$value.id}>{$value.nome}</option>
+                        <option value = {$value.id}>{$value.nome}</option>
                     {/loop}
                 </select>
-                <label for="categoria">Categoria</label>
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">image</i>
-                <label>Imagem da Notícia</label>
-                <br>
-                <br>
-                <div class="file-field input-field"> 
-                    <div class="btn">
-                        <span>Upload</span>
-                        <input type="file" name="imagem" id="imagem" required="">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text">
-                    </div>
-                </div>
-                <br>
-                <br>
-            </div>
-            <div class="input-field col s12">
-                <input type="hidden" name="usuario" id="usuario" value="{$usuario}">
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input3"><i class="fas fa-image"></i></span>
+                <input type="file" class = "form-control" name="imagem" id="imagem" required="">
             </div>
 
+            <input type="hidden" name="usuario" id="usuario" value="{$usuario}">
 
-<hr>
-        <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Adicionar</button>
-        <a href="/adminNews/search/0" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+            <hr>
+            <button type="submit" class="btn btn-success" style="float: right; margin-left: 10px"><i class="fas fa-check"></i> Adicionar</button>
+            <a href="/adminNews/search/0" class="btn btn-secondary" style="float: right"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
         </form>
     </div>
 </div>

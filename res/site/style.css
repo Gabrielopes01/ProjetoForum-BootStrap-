@@ -108,7 +108,7 @@ header, .navbar {
   font-size: 13px;
 }
 
-.buttonDisable {
+.buttonDisable{
   color: #808080;
   font-size: 13px;
   pointer-events: none;
@@ -125,7 +125,7 @@ header, .navbar {
   margin-top: -60px;
 }
 
-.listaFiltro {
+.listaFiltro{
   list-style-type: none;
   margin: 0;
   padding: 10px;
@@ -154,3 +154,31 @@ header, .navbar {
   color: #b3c6ff;
 }
 
+
+
+/*Media Care*/
+@media(max-width: 500px) {
+
+  /* Admin */
+  .elementoFiltro {
+    width:100%;
+    margin-left: 5px;
+  }
+
+  table {
+    font-size: 11px;
+    padding: 0;
+    margin: 1px;
+    letter-spacing: 0;
+  }
+
+  #tableNews{
+    font-size: 8px;
+  }
+
+  #tableNews td{
+    padding: 1px;
+    text-align: center;
+  }
+
+}

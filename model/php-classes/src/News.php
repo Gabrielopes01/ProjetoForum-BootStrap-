@@ -237,7 +237,7 @@ class News{
                 exit;
             }
 
-            if(!isset($parametros["categoria"])){
+            if(!isset($parametros["categoria"]) || $parametros["categoria"] == ''){
                 $_SESSION['mensagem'] = "Selecione 1 categoria";
                 header("Location: /adminNews/add");
                 exit;
