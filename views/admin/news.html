@@ -6,87 +6,98 @@
 </script>
 {/if}
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="row">
-    <div class="col s12 m6 push-m3">
-        <h3 class="light"; align="left">Notícias</h3>
-<form method="POST">
-        <ul class="listaFiltro z-depth-3">
-            <li class="tituloFiltro">Busca: </li>
-            <li class="busca2">
-                {if="$filtros.titulo != ''"}
-                <div class="input-field col s12">
-                <input type="text" name="titulo" id="titulo" style="color: white; width: 50%" value="{$filtros.titulo}">
-                <input type="hidden" name="verBuscaTitulo" id="verBuscaTitulo" value="1">
-                {else}
-                <button class="btn gray" style="margin-top: 21px;" id="buscaTitulo" onclick="searchTitle()">Título</button>
-                <div class="input-field col s12">
-                <input type="hidden" name="titulo" id="titulo" style="color: white; width: 50% ">
-                <input type="hidden" name="verBuscaTitulo" id="verBuscaTitulo" value="0">
-                {/if}
-                <label for="titulo" style="color: white; width: 50%">Título</label>
-                </div>
-            </li>
-            <li class="busca2">
-                {if="$filtros.categoria != ''"}
-                <div class="input-field col s12">
-                <input type="text" name="categoria" id="categoria" style="color: white; width: 50%" value="{$filtros.categoria}">
-                <input type="hidden" name="verBuscaCategoria" id="verBuscaCategoria" value="1">
-                {else}
-                <button class="btn gray" style="margin-top: 21px;" id="buscaCategoria" onclick="searchCategorie()">Categoria</button>
-                <div class="input-field col s12">
-                <input type="hidden" name="categoria" id="categoria" style="color: white; width: 50% ">
-                <input type="hidden" name="verBuscaCategoria" id="verBuscaCategoria" value="0">
-                {/if}
-                <label for="categoria" style="color: white; width: 50%">Categoria</label>
-                </div>
-            </li>
-            <li class="busca2">
-                {if="$filtros.usuario != ''"}
-                <div class="input-field col s12">
-                <input type="text" name="usuario" id="usuario" style="color: white; width: 50%" value="{$filtros.usuario}">
-                <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="1">
-                {else}
-                <button class="btn gray" style="margin-top: 21px;" id="buscaUsuario" onclick="searchUser()">Autor</button>
-                <div class="input-field col s12">
-                <input type="hidden" name="usuario" id="usuario" style="color: white; width: 50% ">
-                <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="0">
-                {/if}
-                <label for="usuario" style="color: white; width: 50%">Autor</label>
-                </div>
-            </li>
-            <li class="buscaData">
-                {if="$filtros.data != ''"}
-                <div class="input-field col s12">
-                <input type="text" class="datepicker" name="data" id="data" style="color: white; width: 50% " value="{$filtros.data}">
-                <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
-                {else}
-                <button class="btn gray" style="margin-top: 21px;" id="buscaData" onclick="searchDate()">Data</button>
-                <div class="input-field col s12">
-                <input type="hidden" class="datepicker" name="data" id="data" style="color: white; width: 50% ">
-                <input type="hidden" name="verBuscaData" id="verBuscaData" value="0">
-                {/if}
-                <label for="data" style="color: white; width: 50%">Data</label>
-                </div>
-            </li>
-        </ul>
+    <div class="col-sm-12 col-md-8 offset-md-2">
+        <h1 align="center">Notícias</h3>
+
+        <form method="POST">
+            <ul class="listaFiltro shadow">
+                <li class="textoFiltro"><strong>Buscar por: </strong></li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input1">Título</span>
+                    {if="$filtros.titulo != ''"}
+                    <input type="text" class="form-control" name="titulo" id="titulo" value="{$filtros.titulo}" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaTitulo" id="verBuscaTitulo" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="titulo" id="titulo" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaTitulo" id="verBuscaTitulo" value="1">
+                    {/if}
+                    </div>
+                </li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input1">Categoria</span>
+                    {if="$filtros.categoria != ''"}
+                    <input type="text" class="form-control" name="categoria" id="categoria" value="{$filtros.categoria}" aria-describedby="input2">
+                    <input type="hidden" name="verBuscaCategoria" id="verBuscaCategoria" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="categoria" id="categoria" aria-describedby="input2">
+                    <input type="hidden" name="verBuscaCategoria" id="verBuscaCategoria" value="1">
+                    {/if}
+                    </div>
+                </li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input4">Data</span>
+                    {if="$filtros.data != ''"}
+                    <input type="text" class="form-control" name="data" id="data" value="{$filtros.data}" aria-describedby="input4" autocomplete="off">
+                    <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="data" id="data" aria-describedby="input4" autocomplete="off">
+                    <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
+                    {/if}
+                    </div>
+                </li>
+                <li class="elementoFiltro">
+                    <!--Espaçamento-->
+                </li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input1">Usuário</span>
+                    {if="$filtros.usuario != ''"}
+                    <input type="text" class="form-control" name="usuario" id="usuario" value="{$filtros.usuario}" aria-describedby="input3">
+                    <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="usuario" id="usuario" aria-describedby="input3" autocomplete="off">
+                    <input type="hidden" name="verBuscaUsuario" id="verBuscaUsuario" value="1">
+                    {/if}
+                    </div>
+                </li>
+            </ul>
+            <br>
+            <a href="/adminNews/search/0" class="btn btn-secondary" style="float: right; margin-left: 10px; margin-top: -15px"><i class="fas fa-times"></i> Limpar Busca</a>
+            <button type="submit" class="btn btn-primary" style="float: right; margin-top: -15px"><i class="fas fa-search"></i> Buscar</button>
+            <br>
+        </form>
+
+        <hr>
         <br>
-        <a href="/adminNews/search/0" class="btn red" style="float: right; margin-left: 10px; margin-top: -15px">Limpar Busca</a>
-        <button type="submit" class="btn gray" style="float: right; margin-top: -15px"><i class="material-icons">search</i></button>
-</form>
-    <br>
-    <hr>
-        <table class="striped">
-            <thead>
-                <th>Título</th>
-                <th>Corpo</th>
-                <th>Categoria</th>
-                <th>Autor</th>
-                <th>Vizualizações</th>
-                <th>Data</th>
+
+        <table class="table table-striped shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Título</th>
+                    <th>Corpo</th>
+                    <th>Categoria</th>
+                    <th>Autor</th>
+                    <th>Visualizações</th>
+                    <th>Data</th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 {loop="$noticias"}
                 <tr>
+                    <th>{$value.Id}</th>
                     <td>{$value.Titulo}</td>
                     <td>{function="removeTags($value.Corpo)"}</td>
                     <td>{$value.Categoria}</td>
@@ -103,108 +114,80 @@
                 </tr>
                 {/loop}
             </tbody>
-
         </table>
-<hr>
 
-<ul class="paginacao pagination">
-    {if="$post == 1"}
-        {if="$pagina == 0"}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="filter/0">1</a></li>
-        {loop="$paginas"}
-        {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aprecer-->
-            {if="$value != 1"}
-            <li class="waves-effect hoverable"><a href="filter/{$value-1}">{$value}</a></li>
-            {/if}
-        {/if}
-        {/loop}
-        {if="$numPags != 1"}
-        <li class="waves-effect hoverable"><a href="filter/{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-        {else}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-        {/if}
+        <hr>
 
-    {else}
 
-        {if="$pagina == 0"}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="0">1</a></li>
-        {loop="$paginas"}
-        {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aprecer-->
-            {if="$value != 1"}
-            <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-            {/if}
-        {/if}
-        {/loop}
-        {if="$numPags != 1"}
-        <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-        {else}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-
-        {else}
-        <li class="waves-effect hoverable"><a href="{$pagina-1}"><i class="material-icons">chevron_left</i></a></li>
-        {loop="$paginas"}
-            {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aprecer-->
-                {if="$value-1 >= $pagina"}
-                    {if="($value-1) == $pagina"}
-                    {if="$pagina != 1"}
-                        <li class="waves-effect hoverable"><a href="{$value-3}">{$value-2}</a></li>
-                    {/if}
-                    <li class="waves-effect hoverable"><a href="{$value-2}">{$value-1}</a></li>
-                    <li class="active"><a href="{$value-1}">{$value}</a></li>
-                    {else}
-                    <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-                    {/if}
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {if="$post == 1"}
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disable><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+            {loop="$paginas"}
+            {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                {if="$value != 1"}
+                <li class="page-item"><a class="page-link" href="filter/{$value-1}">{$value}</a></li>
                 {/if}
             {/if}
-        {/loop}
-            {if="$pagina+1 < $numPags"}
-            <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
+            {/loop}
+            {if="$numPags != 1"}
+                <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
             {else}
-            <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+            {/if}
+            {/if}
+
+        {else}
+
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="0">1</a></li>
+                {loop="$paginas"}
+                {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                    {if="$value != 1"}
+                    <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                    {/if}
+                {/if}
+                {/loop}
+                {if="$numPags != 1"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+            {else}
+                <li class="page-item"><a class="page-link" href="{$pagina-1}"><i class="fas fa-chevron-left"></i></a></li>
+                {loop="$paginas"}
+                    {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aparecer-->
+                        {if="$value-1 >= $pagina"}
+                            {if="($value-1) == $pagina"}
+                            {if="$pagina != 1"}
+                                <li class="page-item"><a class="page-link" href="{$value-3}">{$value-2}</a></li>
+                            {/if}
+                            <li class="page-item"><a class="page-link" href="{$value-2}">{$value-1}</a></li>
+                            <li class="page-item active"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {else}
+                            <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/loop}
+                {if="$pagina+1 < $numPags"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+
             {/if}
         {/if}
-    {/if}
-  </ul>
+        </ul>
+        </nav>
 
-        <a href="/adminNews/add" class="btn" style="float: right"><i class="material-icons">add_circle</i> Adicionar Notícia</a>
-        <br>
-        <br>
-        <br>
+        <a href="/adminNews/add" class="btn btn-primary addButton"><i class="fas fa-plus-circle"></i> Adicionar Notícia</a>
     </div>
-</div>]
+</div>
 
 <br>
-<br>
-<br>
-
-<script>
-function searchTitle() {
-  document.getElementById("buscaTitulo").remove();
-  document.getElementById('titulo').type = "text";
-  document.getElementById('verBuscaTitulo').value = 1;
-}
-
-function searchCategorie() {
-  document.getElementById("buscaCategoria").remove();
-  document.getElementById('categoria').type = "text";
-  document.getElementById('verBuscaCategoria').value = 1;
-}
-
-function searchUser() {
-  document.getElementById("buscaUsuario").remove();
-  document.getElementById('usuario').type = "text";
-  document.getElementById('verBuscaUsuario').value = 1;
-}
-
-function searchDate() {
-  document.getElementById("buscaData").remove();
-  document.getElementById('data').type = "text";
-  document.getElementById('verBuscaData').value = 1;
-}
-
-
-</script>
