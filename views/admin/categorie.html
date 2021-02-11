@@ -6,127 +6,133 @@
 </script>
 {/if}
 
-<div class="row">
-    <div class="col s12 m6 push-m3">
-        <h3 class="light"; align="left">Categorias</h3>
-<form method="POST">
-        <ul class="listaFiltro z-depth-3">
-            <li class="tituloFiltro">Busca: </li>
-            <li class="busca">
-                {if="$filtros.nome != ''"}
-                <div class="input-field col s12">
-                <input type="text" name="nome" id="nome" style="color: white; width: 50%" value="{$filtros.nome}">
-                <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="1">
-                {else}
-                <button class="btn gray" style="margin-top: 21px;" id="buscaNome" onclick="searchName()">Nome</button>
-                <div class="input-field col s12">
-                <input type="hidden" name="nome" id="nome" style="color: white; width: 50% ">
-                <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="0">
-                {/if}
-                <label for="nome" style="color: white; width: 50%">Nome</label>
-                </div>
-            </li>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-        </ul>
+<div class="row">
+    <div class="col-sm-12 col-md-8 offset-md-2">
+        <h1 align="center">Categorias</h3>
+
+        <form method="POST">
+            <ul class="listaFiltro shadow">
+                <li class="textoFiltro"><strong>Buscar por: </strong></li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input1">Nome</span>
+                    {if="$filtros.nome != ''"}
+                    <input type="text" class="form-control" name="nome" id="nome" value="{$filtros.nome}" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="nome" id="nome" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="1">
+                    {/if}
+                    </div>
+                </li>
+            </ul>
+            <br>
+            <a href="/adminCat/search/0" class="btn btn-secondary" style="float: right; margin-left: 10px; margin-top: -15px"><i class="fas fa-times"></i> Limpar Busca</a>
+            <button type="submit" class="btn btn-primary" style="float: right; margin-top: -15px"><i class="fas fa-search"></i> Buscar</button>
+            <br>
+        </form>
+
+        <hr class="shadow">
         <br>
-        <a href="/adminCat/search/0" class="btn red" style="float: right; margin-left: 10px; margin-top: -15px">Limpar Busca</a>
-        <button type="submit" class="btn gray" style="float: right; margin-top: -15px"><i class="material-icons">search</i></button>
-</form>
-    <br>
-    <hr>
-        <table class="striped">
-            <thead>
-                <th>Nome</th>
+
+        <table class="table table-striped shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th></th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
                 {loop="$categorias"}
                 <tr>
+                    <th>{$value.id}</th>
                     <td>{$value.nome}</td>
-                    <td><a href="/adminCat/edit/{$value.id}" class="btn yellow hoverable" style="float: right;"><i class="material-icons">edit</i></a></td>
-                    <td><a href="/adminCat/delete/{$value.id}" class="btn red hoverable" ><i class="material-icons">delete</i></a></td>
+                    <td><a href="/adminCat/edit/{$value.id}" class="buttonEdit"><i class="fas fa-edit"></i> Editar</td>
+                    <td><a href="/adminCat/delete/{$value.id}" class="buttonDelete"><i class="fas fa-trash"></i> Excluir</a></td>
                 </tr>
                 {/loop}
             </tbody>
-
         </table>
-<hr>
 
-   <ul class="paginacao pagination">
-    {if="$post == 1"}
-        {if="$pagina == 0"}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="filter/0">1</a></li>
-        {loop="$paginas"}
-        {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aprecer-->
-            {if="$value != 1"}
-            <li class="waves-effect hoverable"><a href="filter/{$value-1}">{$value}</a></li>
-            {/if}
-        {/if}
-        {/loop}
-        {if="$numPags != 1"}
-        <li class="waves-effect hoverable"><a href="filter/{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-        {else}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-        {/if}
+        <hr>
 
-    {else}
-
-        {if="$pagina == 0"}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="0">1</a></li>
-        {loop="$paginas"}
-        {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aprecer-->
-            {if="$value != 1"}
-            <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-            {/if}
-        {/if}
-        {/loop}
-        {if="$numPags != 1"}
-        <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-        {else}
-        <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-
-        {else}
-        <li class="waves-effect hoverable"><a href="{$pagina-1}"><i class="material-icons">chevron_left</i></a></li>
-        {loop="$paginas"}
-            {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aprecer-->
-                {if="$value-1 >= $pagina"}
-                    {if="($value-1) == $pagina"}
-                    {if="$pagina != 1"}
-                        <li class="waves-effect hoverable"><a href="{$value-3}">{$value-2}</a></li>
-                    {/if}
-                    <li class="waves-effect hoverable"><a href="{$value-2}">{$value-1}</a></li>
-                    <li class="active"><a href="{$value-1}">{$value}</a></li>
-                    {else}
-                    <li class="waves-effect hoverable"><a href="{$value-1}">{$value}</a></li>
-                    {/if}
+<nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {if="$post == 1"}
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disable><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+            {loop="$paginas"}
+            {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                {if="$value != 1"}
+                <li class="page-item"><a class="page-link" href="filter/{$value-1}">{$value}</a></li>
                 {/if}
             {/if}
-        {/loop}
-            {if="$pagina+1 < $numPags"}
-            <li class="waves-effect hoverable"><a href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
+            {/loop}
+            {if="$numPags != 1"}
+                <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
             {else}
-            <li class="disabled"><a href="#" disabled><i class="material-icons">chevron_right</i></a></li>
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+            {/if}
+            {/if}
+
+        {else}
+
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="0">1</a></li>
+                {loop="$paginas"}
+                {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                    {if="$value != 1"}
+                    <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                    {/if}
+                {/if}
+                {/loop}
+                {if="$numPags != 1"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+            {else}
+                <li class="page-item"><a class="page-link" href="{$pagina-1}"><i class="fas fa-chevron-left"></i></a></li>
+                {loop="$paginas"}
+                    {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aparecer-->
+                        {if="$value-1 >= $pagina"}
+                            {if="($value-1) == $pagina"}
+                            {if="$pagina != 1"}
+                                <li class="page-item"><a class="page-link" href="{$value-3}">{$value-2}</a></li>
+                            {/if}
+                            <li class="page-item"><a class="page-link" href="{$value-2}">{$value-1}</a></li>
+                            <li class="page-item active"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {else}
+                            <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/loop}
+                {if="$pagina+1 < $numPags"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+
             {/if}
         {/if}
-    {/if}
-  </ul>
-        <a href="/adminCat/add" class="btn" style="float: right"><i class="material-icons">add_circle</i> Adicionar Categoria</a>
-        <br>
-        <br>
+        </ul>
+        </nav>
+
+        <a href="/adminCat/add" class="btn btn-primary addButton"><i class="fas fa-plus-circle"></i> Adicionar Categoria</a>
     </div>
 </div>
 
 <br>
-<br>
-<br>
-
-<script>
-function searchName() {
-  document.getElementById("buscaNome").remove();
-  document.getElementById('nome').type = "text";
-  document.getElementById('verBuscaNome').value = 1;
-}
-</script>
