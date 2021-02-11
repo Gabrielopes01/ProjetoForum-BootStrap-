@@ -108,6 +108,13 @@ header, .navbar {
   font-size: 13px;
 }
 
+.buttonDisable {
+  color: #808080;
+  font-size: 13px;
+  pointer-events: none;
+  text-decoration: none;
+}
+
 .buttonDelete{
   color: red;
   font-size: 13px;

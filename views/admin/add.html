@@ -6,35 +6,38 @@
 </script>
 {/if}
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="row">
-    <div class="col s12 m6 push-m3">
+    <div class="col-sm-12 col-md-6 offset-md-3">
         <form method="POST">
-            <h3 class="light"; align="left">Adicionar Usuário</h3>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">person</i>
-                <input type="text" name="nome" id="nome" required="" value="{$nome}">
-                <label for="nome">Nome</label>
+            <h1 align="center">Adicionar Usuário</h1>
+                <hr>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input1"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" name="nome" id="nome" required="" value="{$nome}" placeholder="Nome" aria-describedby="input1">
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">mail</i>
-                <input type="email" name="email" id="email" required="" value="{$email}">
-                <label for="email">Email</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input2"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control" name="email" id="email" required="" value="{$email}" placeholder="Email" aria-describedby="input2">
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">lock</i>
-                <input type="password" name="senha" id="senha" required="">
-                <label for="senha">Senha</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input3"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" name="senha" id="senha" required="" placeholder="Senha" aria-describedby="input3">
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">lock_outline</i>
-                <input type="password" name="csenha" id="csenha" required="">
-                <label for="csenha">Confirmar Senha</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input4"><i class="fas fa-lock-open"></i></span>
+                <input type="password" class="form-control" name="csenha" id="csenha" required="" placeholder="Confirmar a Senha" aria-describedby="input4">
             </div>
 
 
 <hr>
-        <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Adicionar</button>
-        <a href="/admin/search/0" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+        <button type="submit" class="btn btn-success" style="float: right; margin-left: 10px"><i class="fas fa-check"></i> Adicionar</button>
+        <a href="/admin/search/0" class="btn btn-secondary" style="float: right"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
         </form>
     </div>
 </div>

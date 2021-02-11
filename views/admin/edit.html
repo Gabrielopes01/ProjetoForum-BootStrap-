@@ -6,24 +6,33 @@
 </script>
 {/if}
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="row">
-    <div class="col s12 m6 push-m3">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+        <h3 align="center">Editar Usuário</h3>
+
+        <hr>
+
         <form method="POST">
-            <h3 class="light"; align="left">Editar Usuário</h3>
-            <div class="input-field col s12">
-                <input type="text" name="nome" id="nome", value="{$usuario.nome}">
-                <label for="nome">Nome</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input1"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" name="nome" id="nome" required="" value="{$usuario.nome}" aria-describedby="input1">
             </div>
-            <div class="input-field col s12">
-                <input type="email" name="email" id="email" value="{$usuario.email}">
-                <label for="email">Email</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input2"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control" name="email" id="email" required="" value="{$usuario.email}" aria-describedby="input2">
             </div>
             <input type="hidden" id="id" name="id" value={$usuario.id}>
 
+            <hr>
 
-<hr>
-        <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">check</i> Editar</button>
-        <a href="/admin/search/0" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+            <button type="submit" class="btn btn-success" style="float: right; margin-left: 10px"><i class="fas fa-check"></i> Editar</button>
+            <a href="/admin/search/0" class="btn btn-secondary" style="float: right"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
         </form>
     </div>
 </div>

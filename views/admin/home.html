@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-sm-12 col-md-8 offset-md-2">
-        <h1 align="center">Usuários</h3>
+        <h1 align="center">Usuários</h1>
 
         <form method="POST">
             <ul class="listaFiltro shadow">
@@ -33,7 +33,7 @@
                 </li>
                 <li class="elementoFiltro">
                     <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="input1">Email</span>
+                    <span class="input-group-text" id="input2">Email</span>
                     {if="$filtros.email != ''"}
                     <input type="text" class="form-control" name="email" id="email" value="{$filtros.email}" aria-describedby="input2">
                     <input type="hidden" name="verBuscaEmail" id="verBuscaEmail" value="1">
@@ -45,7 +45,7 @@
                 </li>
                 <li class="elementoFiltro">
                     <div class="input-group flex-nowrap">
-                    <span class="input-group-text" id="input1">Data</span>
+                    <span class="input-group-text" id="input3">Data</span>
                     {if="$filtros.data != ''"}
                     <input type="text" class="form-control" name="data" id="data" value="{$filtros.data}" aria-describedby="input3" autocomplete="off">
                     <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
@@ -83,8 +83,8 @@
                     <td>{$value.nome}</td>
                     <td>{$value.email}</td>
                     <td>{function="formatDate($value.data)"}</td>
-                    <td><a href="/admin/edit/{$value.id}" class="buttonEdit"><i class="fas fa-edit"></i> Editar</td>
-                    <td><a href="/admin/delete/{$value.id}" class="buttonDelete"><i class="fas fa-trash"></i> Excluir</a></td>
+                    <td style="vertical-align: middle;"><a href="/admin/edit/{$value.id}" class="buttonEdit"><i class="fas fa-edit"></i> Editar</td>
+                    <td style="vertical-align: middle;"><a href="/admin/delete/{$value.id}" class="buttonDelete"><i class="fas fa-trash"></i> Excluir</a></td>
                 </tr>
                 {/loop}
             </tbody>

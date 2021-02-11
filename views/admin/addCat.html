@@ -6,14 +6,19 @@
 </script>
 {/if}
 
+<br>
+<br>
+<br>
+<br>
+
 <div class="row">
-    <div class="col s12 m6 push-m3">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+        <h3 align="center">Adicionar Categoria</h3>
+        <hr>
         <form method="POST">
-            <h3 class="light"; align="left">Adicionar Categoria</h3>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">local_offer</i>
-                <input type="text" name="nome" id="nome" required="" value="{$nome}">
-                <label for="nome">Nome</label>
+            <div class="input-group flex-nowrap shadow-sm">
+                <span class="input-group-text" id="input2"><i class="fas fa-bookmark"></i></span>
+                <input type="text" class="form-control" name="nome" id="nome" required="" value="{$nome}" aria-describedby="input2" placeholder="Nome da Categoria">
             </div>
 
 
