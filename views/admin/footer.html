@@ -10,28 +10,11 @@
 
 <script>
     $(document).ready(function(){
-        $('select').formSelect();
-        $(".dropdown-trigger").dropdown();
-        $('.datepicker').datepicker({
-          format: 'dd/mm/yyyy',
-          i18n: {
-            cancel: 'Cancelar',
-            monthsShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
-            months: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-            weekdaysShort: [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab' ],
-            weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ],
-          }
-        });
-        $('input#resumo').characterCounter(); //Limites de caracteres
+      $("#data").datepicker({
+        showButtonPanel:true,
+        dateFormat: 'dd/mm/yy'
+      });
     });
-
-  function mouseSobre(variavel){
-    variavel.style.backgroundColor = "#37474f";
-  }
-
-    function mouseSaiu(variavel){
-    variavel.style.backgroundColor = "black";
-  }
 </script>
 
 <script>

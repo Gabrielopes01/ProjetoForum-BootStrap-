@@ -118,6 +118,25 @@ header, .navbar {
   margin-top: -60px;
 }
 
+.listaFiltro {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #e6e6e6;
+  position: static;
+  top: 0;
+  width: 100%;
+  border: 1px solid black
+}
+
+.elementoFiltro {
+  float: left;
+  display: inline;
+  margin: 5px 10px auto;
+  width:30%;
+}
+
 /* Footer*/
 #nameGit {
   color: #4d79ff;
