@@ -5,29 +5,33 @@
     }
 </script>
 {/if}
+
 <br>
 <br>
 <br>
+<br>
+<br>
+
 <div class="row">
-    <div class="col s12 m6 push-m3">
+    <div class="col-sm-5 col-md-6 offset-md-3">
+        <h3 align="center">Login</h3>
+        <hr>
+
         <form method="POST">
-            <h3 class="light"; align="center">Login</h3>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">mail</i>
-                <input type="email" name="email" id="email" value="{$email}" required="">
-                <label for="email">Email</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input1"><i class="fas fa-user"></i></span>
+                <input type="email" class="form-control" name="email" id="email" required="" value="{$email}" placeholder="Email" aria-describedby="input1">
             </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">lock</i>
-                <input type="password" name="senha" id="senha" required="">
-                <label for="senha">Senha</label>
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input2"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" name="senha" id="senha" required="" placeholder="Senha" aria-describedby="input2">
             </div>
 
+            <hr>
 
-<hr>
-    <p id="createAccountP">Ainda não tem um conta? <a href="/0/signin">Crie uma agora</a></p>
-        <button type="submit" class="btn green" style="float: right; margin-left: 10px"><i class="material-icons">person</i> Entrar</button>
-        <a href="/" class="btn" style="float: right"><i class="material-icons">keyboard_return</i> Voltar</a>
+        <p id="createAccountP">Ainda não tem um conta? <a href="/0/signin" style="text-decoration: none;">Crie uma agora</a></p>
+        <button type="submit" class="btn btn-success" style="float: right; margin-left: 10px"><i class="fas fa-check"></i> Entrar</button>
+        <a href="/" class="btn btn-secondary" style="float: right"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
         </form>
     </div>
 </div>

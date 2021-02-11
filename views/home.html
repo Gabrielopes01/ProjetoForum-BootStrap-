@@ -1,3 +1,8 @@
+<br>
+<br>
+<br>
+<br>
+
 
 <h2 class="light center grey darken-3"; id="titleText"; align="left"> Notícias</h2>
 
@@ -6,30 +11,68 @@
         {if="$maisVistos != []"}
         <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey; margin-bottom: 3px; border-radius: 25px 25px 0px 0px"> Mais Acessadas</h2>
 
-        <div class="slider">
-          <ul class="slides">
-          {loop="$maisVistos"}
-          {if="isset($value.Imagem)"}
-              <li>
-              <img src="../../res/site/images/{$value.Imagem}">
-              <div class="caption center-align"; id="slide-caption">
-                <h3>{$value.Titulo}</h3>
-                <a href="/news/{$value.Id}" class="blue-text"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
-              </div>
-            </li>
-          {else}
-              <li>
-                <img src="../../res/site/defaults/default.jpg">
-                <div class="caption center-align" style="background-color: black; border: 3px solid white">
-                  <h3>{$value.Titulo}</h3>
-                  <a href="/news/{$value.Id}" class="blue-text"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
-                </div>
-              </li>
-          {/if}
-          {/loop}
+        <div id="mainSlider" class="carousel slide" data-bs-ride="carousel">
+                <!--Indicadores do Slider de Carrossel-->
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#mainSlider" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#mainSlider" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#mainSlider" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#mainSlider" data-bs-slide-to="3"></li>
+                    <li data-bs-target="#mainSlider" data-bs-slide-to="4"></li>
+                    <li data-bs-target="#mainSlider" data-bs-slide-to="5"></li>
+                </ol>
+                <!--Parte Interna do Carrossel-->
+                <div class="carousel-inner">
 
+                    <div class="carousel-item active">
+                        <img src="../../res/site/defaults/news.jpg">
+                        <!--Texto do Carrossel-->
+                        <div class="carousel-caption d-md-block" id="slide-caption">
+                            <h3 style="margin-top: 100px">As Notícias mais acessadas</h3>
+                            <p>Você encontra aqui as notícias maisp opulares do Forum</p>
+                        </div>
+                    </div>
+                  {loop="$maisVistos"}
+                  {if="isset($value.Imagem)"}
+                    <!--Imagens do Carrossel-->
+                    <div class="carousel-item">
+                        <img src="../../res/site/images/{$value.Imagem}">
+                        <!--Texto do Carrossel-->
+                        <div class="carousel-caption d-md-block" id="slide-caption">
+                            <h3>{$value.Titulo}</h3>
+                            <p>{$value.Resumo}</p>
+                            <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
+                        </div>
+                    </div>
+                  {else}
+                    <!--Imagens do Carrossel-->
+                      <div class="carousel-item">
+                          <img src="../../res/site/defaults/default.jpg">
+                          <!--Texto do Carrossel-->
+                          <div class="carousel-caption d-md-block" id="slide-caption">
+                              <h3>{$value.Titulo}</h3>
+                              <p>{$value.Resumo}</p>
+                              <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
+                          </div>
+                      </div>
+                  {/if}
+                  {/loop}
+
+                <!--Seta para Anterior-->
+                <a href="#mainSlider" class="carousel-control-prev" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </a>
+
+                <!--Seta para Próximo-->
+                <a href="#mainSlider" class="carousel-control-next" role="button" data-bs-slide="next">
+                    <span class="visually-hidden">Próximo</span>
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
         </div>
         {/if}
+
 
 
         <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey"> Mais Recentes </h2>
