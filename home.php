@@ -22,10 +22,10 @@ $app->get("/:num", function($num){
     $noticias = News::getALLNews();
 
     $resultado = [];
-    $numPags = (int) ceil(count($noticias)/24);
-    $paginas = generatePag($numPags);
+    $numPags = (int) ceil(count($noticias)/16);
+    $paginas = generatePages($numPags);
 
-    for ($i = 24 * $num; $i < 24 * ($num + 1); $i++) {
+    for ($i = 16 * $num; $i < 16 * ($num + 1); $i++) {
         if($i == count($noticias) || $i > count($noticias)){
             break;
         } else {
@@ -34,7 +34,6 @@ $app->get("/:num", function($num){
     }
 
     $maisVistos = News::getTOPNews();
-
 
     $page->setTpl('home', [
         "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:'',

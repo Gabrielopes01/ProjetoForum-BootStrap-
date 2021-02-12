@@ -3,13 +3,7 @@
 <br>
 <br>
 
-
-<h2 class="light center grey darken-3"; id="titleText"; align="left"> Notícias</h2>
-
-      <div class="row grey darken-3" style="margin: 10px 10px 0 10px; border-radius: 25px; margin-top: 30px">
-
         {if="$maisVistos != []"}
-        <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey; margin-bottom: 3px; border-radius: 25px 25px 0px 0px"> Mais Acessadas</h2>
 
         <div id="mainSlider" class="carousel slide" data-bs-ride="carousel">
                 <!--Indicadores do Slider de Carrossel-->
@@ -28,31 +22,31 @@
                         <img src="../../res/site/defaults/news.jpg">
                         <!--Texto do Carrossel-->
                         <div class="carousel-caption d-md-block" id="slide-caption">
-                            <h3 style="margin-top: 100px">As Notícias mais acessadas</h3>
-                            <p>Você encontra aqui as notícias maisp opulares do Forum</p>
+                            <h3 style="margin-top: 90px">As Notícias mais acessadas</h3>
+                            <p>Você encontra aqui as notícias mais populares do Forum</p>
                         </div>
                     </div>
                   {loop="$maisVistos"}
                   {if="isset($value.Imagem)"}
                     <!--Imagens do Carrossel-->
                     <div class="carousel-item">
-                        <img src="../../res/site/images/{$value.Imagem}">
+                        <img style="height: 100%; width: 100%; background-color: white" src="../../res/site/images/{$value.Imagem}">
                         <!--Texto do Carrossel-->
                         <div class="carousel-caption d-md-block" id="slide-caption">
                             <h3>{$value.Titulo}</h3>
                             <p>{$value.Resumo}</p>
-                            <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
+                            <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 style="font-size: 15px">Acessar Notícia</h5></a>
                         </div>
                     </div>
                   {else}
                     <!--Imagens do Carrossel-->
                       <div class="carousel-item">
-                          <img src="../../res/site/defaults/default.jpg">
+                          <img style="height: 100%; width: 100%;" src="../../res/site/defaults/default.jpg">
                           <!--Texto do Carrossel-->
                           <div class="carousel-caption d-md-block" id="slide-caption">
                               <h3>{$value.Titulo}</h3>
                               <p>{$value.Resumo}</p>
-                              <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 class="light text-lighten-3">Acessar Notícia</h5></a>
+                              <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 style="font-size: 15px">Acessar Notícia</h5></a>
                           </div>
                       </div>
                   {/if}
@@ -74,113 +68,100 @@
         {/if}
 
 
+      <div class="row " style="margin: 10px 10px 0 10px; border-radius: 25px; margin-top: 30px">
+        <div class="col-sm-12 col-md-10 offset-md-1">
+          <h2 align="center" id="titleRecents">As Mais Recentes </h2>
 
-        <h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: grey"> Mais Recentes </h2>
 
-        {loop="$noticias"}
-        <div class="col s12 m6 l2">
-          <div class="card black white-text hoverable" style="width: 200px; height: 350px;  margin-left: 10px">
-
-            <div class="card-image">
-            <!--Verificando se há uma imagem cadastrada, se não houver ele usa a base-->
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          {loop="$noticias"}
+            <div class="col">
+            <div class="card" style="width: 260px; height: 400px;  margin-left: 10px; border: 1px solid black; color: white;">
               {if="isset($value.Imagem)"}
-              <img class="materialboxed" src="../../res/site/images/{$value.Imagem}"  style="width: 200px; height: 150px; background-color: grey">
+              <img src="../../res/site/images/{$value.Imagem}" class="card-img-top" style="width: 100%; height: 60%;">
               {else}
-              <img class="materialboxed" src="../../res/site/defaults/default.jpg" style="width: 200px; height: 180px">
+              <img src="../../res/site/defaults/default.jpg" class="card-img-top" style="width: 100%; height: 60%;">
               {/if}
-              <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
-              {function="isInFavorite($value.Id)"}
-              {if="$_SESSION['favorito'] == 1"}
-                <a href="/{$pagina}/favorite/{$value.Id}" class="btn-floating halfway-fab waves-effect waves-light yellow pulse">
-                <i class="material-icons black-text">star</i>
-                </a>
-              {else}
-                {if="$_SESSION['favorito'] == 0"}
-                    <a href="/{$pagina}/favorite/{$value.Id}" class="btn-floating halfway-fab waves-effect waves-light yellow">
-                    <i class="material-icons white-text">star</i>
-                    </a>
+              <div class="card-body" style="background-color: black">
+                <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
+                {function="isInFavorite($value.Id)"}
+                {if="$_SESSION['favorito'] == 1"}
+                  <a href="/{$pagina}/favorite/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: black">
+                  <i class="fas fa-star"></i>
+                  </a>
                 {else}
-                    <a href="#" class="btn-floating halfway-fab disabled">
-                    <i class="material-icons white-text">star</i>
-                    </a>
+                  {if="$_SESSION['favorito'] == 0"}
+                      <a href="/{$pagina}/favorite/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: white">
+                      <i class="fas fa-star"></i>
+                      </a>
+                  {else}
+                      <a href="#" class="btn btn-secondary disabled" style="border-radius: 30px; padding: 10px; float: right">
+                      <i class="fas fa-star"></i>
+                      </a>
+                  {/if}
                 {/if}
-              {/if}
+                <h5 class="card-title">{$value.Titulo}</h5>
+                <a href="/news/{$value.Id}" class="btn btn-info" style="margin-top: 10px">Acessar</a>
+              </div>
+              <div class="card-footer" style="font-size: 13px; background-color: lightgray">
+                <small class="text-muted">Publicado em: {function="formatDate($value.Data)"} por {$value.Usuario}</small>
+              </div>
             </div>
-
-            <!--Parte frontal do card da noticia onde ha o texto e o botão para mais informações-->
-            <div class="card-content">
-              <span class="card-title activator">{$value.Titulo} <i class="material-icons right">more_vert</i></span>
-              <p>Publicado em: {function="formatDate($value.Data)"}</p>
             </div>
-
-            <!--Card com mais informações da notícia-->
-            <div class="card-reveal black white-text">
-              <span class="card-title"><i class="material-icons right">close</i></span>
-              <a href="/news/{$value.Id}">Acessar Notícia</a>
-              <p>Autor: {$value.Usuario}</p>
-              {if="isset($value.Resumo)"}
-              <p>{$value.Resumo}</p>
-              {else}
-              <p></p>
-              {/if}
-            </div>
+          {/loop}
+        </div>
 
           </div>
-        </div>
-        {/loop}
-
-
       </div>
 
 <!--Paginação-->
-<ul class="pagination center grey darken-3">
-    <!--Caso seja a primeria pagina-->
-    {if="$pagina == 0"}
-    <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="/0">1</a></li>
-    <li class="white-text">. </li>
-    {else}
-    <li class="waves-effect"><a href="/{$pagina-1}" class="white-text"><i class="material-icons">chevron_left</i></a></li>
-    <li class="waves-effect"><a href="/0" class="white-text">1</a></li>
-    <li class="white-text">. </li>
-    {/if}
-    <!--Paginação do Meio-->
-    {loop="$paginas"}
-    {if="$value < $pagina-2"}
-        {continue}
-    {/if}
-    {if="$value == $pagina+2"}
-        {break}
-    {else}
-        {if="$value == $pagina"}
-        {if="$value+1 == $numPags"}
-            {break}
-        {/if}
-        <li class="active"><a href="/{$value}">{$value+1}</a></li>
-        {else}
-        {if="$value+1 == $numPags"}
-            {break}
-        {/if}
-        <li class="waves-effect"><a class="white-text" href="/{$value}">{$value+1}</a></li>
-        {/if}
-    {/if}
-    {/loop}
-    {if="$pagina+1 == $numPags"}
-    <li class="white-text">. </li>
-    <li class="active"><a class="white-text" href="/{$numPags-1}">{$numPags}</a></li>
-    <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
-    {else}
-    <!--Verificando se ha mais de 1 pagina-->
-      {if="$numPags > 0"}
-      <li class="white-text">. </li>
-      <li class="waves-effect"><a class="white-text" href="/{$numPags-1}">{$numPags}</a></li>
-        <!--Verificando se é o fim da pagina e inserindo a chave-->
-        {if="($pagina+1) != $numPags"}
-        <li class="waves-effect"><a class="white-text" href="{$pagina+1}"><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-      {/if}
-    {/if}
-  </ul>
+<hr>
+        <nav id="paginationBar">
+        <ul class="pagination">
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="0">1</a></li>
+                {loop="$paginas"}
+                {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                    {if="$value != 1"}
+                    <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                    {/if}
+                {/if}
+                {/loop}
+                {if="$numPags != 1"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+            {else}
+                <li class="page-item"><a class="page-link" href="{$pagina-1}"><i class="fas fa-chevron-left"></i></a></li>
+                {loop="$paginas"}
+                    {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aparecer-->
+                        {if="$value-1 >= $pagina"}
+                            {if="($value-1) == $pagina"}
+                            {if="$pagina != 1"}
+                                <li class="page-item"><a class="page-link" href="{$value-3}">{$value-2}</a></li>
+                            {/if}
+                            <li class="page-item"><a class="page-link" href="{$value-2}">{$value-1}</a></li>
+                            <li class="page-item active"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {else}
+                            <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/loop}
+                {if="$pagina+1 < $numPags"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+
+            {/if}
+        </ul>
+        </nav>
+
 
 <br>
 <br>
