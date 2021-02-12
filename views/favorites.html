@@ -3,107 +3,89 @@
 <br>
 <br>
 
-<br>
-<br>
-<br>
-<br>
 
-<h2 class="light center"; align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: #ffd9b3"> Favoritos</h2>
+<h2 align="left" style="font-family: 'Trebuchet MS', sans-serif;  background-color: #ffd9b3; border-radius: 0px 20px 20px 0px; width: 12%"> Favoritos</h2>
 
-      <div class="row grey darken-3">
+      <div class="row">
 
-        {loop="$favoritos"}
-        <div class="col s12 m6 l2">
-          <div class="card black white-text hoverable" style="width: 200px; height: 350px">
-
-            <div class="card-image">
-            <!--Verificando se há uma imagem cadastrada, se não houver ele usa a base-->
+        <div class="col-sm-12 col-md-10 offset-md-1">
+          <div class="row row-cols-1 row-cols-md-4 g-4">
+          {loop="$favoritos"}
+            <div class="col">
+            <div class="card" style="width: 260px; height: 400px;  margin-left: 10px; border: 1px solid black; color: white;">
               {if="isset($value.Imagem)"}
-              <img class="materialboxed" src="../../res/site/images/{$value.Imagem}"  style="width: 200px; height: 150px; background-color: grey">
+              <img src="../../res/site/images/{$value.Imagem}" class="card-img-top" style="width: 100%; height: 60%;">
               {else}
-              <img class="materialboxed" src="../../res/site/defaults/default.jpg" style="width: 200px; height: 180px">
+              <img src="../../res/site/defaults/default.jpg" class="card-img-top" style="width: 100%; height: 60%;">
               {/if}
-              <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
-              {function="isInFavorite($value.Id)"}
-              <a href="/{$pagina}/favoriteRemove/{$value.Id}" class="btn-floating halfway-fab waves-effect waves-light yellow pulse">
-              <i class="material-icons black-text">star</i>
-              </a>
-            </div>
+              <div class="card-body" style="background-color: black">
+                <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
+                {function="isInFavorite($value.Id)"}
+                  <a href="/{$pagina}/favoriteRemove/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: black;">
+                  <i class="fas fa-star"></i>
+                  </a>
 
-            <!--Parte frontal do card da noticia onde ha o texto e o botão para mais informações-->
-            <div class="card-content">
-              <span class="card-title activator">{$value.Titulo} <i class="material-icons right">more_vert</i></span>
+                <h5 class="card-title">{$value.Titulo}</h5>
+                <a href="/news/{$value.Id}" class="btn btn-info" style="margin: 10px">Acessar</a>
+              </div>
+              <div class="card-footer" style="font-size: 13px; background-color: lightgray">
+                <small class="text-muted">Publicado em: {function="formatDate($value.Data)"} por {$value.Usuario}</small>
+              </div>
             </div>
-
-            <!--Card com mais informações da notícia-->
-            <div class="card-reveal black white-text">
-              <span class="card-title"><i class="material-icons right">close</i></span>
-              <a href="/news/{$value.Id}">Acessar Notícia</a>
-              <p>Data: {function="formatDate($value.Data)"}</p>
-              <p>Autor: {$value.Usuario}</p>
-              {if="isset($value.Resumo)"}
-              <p>{$value.Resumo}</p>
-              {else}
-              <p></p>
-              {/if}
             </div>
+          {/loop}
+        </div>
 
           </div>
-        </div>
-        {/loop}
-
-
       </div>
 
-<ul class="pagination center grey darken-3">
-    <!--Caso seja a primeria pagina-->
-    {if="$pagina == 0"}
-    <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active"><a href="/0/myFavorites">1</a></li>
-    <li class="white-text">. </li>
-    {else}
-    <li class="waves-effect"><a href="/{$pagina-1}/myFavorites" class="white-text"><i class="material-icons">chevron_left</i></a></li>
-    <li class="waves-effect"><a href="/0/myFavorites" class="white-text">1</a></li>
-    <li class="white-text">. </li>
-    {/if}
-    <!--Paginação do Meio-->
-    {loop="$paginas"}
-    {if="$value < $pagina-2"}
-        {continue}
-    {/if}
-    {if="$value == $pagina+2"}
-        {break}
-    {else}
-        {if="$value == $pagina"}
-        {if="$value+1 == $numPags"}
-            {break}
-        {/if}
-        <li class="active"><a href="/{$value}/myFavorites">{$value+1}</a></li>
-        {else}
-        {if="$value+1 == $numPags"}
-            {break}
-        {/if}
-        <li class="waves-effect"><a class="white-text" href="/{$value}/myFavorites">{$value+1}</a></li>
-        {/if}
-    {/if}
-    {/loop}
-    {if="$pagina+1 == $numPags"}
-    <li class="white-text">. </li>
-    <li class="active"><a class="white-text" href="/{$numPags-1}/myFavorites">{$numPags}</a></li>
-    <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
-    {else}
-    <!--Verificando se ha mais de 1 pagina-->
-      {if="$numPags > 0"}
-      <li class="white-text">. </li>
-      <li class="waves-effect"><a class="white-text" href="/{$numPags-1}/myFavorites">{$numPags}</a></li>
-        <!--Verificando se é o fim da pagina e inserindo a chave-->
-        {if="($pagina+1) != $numPags"}
-        <li class="waves-effect"><a class="white-text" href="/{$pagina+1}/myFavorites"><i class="material-icons">chevron_right</i></a></li>
-        {/if}
-      {/if}
-    {/if}
-  </ul>
 
+<hr>
+        <nav id="paginationBar">
+        <ul class="pagination">
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="/0/myFavorites">1</a></li>
+                {loop="$paginas"}
+                {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                    {if="$value != 1"}
+                    <li class="page-item"><a class="page-link" href="/{$value-1}/myFavorites">{$value}</a></li>
+                    {/if}
+                {/if}
+                {/loop}
+                {if="$numPags != 1"}
+                    <li class="page-item"><a class="page-link" href="/{$pagina+1}/myFavorites"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+            {else}
+                <li class="page-item"><a class="page-link" href="/{$pagina-1}/myFavorites"><i class="fas fa-chevron-left"></i></a></li>
+                {loop="$paginas"}
+                    {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aparecer-->
+                        {if="$value-1 >= $pagina"}
+                            {if="($value-1) == $pagina"}
+                            {if="$pagina != 1"}
+                                <li class="page-item"><a class="page-link" href="/{$value-3}/myFavorites">{$value-2}</a></li>
+                            {/if}
+                            <li class="page-item"><a class="page-link" href="/{$value-2}/myFavorites">{$value-1}</a></li>
+                            <li class="page-item active"><a class="page-link" href="/{$value-1}/myFavorites">{$value}</a></li>
+                            {else}
+                            <li class="page-item"><a class="page-link" href="/{$value-1}/myFavorites">{$value}</a></li>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/loop}
+                {if="$pagina+1 < $numPags"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}/myFavorites"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+
+            {/if}
+        </ul>
+        </nav>
 <br>
 <br>
 <br>
