@@ -90,6 +90,18 @@ header, .navbar {
   margin-right: 120px;
 }
 
+#paginationBar a{
+  background-color: black;
+  border: 1px solid lightgray;
+  border: none;
+  margin: 1px;
+}
+
+#paginationBar .active a{
+  background-color: blue;
+  border: none;
+}
+
 /* Slider */
 
 #mainSlide .carousel-inner, #mainSlider .carousel-item {
