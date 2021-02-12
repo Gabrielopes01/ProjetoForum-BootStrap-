@@ -55,7 +55,7 @@ function generatePages($num){
     for ($i = 1; $i <= $num; $i++){
         array_push($pages, $i);
     }
-    
+
     return $pages;
 
 }
@@ -81,19 +81,6 @@ function verifyImage($archive){
     } else {
         return false;
     }
-
-}
-
-
-function generatePag($num){
-
-    $pags = [];
-
-    for ($i=1; $i < $num; $i++) {
-        array_push($pags, $i);
-    }
-
-    return $pags;
 
 }
 

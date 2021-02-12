@@ -9,40 +9,6 @@
           </div>
         </footer>
 
-<script>
-  $(document).ready(function(){
-    $('select').formSelect();  //Usado no Select do Materalize
-    $('.datepicker').datepicker({   //Usado nas buscas com o calendário
-      format: 'dd/mm/yyyy',
-      i18n: {
-        cancel: 'Cancelar',
-        monthsShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
-        months: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
-        weekdaysShort: [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab' ],
-        weekdaysLetter: [ 'D', 'S', 'T', 'Q', 'Q', 'S', 'S' ]
-      }
-    });
-    $('.carousel').carousel({  //Usado na pagina inicial para exibir as noticias mais acessadas, esta sendo usado em teste, mas pode ser removido
-      shift: 50,
-      dist: 30,
-      duration: 2000,
-      padding: 10,
-      indicators: true
-    });
-    $('.materialboxed').materialbox();  //Usado para fazer as imagens se ampliarem
-    $('.slider').slider(); //Usado para gerar a aba de mais acessados da home
-    $('input#input_text, textarea#textarea2').characterCounter();  //Contador de Caracteres para o campo Resumo de Notícias (200 Caracteres)
-  });
-
-
-  function mouseSobre(variavel){
-    variavel.style.backgroundColor = "#37474f";
-  }
-
-    function mouseSaiu(variavel){
-    variavel.style.backgroundColor = "black";
-  }
-</script>
 
 </body>
 </html>

@@ -1,11 +1,3 @@
-{if="$message != ''"}
-<script>
-    window.onload = function(){
-        M.toast({html: '{$message}'});
-    }
-</script>
-{/if}
-
 <br>
 <br>
 <br>
@@ -79,6 +71,10 @@
 
         <hr>
         <br>
+
+        {if="$message != ''"}
+            <p id="error">{$message}</p>
+        {/if}
 
         <table class="table table-striped shadow" id="tableNews">
             <thead class="table-dark">

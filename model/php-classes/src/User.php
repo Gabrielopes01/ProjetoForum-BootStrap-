@@ -236,7 +236,7 @@ class User{
 
 
             if(User::verifyEmail($parametros["email"])){
-                $_SESSION['mensagem'] = "Email ja Cadastrado";
+                $_SESSION['mensagem'] = "Email já Cadastrado";
                 header("Location: " . $url);
                 exit;
             }

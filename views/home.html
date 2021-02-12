@@ -4,7 +4,6 @@
 <br>
 
         {if="$maisVistos != []"}
-
         <div id="mainSlider" class="carousel slide" data-bs-ride="carousel">
                 <!--Indicadores do Slider de Carrossel-->
                 <ol class="carousel-indicators">
@@ -86,7 +85,7 @@
                 <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
                 {function="isInFavorite($value.Id)"}
                 {if="$_SESSION['favorito'] == 1"}
-                  <a href="/{$pagina}/favorite/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: black">
+                  <a href="/{$pagina}/favorite/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: black;">
                   <i class="fas fa-star"></i>
                   </a>
                 {else}
@@ -101,7 +100,7 @@
                   {/if}
                 {/if}
                 <h5 class="card-title">{$value.Titulo}</h5>
-                <a href="/news/{$value.Id}" class="btn btn-info" style="margin-top: 10px">Acessar</a>
+                <a href="/news/{$value.Id}" class="btn btn-info" style="margin: 10px">Acessar</a>
               </div>
               <div class="card-footer" style="font-size: 13px; background-color: lightgray">
                 <small class="text-muted">Publicado em: {function="formatDate($value.Data)"} por {$value.Usuario}</small>

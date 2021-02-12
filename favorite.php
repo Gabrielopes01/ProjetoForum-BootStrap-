@@ -56,7 +56,7 @@ $app->get("/:pag/myFavorites", function($pag){
 
     $resultado = [];
     $numPags = (int) ceil(count($favoritos)/24);
-    $paginas = generatePag($numPags);
+    $paginas = generatePages($numPags);
 
     for ($i = 24 * $pag; $i < 24 * ($pag + 1); $i++) {
         if($i == count($favoritos) || $i > count($favoritos)){

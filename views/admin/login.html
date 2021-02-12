@@ -1,11 +1,3 @@
-{if="$erro != ''"}
-<script>
-    window.onload = function(){
-        M.toast({html: '{$erro}'});
-    }
-</script>
-{/if}
-
 <br>
 <br>
 <br>
@@ -16,6 +8,10 @@
     <div class="col-sm-5 col-md-6 offset-md-3">
         <h3 align="center">Login</h3>
         <hr>
+
+        {if="$erro != ''"}
+            <p id="error">{$erro}</p>
+        {/if}
 
         <form method="POST">
             <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
