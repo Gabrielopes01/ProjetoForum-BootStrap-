@@ -181,6 +181,14 @@ header, .navbar {
   color: white;
 }
 
+/* Favoritos */
+#favoritesTitle {
+  font-family: 'Trebuchet MS', sans-serif;
+  background-color: #ffd9b3;
+  border-radius: 0px 20px 20px 0px;
+  width: 12%;
+}
+
 /* Página de Notícias */
 
 #titleNews{
@@ -264,6 +272,13 @@ header, .navbar {
 @media(max-width: 500px) {
 
   /* Página Principal */
+
+  #titleRecents{
+    width: 55%;
+    margin-left: -40px;
+    border-radius: 20px;
+    padding-left: 10px
+  }
 
   /* Slider */
 
@@ -356,6 +371,11 @@ header, .navbar {
     font-size: 15px;
   }
 
+  /* Favoritos */
+  #favoritesTitle {
+    width: 30%;
+  }
+
   /* Admin */
 
   .elementoFiltro {
@@ -381,7 +401,11 @@ header, .navbar {
 
 }
 
+/* Footer */
 
+footer {
+  font-size: 15px;
+}
 
 
 
