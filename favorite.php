@@ -55,10 +55,10 @@ $app->get("/:pag/myFavorites", function($pag){
     $favoritos = Favorite::getALLFavorites();
 
     $resultado = [];
-    $numPags = (int) ceil(count($favoritos)/24);
+    $numPags = (int) ceil(count($favoritos)/16);
     $paginas = generatePages($numPags);
 
-    for ($i = 24 * $pag; $i < 24 * ($pag + 1); $i++) {
+    for ($i = 16 * $pag; $i < 16 * ($pag + 1); $i++) {
         if($i == count($favoritos) || $i > count($favoritos)){
             break;
         } else {
