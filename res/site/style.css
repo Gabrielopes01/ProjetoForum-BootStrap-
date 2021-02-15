@@ -81,7 +81,7 @@ header, .navbar {
   font-family: 'Trebuchet MS', sans-serif;
   background-color: #ffd9b3;
   width: 30%;
-  margin-left: 400px;
+  margin-left: -160px;
   border-radius: 20px;
 }
 
@@ -167,6 +167,44 @@ header, .navbar {
     background-color: #65DAF9;
 }
 
+#mostView {
+  margin-top: 90px;
+}
+
+/* Card */
+
+.card {
+  width: 260px;
+  height: 400px;
+  margin-left: 10px;
+  border: 1px solid black;
+  color: white;
+}
+
+/* Página de Notícias */
+
+#titleNews{
+  font-family: 'Trebuchet MS', sans-serif;
+  background-color: #ffd9b3;
+  width: auto;
+  padding-left: 30px;
+  margin-left: -25px;
+  border-radius: 20px;
+}
+
+#favoriteButton {
+  float: right;
+  margin-top: -46px;
+  margin-right: 15px;
+}
+
+#newsText {
+  font-size: 25px;
+  color: white;
+  height: 100%;
+  border-radius: 20px;
+  text-align: justify;
+}
 
 
 /* Admin */
@@ -224,6 +262,99 @@ header, .navbar {
 
 /*Media Care*/
 @media(max-width: 500px) {
+
+  /* Página Principal */
+
+  /* Slider */
+
+  #mainSlide .carousel-inner, #mainSlider .carousel-item {
+      height: 80vh;
+  }
+
+  #mainSlider .carousel-caption {
+      top: 25%;
+      margin-bottom: 100px;
+      height: 200px;
+  }
+
+  #mainSlider .carousel-caption h3{
+      font-size: 20px;
+      margin-bottom: 30px;
+  }
+
+  #mainSlider .carousel-caption p{
+    font-size: 17px;
+  }
+
+
+  #slide-caption {
+    background-color: black;
+    border: 3px solid white;
+    width: 50%;
+    margin-left: 11%;
+    height: 20px;
+    margin-bottom: 40px;
+    border-radius: 0;
+  }
+
+  .main-btn {
+      text-decoration: none;
+      background-color: #65DAF9;
+      color: #fff;
+      text-transform: uppercase;
+      width: 150px;
+      height: 40px;
+      padding: 10px 12px;
+      border-radius: 30px;
+      border: 3px solid transparent;
+      transition: .5s;
+      margin-top: 20px;
+      font-size: 15px;
+  }
+
+  .main-btn:hover {
+      text-decoration: none;
+      color: #fff;
+      background-color: black;
+      border-color: #65DAF9;
+  }
+
+  .carousel-indicators li {
+      background-color: black;
+  }
+
+  .carousel-indicators .active {
+      background-color: #65DAF9;
+  }
+
+  #mostView {
+    margin-top: 0;
+  }
+
+  /* Card */
+
+  .card {
+    width: 220px;
+    height: 250px;
+    margin-left: 10px;
+    border: 1px solid black;
+    color: white;
+    margin: 0px 20px 70px 0px;
+  }
+
+  .card h5{
+    font-size: 15px;
+  }
+
+  .card small{
+    font-size: 10px;
+  }
+
+  /* Paginá Notícias */
+
+  #newsText {
+    font-size: 15px;
+  }
 
   /* Admin */
 

@@ -21,7 +21,7 @@
                         <img src="../../res/site/defaults/news.jpg">
                         <!--Texto do Carrossel-->
                         <div class="carousel-caption d-md-block" id="slide-caption">
-                            <h3 style="margin-top: 90px">As Notícias mais acessadas</h3>
+                            <h3 id="mostView">As Notícias mais acessadas</h3>
                             <p>Você encontra aqui as notícias mais populares do Forum</p>
                         </div>
                     </div>
@@ -33,8 +33,8 @@
                         <!--Texto do Carrossel-->
                         <div class="carousel-caption d-md-block" id="slide-caption">
                             <h3>{$value.Titulo}</h3>
-                            <p>{$value.Resumo}</p>
-                            <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 style="font-size: 15px">Acessar Notícia</h5></a>
+                            <p class="d-none d-sm-block">{$value.Resumo}</p>
+                            <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 style="font-size: 13px">Acessar Notícia</h5></a>
                         </div>
                     </div>
                   {else}
@@ -44,8 +44,8 @@
                           <!--Texto do Carrossel-->
                           <div class="carousel-caption d-md-block" id="slide-caption">
                               <h3>{$value.Titulo}</h3>
-                              <p>{$value.Resumo}</p>
-                              <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 style="font-size: 15px">Acessar Notícia</h5></a>
+                              <p class="d-none d-sm-block">{$value.Resumo}</p>
+                              <a href="/news/{$value.Id}" class="main-btn btn btn-primary"><h5 style="font-size: 13px">Acessar Notícia</h5></a>
                           </div>
                       </div>
                   {/if}
@@ -72,10 +72,10 @@
           <h2 align="center" id="titleRecents">As Mais Recentes </h2>
 
 
-        <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="row row-cols-2 row-cols-md-4 g-4">
           {loop="$noticias"}
             <div class="col">
-            <div class="card" style="width: 260px; height: 400px;  margin-left: 10px; border: 1px solid black; color: white;">
+            <div class="card">
               {if="isset($value.Imagem)"}
               <img src="../../res/site/images/{$value.Imagem}" class="card-img-top" style="width: 100%; height: 60%;">
               {else}

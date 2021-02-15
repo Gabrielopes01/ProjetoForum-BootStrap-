@@ -5,22 +5,26 @@
 
     $noticia = News::getNewsById($num);
 
-    echo "<h2 class='light center amber accent-1'; align='left' style='font-family: 'Trebuchet MS', sans-serif;'>". $noticia['Titulo']. "</h2>";
+    echo "<br><br><br><br><br>";
+
+    echo "<h2 id='titleNews'; align='left' style='font-family: 'Trebuchet MS', sans-serif;'>". $noticia['Titulo']. "</h2>";
 
     isInFavorite($num);
 
     if($_SESSION['favorito'] == 1){
-        echo "<a href='/0/favoriteOne/".$num."' class='btn-floating left waves-effect waves-light yellow pulse'><i class='material-icons black-text'>star</i></a>";
+        echo "<a href='/0/favoriteOne/".$num."' class='btn btn-warning' id='favoriteButton' style='border-radius: 30px; color: black;'><i class='fas fa-star'></i></a>";
     } else if ($_SESSION['favorito'] == 0){
-        echo "<a href='/0/favoriteOne/".$num."' class='btn-floating left waves-effect waves-light yellow'> <i class='material-icons white-text'>star</i></a>";
+        echo "<a href='/0/favoriteOne/".$num."' class='btn btn-warning' id='favoriteButton' style='border-radius: 30px; color: white;'><i class='fas fa-star'></i></a>";
     } else {
-        echo "<a href='#' class='btn-floating left disabled'><i class='material-icons white-text'>star</i></a>";
+        echo "<a href='#' id='favoriteButton' class='btn btn-secondary disabled' style='border-radius: 30px;'><i class='fas fa-star'></i></a>";
     }
 
-    echo "<div class='row grey darken-3' style='height: 100%''>";
-    echo "<p class='grey darken-1 center' style='font-size:20px; border-radius: 20px;'>Publicado por <strong>".$noticia['Usuario']."</strong>, no dia ".formatDate($noticia['Data'])."<a class='right white-text grey darken-3' style='border-radius:10px 10px 10px 0px; margin-right: 1px'><i class='material-icons left'>remove_red_eye</i> ".$noticia["Visualizacao"]."</a></p>";
-    echo "<div class='white-text justify' style='font-size: 25px; color: white; height: 100%; border-radius: 20px'>".$noticia["Corpo"]."</div>";
+    echo "<div class='row' style='height: 100%''>";
+    echo "<small class='text-muted' style='text-align: right;'>Publicado em: ". formatDate($noticia['Data']). " por <strong>". $noticia['Usuario']."</strong> <i class='fas fa-eye'></i> ".$noticia["Visualizacao"]. "</small>";
+    echo "<hr>";
+    echo "<p class='text-muted' style='text-align: center'>".$noticia['Resumo']."</p>";
+    echo "<div class='col-12 col-md-10 offset-md-1' id='newsText'>".$noticia["Corpo"]."</div>";
     echo "</div>";
-    echo "<br>";
+    echo "<br><br><br>";
 
 
