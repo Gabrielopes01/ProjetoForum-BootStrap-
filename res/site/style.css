@@ -119,13 +119,13 @@ header, .navbar {
     height: 300px;
 }
 
-#mainSlider .carousel-caption h2{
-    font-size: 50px;
+#mainSlider .carousel-caption h3{
+    font-size: 35px;
     margin-bottom: 30px;
 }
 
 #mainSlider .carousel-caption p{
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 300;
     vertical-align: middle;
     margin-bottom: 100px;
@@ -287,10 +287,6 @@ header, .navbar {
 
   /* Slider */
 
-  #mainSlide .carousel-inner, #mainSlider .carousel-item {
-      height: 80vh;
-  }
-
   #mainSlider .carousel-caption {
       top: 25%;
       margin-bottom: 100px;
@@ -301,11 +297,6 @@ header, .navbar {
       font-size: 20px;
       margin-bottom: 30px;
   }
-
-  #mainSlider .carousel-caption p{
-    font-size: 17px;
-  }
-
 
   #slide-caption {
     background-color: black;
