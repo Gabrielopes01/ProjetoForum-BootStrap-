@@ -85,6 +85,11 @@ header, .navbar {
   border-radius: 20px;
 }
 
+#imageNews {
+  width: 100%;
+  height: 60%;
+}
+
 #paginationBar {
   float: right;
   margin-right: 120px;
