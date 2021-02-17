@@ -113,8 +113,10 @@ header, .navbar {
   float: right;
 }
 
-.favButton:hover {
-  background-color: #b3b300;
+.favButton:hover, .favButton:focus {
+  background-color: #ffff66;
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
 }
 
 /* Slider */
