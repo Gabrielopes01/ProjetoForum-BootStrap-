@@ -4,6 +4,7 @@ Use \Classes\Favorite;
 Use \Classes\Page;
 require_once("function.php");
 
+/*
 $app->get("/:pag/favorite/:id", function($pag, $id){
 
     $ver = Favorite::verifyFavorite($id);
@@ -44,7 +45,7 @@ $app->get("/:pag/favoriteRemove/:id", function($pag, $id){
     exit;
 
 });
-
+*/
 
 $app->get("/:pag/myFavorites", function($pag){
 

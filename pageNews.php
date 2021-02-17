@@ -22,9 +22,10 @@
     echo "<div class='row' style='height: 100%''>";
     echo "<small class='text-muted' style='text-align: right;'>Publicado em: ". formatDate($noticia['Data']). " por <strong>". $noticia['Usuario']."</strong> <i class='fas fa-eye'></i> ".$noticia["Visualizacao"]. "</small>";
     echo "<hr>";
-    echo "<p class='text-muted' style='text-align: center'>".$noticia['Resumo']."</p>";
-    echo "<div class='col-12 col-md-10 offset-md-1' id='newsText'>".$noticia["Corpo"]."</div>";
-    echo "</div>";
+    echo "<div class='col-12 col-md-10 offset-md-1'>";
+    echo "<p class='text-muted' style='text-align: left;'>".$noticia['Resumo']."</p>";
+    echo "<div id='newsText'>".$noticia["Corpo"]."</div>";
+    echo "</div> </div>";
     echo "<br><br><br>";
 
 

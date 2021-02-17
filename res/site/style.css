@@ -107,6 +107,16 @@ header, .navbar {
   border: none;
 }
 
+.favButton {
+  border-radius: 30px;
+  padding: 10px;
+  float: right;
+}
+
+.favButton:hover {
+  background-color: #b3b300;
+}
+
 /* Slider */
 
 #mainSlide .carousel-inner, #mainSlider .carousel-item {

@@ -84,8 +84,6 @@ class Favorite{
                 ":user"=>$usuario["id"]
             ]);
 
-
-
     }
 
 

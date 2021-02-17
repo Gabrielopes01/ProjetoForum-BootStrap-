@@ -21,10 +21,11 @@
               <div class="card-body" style="background-color: black">
                 <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
                 {function="isInFavorite($value.Id)"}
-                  <a href="/{$pagina}/favoriteRemove/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: black;">
+                <p id="{$value.Id}" style="float: right;">
+                  <a onclick="favButtonC({$value.Id})" class="btn btn-warning favButton" style="color: black;">
                   <i class="fas fa-star"></i>
                   </a>
-
+                </p>
                 <h5 class="card-title">{$value.Titulo}</h5>
                 <a href="/news/{$value.Id}" class="btn btn-info" style="margin: 10px">Acessar</a>
               </div>
@@ -89,3 +90,22 @@
 <br>
 <br>
 <br>
+
+<script>
+function favButtonC(id) {
+
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(id).innerHTML = this.responseText;
+    }
+  };
+
+  xhttp.open("POST", "/0/favorite/" + id , true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("id="+id);
+
+}
+</script>

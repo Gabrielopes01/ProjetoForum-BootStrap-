@@ -84,21 +84,23 @@
               <div class="card-body" style="background-color: black">
                 <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
                 {function="isInFavorite($value.Id)"}
+                <p id="{$value.Id}" style="float: right;">
                 {if="$_SESSION['favorito'] == 1"}
-                  <a href="/{$pagina}/favorite/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: black;">
+                  <a class="btn btn-warning favButton" onclick="favButtonC({$value.Id})" style="color: black;">
                   <i class="fas fa-star"></i>
                   </a>
                 {else}
                   {if="$_SESSION['favorito'] == 0"}
-                      <a href="/{$pagina}/favorite/{$value.Id}" class="btn btn-warning" style="border-radius: 30px; padding: 10px; float: right; color: white">
+                      <a class="btn btn-warning favButton" onclick="favButtonC({$value.Id})" style="color: white">
                       <i class="fas fa-star"></i>
                       </a>
                   {else}
-                      <a href="#" class="btn btn-secondary disabled" style="border-radius: 30px; padding: 10px; float: right">
+                      <a href="#" class="btn btn-secondary disabled" style="color: white; border-radius: 30px; padding: 10px; float: right;">
                       <i class="fas fa-star"></i>
                       </a>
                   {/if}
                 {/if}
+                </p>
                 <h5 class="card-title">{$value.Titulo}</h5>
                 <a href="/news/{$value.Id}" class="btn btn-info" style="margin: 10px">Acessar</a>
               </div>
@@ -161,7 +163,27 @@
         </ul>
         </nav>
 
+<br>
+<br>
+<br>
 
-<br>
-<br>
-<br>
+
+<script>
+function favButtonC(id) {
+
+  console.log(id);
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(id).innerHTML =    //Troque por innerHtml para que ele possa ler o HTML da página e exibi-la
+      this.responseText;  //getAllResponseHeaders(); - Exibe os parametros do cabeçalho do arquivo
+    }
+  };
+
+  xhttp.open("POST", "/0/favorite/" + id , true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("id="+id);
+}
+</script>
