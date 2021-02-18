@@ -16,19 +16,18 @@
         echo "<a onclick='favButtonC($num)' class='btn btn-warning favButton' style='border-radius: 30px; color: black;'><i class='fas fa-star'></i></a>";
     } else if ($_SESSION['favorito'] == 0){
         echo "<a onclick='favButtonC($num)' class='btn btn-warning favButton' style='border-radius: 30px; color: white;'><i class='fas fa-star'></i></a>";
-    } else {
-        echo "<a id='favoriteButton' class='btn btn-secondary disabled' style='border-radius: 30px;'><i class='fas fa-star'></i></a>";
     }
     echo "</p>";
 
     echo "<div class='row' style='height: 100%''>";
-    echo "<small class='text-muted' style='text-align: right;'>Publicado em: ". formatDate($noticia['Data']). " por <strong>". $noticia['Usuario']."</strong> <i class='fas fa-eye'></i> ".$noticia["Visualizacao"]. "</small>";
     echo "<hr>";
     echo "<div class='col-12 col-md-10 offset-md-1'>";
-    echo "<p style='text-align: left; color:#cccccc;'>".$noticia['Resumo']."</p>";
-    echo "<div id='newsText' style='text-shadow: 4px 4px 0px black'>".$noticia["Corpo"]."</div>";
+    echo "<p style='text-align: left; color:#cccccc; font-size:15px'>".$noticia['Resumo']."</p>";
+    echo "<hr>";
+    echo "<div id='newsText' style='text-shadow: 0px 1px 0px black; background-color: #d9d9d9; color: black; padding: 20px;'>".$noticia["Corpo"]."</div>";
+    echo "<small class='text-muted' style='float: right;'>Publicado em: ". formatDate($noticia['Data']). " por <strong>". $noticia['Usuario']."</strong> <i class='fas fa-eye'></i> ".$noticia["Visualizacao"]. "</small>";
     echo "</div> </div>";
-    echo "<br><br><br>";
+    echo "<br><br><br><br><br>";
 
 
 

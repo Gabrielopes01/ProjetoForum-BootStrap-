@@ -171,6 +171,7 @@ header, .navbar {
   border-radius: 30px;
   padding: 10px;
   float: right;
+  font-size: 15px;
 }
 
 .favButton:hover, .favButton:focus {
@@ -281,7 +282,7 @@ header, .navbar {
   font-size: 25px;
   color: white;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
   text-align: justify;
 }
 
@@ -468,12 +469,13 @@ header, .navbar {
     text-align: center;
   }
 
-}
+  /* Footer */
 
-/* Footer */
+  footer {
+    font-size: 13px;
+  }
 
-footer {
-  font-size: 15px;
+
 }
 
 
