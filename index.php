@@ -1,5 +1,6 @@
 <?php
 session_start();
+mb_internal_encoding("UTF-8");
 
 require_once("vendor/autoload.php");  //Carrega as dependências do projeto
 require_once("function.php");
