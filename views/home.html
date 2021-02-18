@@ -66,18 +66,17 @@
         </div>
         {/if}
 
-
       <div class="row " style="margin: 10px 10px 0 10px; border-radius: 25px; margin-top: 30px">
         <div class="col-sm-12 col-md-10 offset-md-1">
           <h2 align="center" id="titleRecents">As Mais Recentes </h2>
 
 
-        <div class="row row-cols-2 row-cols-md-4 g-4">
+        <div class="row row-cols-2 row-cols-md-4 g-5">
           {loop="$noticias"}
             <div class="col">
             <div class="card">
               {if="isset($value.Imagem)"}
-              <img src="../../res/site/images/{$value.Imagem}" class="card-img-top" id="imageNews">
+              <img src='../../res/site/images/{function="imageExists($value.Imagem)"}' class="card-img-top" id="imageNews">
               {else}
               <img src="../../res/site/defaults/default.jpg" class="card-img-top" id="imageNews">
               {/if}

@@ -99,3 +99,23 @@ function isInFavorite($id){
 
 }
 
+
+function imageExists($image){
+
+    $images = scandir("res/site/images");
+
+    if (in_array($image, $images)){
+        return $image;
+    }
+
+    return "../defaults/default.jpg";
+
+}
+
+
+function lenghtStr($str){
+
+    return strlen($str);
+
+}
+

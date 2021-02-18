@@ -212,6 +212,7 @@ class News{
         $resultadoF = $sql->select($select);
 
         return [$resultadoF, $filtros];
+
     }
 
 

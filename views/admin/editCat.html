@@ -17,8 +17,9 @@
         <form method="POST">
             <div class="input-group flex-nowrap shadow-sm">
                 <span class="input-group-text" id="input1"><i class="fas fa-bookmark"></i></span>
-                <input type="text" class="form-control" name="nome" id="nome" required="" value="{$categoria.nome}" aria-describedby="input1">
+                <input type="text" class="form-control" name="nome" id="nomeCat" required="" value="{$categoria.nome}" aria-describedby="input1">
             </div>
+            <div align="right"><small><span id="contadorCategoriaNome">{function="lenghtStr($categoria.nome)"}</span> / 25</small></div>
             <input type="hidden" id="id" name="id" value={$categoria.id}>
 
 

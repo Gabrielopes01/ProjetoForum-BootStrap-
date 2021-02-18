@@ -10,16 +10,49 @@
 
 <script>
     $(document).ready(function(){
+      //Data do Filtro
       $("#data").datepicker({
         showButtonPanel:true,
         dateFormat: 'dd/mm/yy'
       });
 
+      //Add e Edit Noticia
+
+      $("#nomeCat").keyup(function() {
+        var len = $("#nomeCat").val().length;
+        document.getElementById("contadorCategoriaNome").innerText = len;
+        if(len > 25)
+        {
+          $("#nomeCat").val($("#nomeCat").val().substr(0,25));
+          document.getElementById("contadorCategoriaNome").innerText = 25;
+        }
+      });
+
       $("#resumo").keyup(function() {
         var len = $("#resumo").val().length;
+        document.getElementById("contadorResumo").innerText = len;
         if(len > 110)
         {
-          $("#resumo").val($("#resumo").val().substr(0,110) + '...');
+          $("#resumo").val($("#resumo").val().substr(0,110));
+          document.getElementById("contadorResumo").innerText = 110;
+        }
+      });
+
+      $("#titulo").keyup(function() {
+        var len = $("#titulo").val().length;
+        document.getElementById("contadorTitulo").innerText = len;
+        if(len > 45)
+        {
+          $("#titulo").val($("#titulo").val().substr(0,45));
+          document.getElementById("contadorTitulo").innerText = 45;
+        }
+      });
+
+      $("#corpo").keyup(function() {
+        var len = $("#corpo").val().length;
+        if(len > 7990)
+        {
+          $("#corpo").val($("#corpo").val().substr(0,7990) + '...');
         }
       });
 

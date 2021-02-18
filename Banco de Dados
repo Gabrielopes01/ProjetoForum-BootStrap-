@@ -15,7 +15,7 @@ CREATE TABLE Usuario(
 
 CREATE TABLE Categoria(
     id INT PRIMARY KEY IDENTITY,
-    nome VARCHAR(200) NOT NULL
+    nome VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE Noticia(
@@ -24,7 +24,7 @@ CREATE TABLE Noticia(
     FOREIGN KEY (id_categoria) REFERENCES Categoria(id),
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
-    titulo VARCHAR(200) NOT NULL,
+    titulo VARCHAR(50) NOT NULL,
     corpo VARCHAR(8000) NOT NULL,
     data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     resumo VARCHAR(200) NOT NULL,
