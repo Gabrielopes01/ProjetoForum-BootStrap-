@@ -36,18 +36,9 @@ echo "function favButtonC(id) {
 
   console.log(id);
 
-  var xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById(id).innerHTML =    //Troque por innerHtml para que ele possa ler o HTML da página e exibi-la
-      this.responseText;  //getAllResponseHeaders(); - Exibe os parametros do cabeçalho do arquivo
-    }
-  };
-
-  xhttp.open('POST', '/0/favorite/' + id , true);
-  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  xhttp.send('id='+id);
+  $.post('/0/favorite/' + id)
+    .done(function(data) {
+      $('#'+id).html(data);
+    });
 }";
-
 echo "</script>";
