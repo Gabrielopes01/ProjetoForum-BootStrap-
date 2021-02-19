@@ -39,6 +39,9 @@ echo "function favButtonC(id) {
   $.post('/0/favorite/' + id)
     .done(function(data) {
       $('#'+id).html(data);
+    })
+    .fail(function(){
+      $('#'+id).html('Erro');
     });
 }";
 echo "</script>";
