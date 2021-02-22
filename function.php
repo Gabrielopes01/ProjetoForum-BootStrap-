@@ -119,3 +119,14 @@ function lenghtStr($str){
 
 }
 
+
+function getAutor($id) {
+
+    $sql = new Sql();
+
+    $nome = $sql->select("SELECT Usuario.nome from Noticia INNER JOIN Usuario ON Noticia.id_usuario = Usuario.id WHERE Noticia.Id = :id", [
+        ':id'=>$id
+    ]);
+
+    return $nome[0]["nome"];
+}
