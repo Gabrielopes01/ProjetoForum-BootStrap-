@@ -145,9 +145,24 @@ header, .navbar {
   border-radius: 20px;
 }
 
+.card {
+  overflow: hidden;
+}
+
 #imageNews {
   width: 100%;
   height: 60%;
+  overflow: hidden;
+}
+
+#imageNews img{
+  width: 100%;
+  height: 100%;
+  transition: all 1.5s ease;
+}
+
+#imageNews:hover img{
+  transform: scale(1.5);
 }
 
 #paginationBar {

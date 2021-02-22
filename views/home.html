@@ -75,11 +75,13 @@
           {loop="$noticias"}
             <div class="col">
             <div class="card">
-              {if="isset($value.Imagem)"}
-              <img src='../../res/site/images/{function="imageExists($value.Imagem)"}' class="card-img-top" id="imageNews">
-              {else}
-              <img src="../../res/site/defaults/default.jpg" class="card-img-top" id="imageNews">
-              {/if}
+              <div id="imageNews">
+                {if="isset($value.Imagem)"}
+                <img src='../../res/site/images/{function="imageExists($value.Imagem)"}' class="card-img-top zoom" id="imageNews">
+                {else}
+                <img src="../../res/site/defaults/default.jpg" class="card-img-top zoom" id="imageNews">
+                {/if}
+              </div>
               <div class="card-body" style="background-color: black">
                 <!--Verificando se a noticia esta nos favoritos e craindo o botão de Favorito-->
                 {function="isInFavorite($value.Id)"}
