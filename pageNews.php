@@ -4,6 +4,7 @@
     require_once("function.php");
 
     $noticia = News::getNewsById($num);
+    $email = isset($_SESSION['email'])? $_SESSION['email']: 'null';
 
     echo "<br><br><br><br><br>";
 
@@ -19,14 +20,32 @@
     }
     echo "</p>";
 
-    echo "<div class='row' style='height: 100%''>";
+    echo "<div class='row' style='height: 100%'>";
     echo "<hr>";
     echo "<div class='col-12 col-md-10 offset-md-1'>";
     echo "<p style='text-align: left; color:#cccccc; font-size:15px'>".$noticia['Resumo']."</p>";
     echo "<hr>";
     echo "<div id='newsText' style='text-shadow: 0px 1px 0px black; background-color: #d9d9d9; color: black; padding: 20px;'>".$noticia["Corpo"]."</div>";
     echo "<small class='text-muted' style='float: right;'>Publicado em: ". formatDate($noticia['Data']). " por <strong>". $noticia['Usuario']."</strong> <i class='fas fa-eye'></i> ".$noticia["Visualizacao"]. "</small>";
-    echo "</div> </div>";
+    echo "</div>";
+    echo "</div>";
+    echo "<div class='row' style='margin-top: 100px'> <hr style='color:white'>";
+    echo "<div class='col-md-5 offset-md-1'>
+        <p id='comText'>Deixe seu Comentário:</p>
+    </div>
+    <div class='col-md-5 d-none d-sm-block'>
+        <p id='comText'>Comentários</p>
+    </div>
+    <div class='col-md-5 offset-md-1'>";
+    if($email == 'null'){
+        echo "<p style='color:white'>Você presica ter uma conta e estar conectado para comentar</p>";
+    } else {
+        echo "<textarea id='comments' name='comentario' rows='4' class='form-control' placeholder='Insira sua Mensagem...' style='margin-top:10px; width:100%;'></textarea>";
+        echo "<a class='btn btn-success' style='float: right; margin-top: 5px; width:100%'>Enviar</a>";
+    }
+    echo "</div>";
+    echo "<input type='hidden' name='usuario-co' id='usuario-co' value='".$email."'>";
+    echo "</div>";
     echo "<br><br><br><br><br>";
 
 

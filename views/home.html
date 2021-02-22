@@ -71,15 +71,15 @@
           <h2 align="center" id="titleRecents">As Mais Recentes </h2>
 
 
-        <div class="row row-cols-2 row-cols-md-4 g-5">
+        <div class="row row-cols-2 row-cols-md-4 g-4">
           {loop="$noticias"}
             <div class="col">
             <div class="card">
               <div id="imageNews">
                 {if="isset($value.Imagem)"}
-                <img src='../../res/site/images/{function="imageExists($value.Imagem)"}' class="card-img-top zoom" id="imageNews">
+                <img src='../../res/site/images/{function="imageExists($value.Imagem)"}' class="card-img-top">
                 {else}
-                <img src="../../res/site/defaults/default.jpg" class="card-img-top zoom" id="imageNews">
+                <img src="../../res/site/defaults/default.jpg" class="card-img-top" >
                 {/if}
               </div>
               <div class="card-body" style="background-color: black">
