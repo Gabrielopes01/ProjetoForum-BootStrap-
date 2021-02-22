@@ -60,8 +60,8 @@
     echo "<div class='col-10 col-md-4 offset-md-1 offset-1 d-none d-sm-block'>";
     foreach ($comments as $comment) {
             if ($comment['noticia'] == $num){
-                echo "<div style='background-color: #d9d9d9; border-radius: 0px 10px 10px 10px; padding='10px'>";
-                    echo "<p class='text-muted' style='float:right; font-size:12px'>".formatDate($comment['data'])."</p>";
+                echo "<div style='background-color: #d9d9d9; border-radius: 0px 10px 10px 10px; padding: 6px; border: 3px solid black; margin-bottom:5px'>";
+                    echo "<p class='text-muted' style='float:right; font-size:12px; margin-right: 5px'>".formatDate($comment['data'])."</p>";
                     echo "<h5>".$comment['nome']."</h5>";
                     echo "<p class='text-muted' style='font-size:12px'>".$comment['email']."</p>";
                     echo "<p style='margin-left: 20px'> - ".$comment['descricao']."</p>";
