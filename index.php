@@ -19,6 +19,7 @@ require_once("categorie.php");
 require_once("news.php");
 require_once("favorite.php");
 require_once("homeNews.php");
+require_once("comments.php");
 //require_once("testes.php");
 
 $app->run();

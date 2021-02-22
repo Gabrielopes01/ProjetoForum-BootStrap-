@@ -48,6 +48,15 @@ CREATE TABLE Acesso(
     FOREIGN KEY (id_noticia) REFERENCES Noticia(id)
 );
 
+CREATE TABLE Comentario (
+  id INT PRIMARY KEY IDENTITY,
+  descricao VARCHAR(5000),
+  id_usuario INT,
+  FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
+  id_noticia INT,
+  FOREIGN KEY (id_noticia) REFERENCES Noticia(id)
+);
+
 
 #-------------------------------------------------------------Inserindo Valores
 INSERT Usuario VALUES
