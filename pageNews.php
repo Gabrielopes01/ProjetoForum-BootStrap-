@@ -30,6 +30,9 @@
     } else if ($_SESSION['favorito'] == 0){
         echo "<a onclick='favButtonC($num)' class='btn btn-warning favButton' style='border-radius: 30px; color: white;'><i class='fas fa-star'></i></a>";
         echo "<p id='favoriteText'>Favorito</p>";
+    } else{
+        echo "<a href='#' class='btn btn-secondary disabled' style='color: white; border-radius: 30px; padding: 10px; float: right;'><i class='fas fa-star'></i></a>";
+        echo "<p id='favoriteText' style='color: grey'>Favorito</p>";
     }
     echo "</p>";
 
