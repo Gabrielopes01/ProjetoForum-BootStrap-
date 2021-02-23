@@ -306,6 +306,13 @@ header, .navbar {
   color: white;
 }
 
+#favoriteText {
+  float: right;
+  color: #ffff66;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
 
 /* Admin */
 .buttonEdit{

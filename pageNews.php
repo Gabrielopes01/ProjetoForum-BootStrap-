@@ -26,8 +26,10 @@
     echo "<p id='$num' style='float: right;'>";
     if($_SESSION['favorito'] == 1){
         echo "<a onclick='favButtonC($num)' class='btn btn-warning favButton' style='border-radius: 30px; color: black;'><i class='fas fa-star'></i></a>";
+        echo "<p id='favoriteText'>Favorito</p>";
     } else if ($_SESSION['favorito'] == 0){
         echo "<a onclick='favButtonC($num)' class='btn btn-warning favButton' style='border-radius: 30px; color: white;'><i class='fas fa-star'></i></a>";
+        echo "<p id='favoriteText'>Favorito</p>";
     }
     echo "</p>";
 
