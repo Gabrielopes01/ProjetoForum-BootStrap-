@@ -5,6 +5,8 @@
 
     require_once("function.php");
 
+    $numComment = 0;
+
     $noticia = News::getNewsById($num);
     $comments = Comments::getALLcomments();
 
@@ -23,7 +25,7 @@
 
     isInFavorite($num);
 
-    echo "<div class='row' style='height: 100%; width: 100%'>";
+    echo "<div class='row' style='height: 100%;'>";
     echo "<hr>";
     echo "<div class='col-12 col-md-10 offset-md-1'>";
 
@@ -64,7 +66,7 @@
         echo "</form>";
     }
     echo "</div>";
-    echo "<div class=' col-md-4 offset-md-1 offset-1 d-none d-sm-block' style='height: 260px; width:600px; overflow:auto; float:right; margin-left: 10px'>";
+    echo "<div class='col-md-4 offset-md-1 offset-1 d-none d-sm-block' style='height: 260px; width:600px; overflow:auto; float:right; margin-left: 10px'>";
     foreach ($comments as $comment) {
             if ($comment['noticia'] == $num){
                 echo "<img class='rounded-circle' src='../res/site/defaults/user.png' style='float:left; height: 50px; margin:10px'>";
@@ -76,9 +78,13 @@
                 echo "</div>";
             }
     }
+    if ($numComment <= 0) {
+        echo "<p style='color:grey'>Não há nada por aqui. Seja o primeiro a comentar</p>";
+    }
     echo "</div>";
     echo "<p id='comText' class='d-xl-none'>Comentários</p>";
-        echo "<div class='d-xl-none' style='height: 260px; width:500px; overflow:auto; float:right; margin-left: 10px'>";
+    echo "<div class='d-xl-none' style='height: 260px; width:500px; overflow:auto; float:right; margin-left: 10px'>";
+
     foreach ($comments as $comment) {
             if ($comment['noticia'] == $num){
                 echo "<img class='rounded-circle' src='../res/defaults/user.png' style='float:left; height: 50px; margin:10px'>";
@@ -88,12 +94,16 @@
                     echo "<p class='text-muted' style='font-size:12px'>".$comment['email']."</p>";
                     echo "<p style='margin-left: 20px'> - ".$comment['descricao']."</p>";
                 echo "</div>";
+                $numComment += 1;
             }
+    }
+    if ($numComment <= 0) {
+        echo "<p style='color:grey'>Não há nada por aqui. Seja o primeiro a comentar</p>";
     }
     echo "</div>";
     echo "<input type='hidden' name='usuario-co' id='usuario-co' value='".$email."'>";
     echo "</div>";
-    echo "<br><br><br><br><br>";
+    echo "<br><br><br><br>";
 
 
 echo "<script>";
