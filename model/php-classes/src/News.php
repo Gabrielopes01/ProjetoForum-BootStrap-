@@ -11,7 +11,7 @@ class News{
         $sql = new Sql;
 
         $resultado = $sql->select("
-            SELECT Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.corpo AS 'Corpo', Noticia.id_categoria AS 'Id_Categoria_FK', Categoria.nome AS 'Categoria', Usuario.nome AS 'Usuario', Noticia.data AS 'Data', Noticia.resumo AS 'Resumo', Noticia.visualizacao AS 'Visualizacao'
+            SELECT Noticia.id AS 'Id', Noticia.titulo AS 'Titulo', Noticia.corpo AS 'Corpo', Noticia.id_categoria AS 'Id_Categoria_FK', Categoria.nome AS 'Categoria', Usuario.nome AS 'Usuario', Noticia.data AS 'Data', Noticia.resumo AS 'Resumo', Noticia.visualizacao AS 'Visualizacao', Noticia.imagem AS 'Imagem'
             FROM Noticia
             INNER JOIN Categoria ON Noticia.id_categoria = Categoria.id
             INNER JOIN Usuario ON Noticia.id_usuario = Usuario.id

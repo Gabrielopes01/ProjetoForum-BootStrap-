@@ -23,6 +23,10 @@
 
     isInFavorite($num);
 
+    echo "<div class='row' style='height: 100%; width: 100%'>";
+    echo "<hr>";
+    echo "<div class='col-12 col-md-10 offset-md-1'>";
+
     echo "<p id='$num' style='float: right;'>";
     if($_SESSION['favorito'] == 1){
         echo "<a onclick='favButtonC($num)' class='btn btn-warning favButton' style='border-radius: 30px; color: black;'><i class='fas fa-star'></i></a>";
@@ -36,9 +40,7 @@
     }
     echo "</p>";
 
-    echo "<div class='row' style='height: 100%; width: 100%'>";
-    echo "<hr>";
-    echo "<div class='col-12 col-md-10 offset-md-1'>";
+    echo "<img class='rounded-circle' src='../../res/site/images/".imageExists($noticia['Imagem'])."' style='float:left; height: 60px; margin-right:10px; margin-top:-10px'>";
     echo "<p style='text-align: left; color:#cccccc; font-size:15px'>".$noticia['Resumo']."</p>";
     echo "<hr>";
     echo "<div id='newsText' style='text-shadow: 0px 1px 0px black; background-color: #d9d9d9; color: black; padding: 20px;'>".$noticia["Corpo"]."</div>";
@@ -65,7 +67,7 @@
     echo "<div class=' col-md-4 offset-md-1 offset-1 d-none d-sm-block' style='height: 260px; width:600px; overflow:auto; float:right; margin-left: 10px'>";
     foreach ($comments as $comment) {
             if ($comment['noticia'] == $num){
-                echo "<img class='rounded-circle' src='../res/defaults/user.png' style='float:left; height: 50px; margin:10px'>";
+                echo "<img class='rounded-circle' src='../res/site/defaults/user.png' style='float:left; height: 50px; margin:10px'>";
                 echo "<div style='background-color: #d9d9d9; border-radius: 0px 10px 10px 10px; padding: 6px; border: 3px solid black; margin-bottom:5px'>";
                     echo "<p class='text-muted' style='float:right; font-size:12px; margin-right: 5px'>".formatDate($comment['data'])."</p>";
                     echo "<h5>".$comment['nome']."</h5>";
