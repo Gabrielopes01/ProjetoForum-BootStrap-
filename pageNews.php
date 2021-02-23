@@ -36,7 +36,7 @@
     }
     echo "</p>";
 
-    echo "<div class='row' style='height: 100%'>";
+    echo "<div class='row' style='height: 100%; width: 100%'>";
     echo "<hr>";
     echo "<div class='col-12 col-md-10 offset-md-1'>";
     echo "<p style='text-align: left; color:#cccccc; font-size:15px'>".$noticia['Resumo']."</p>";
