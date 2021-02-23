@@ -42,7 +42,7 @@
     echo "<small class='text-muted' style='float: right;'>Publicado em ". formatDate($noticia['Data']). " por <strong>". $noticia['Usuario']."</strong> <i class='fas fa-eye'></i> ".$noticia["Visualizacao"]. "</small>";
     echo "</div>";
     echo "</div>";
-    echo "<div class='row' style='margin-top: 100px'> <hr style='color:white'>";
+    echo "<div class='row' style='margin-top: 100px'> <hr class='d-none d-sm-block' style='color:white'>";
     echo "<div class='col-md-5 offset-md-1'>
     <p id='comText'>Deixe seu Comentário:</p>
     </div>
@@ -60,6 +60,20 @@
     }
     echo "</div>";
     echo "<div class=' col-md-4 offset-md-1 offset-1 d-none d-sm-block' style='height: 260px; width:600px; overflow:auto; float:right; margin-left: 10px'>";
+    foreach ($comments as $comment) {
+            if ($comment['noticia'] == $num){
+                echo "<img class='rounded-circle' src='../res/defaults/user.png' style='float:left; height: 50px; margin:10px'>";
+                echo "<div style='background-color: #d9d9d9; border-radius: 0px 10px 10px 10px; padding: 6px; border: 3px solid black; margin-bottom:5px'>";
+                    echo "<p class='text-muted' style='float:right; font-size:12px; margin-right: 5px'>".formatDate($comment['data'])."</p>";
+                    echo "<h5>".$comment['nome']."</h5>";
+                    echo "<p class='text-muted' style='font-size:12px'>".$comment['email']."</p>";
+                    echo "<p style='margin-left: 20px'> - ".$comment['descricao']."</p>";
+                echo "</div>";
+            }
+    }
+    echo "</div>";
+    echo "<p id='comText' class='d-xl-none'>Comentários</p>";
+        echo "<div class='d-xl-none' style='height: 260px; width:500px; overflow:auto; float:right; margin-left: 10px'>";
     foreach ($comments as $comment) {
             if ($comment['noticia'] == $num){
                 echo "<img class='rounded-circle' src='../res/defaults/user.png' style='float:left; height: 50px; margin:10px'>";
