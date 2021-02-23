@@ -175,7 +175,7 @@ class User{
             ":id"=>$parametros["id"]
         ));
 
-        $_SESSION['mensagem'] = "Usuário Alterado com Sucessoo";
+        $_SESSION['mensagem'] = "Usuário Alterado com Sucesso";
         header("Location: " . $urlSuccess);
         exit;
     }

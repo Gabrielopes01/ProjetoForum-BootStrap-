@@ -1,0 +1,29 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3">
+        <h3 align="center">Editar Comentário</h3>
+
+        <hr>
+
+        {if="$erro != ''"}
+            <p id="error">{$erro}</p>
+        {/if}
+
+        <form method="POST">
+            <div class="input-group flex-nowrap shadow-sm" style="margin-bottom: 10px">
+                <span class="input-group-text" id="input1"><i class="fas fa-paragraph"></i></span>
+                <input type="text" class="form-control" name="desc" id="desc" required="" value="{$comentario.descricao}" aria-describedby="input1">
+            </div>
+
+            <hr>
+
+            <button type="submit" class="btn btn-success" style="float: right; margin-left: 10px"><i class="fas fa-check"></i> Editar</button>
+            <a href="/adminCom/search/0" class="btn btn-secondary" style="float: right"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
+        </form>
+    </div>
+</div>

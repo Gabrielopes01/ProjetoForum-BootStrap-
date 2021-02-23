@@ -1,0 +1,163 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-sm-5 col-md-8 offset-md-2">
+        <h1 align="center">Comentários</h1>
+
+        <form method="POST">
+            <ul class="listaFiltro shadow">
+                <li class="textoFiltro"><strong>Buscar por: </strong></li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input1">Descrição</span>
+                    {if="$filtros.desc != ''"}
+                    <input type="text" class="form-control" name="desc" id="desc" value="{$filtros.desc}" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaDesc" id="verBuscaDesc" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="desc" id="desc" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaDesc" id="verBuscaDesc" value="1">
+                    {/if}
+                    </div>
+                </li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input1">Usuário</span>
+                    {if="$filtros.nome != ''"}
+                    <input type="text" class="form-control" name="nome" id="nome" value="{$filtros.nome}" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="nome" id="nome" aria-describedby="input1">
+                    <input type="hidden" name="verBuscaNome" id="verBuscaNome" value="1">
+                    {/if}
+                    </div>
+                </li>
+                <li class="elementoFiltro">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="input3">Data</span>
+                    {if="$filtros.data != ''"}
+                    <input type="text" class="form-control" name="data" id="data" value="{$filtros.data}" aria-describedby="input3" autocomplete="off">
+                    <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
+                    {else}
+                    <input type="text" class="form-control" name="data" id="data" aria-describedby="input3" autocomplete="off">
+                    <input type="hidden" name="verBuscaData" id="verBuscaData" value="1">
+                    {/if}
+                    </div>
+                </li>
+            </ul>
+            <br>
+            <a href="/adminCom/search/0" class="btn btn-secondary" style="float: right; margin-left: 10px; margin-top: -15px"><i class="fas fa-times"></i> Limpar Busca</a>
+            <button type="submit" class="btn btn-primary" style="float: right; margin-top: -15px"><i class="fas fa-search"></i> Buscar</button>
+            <br>
+        </form>
+
+        <hr>
+        <br>
+
+        {if="$message != ''"}
+            <p id="error">{$message}</p>
+        {/if}
+
+        <table class="table table-striped shadow">
+            <thead class="table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Descrição</th>
+                    <th>Notícia</th>
+                    <th>Usuário</th>
+                    <th>Publicação</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {loop="$comentarios"}
+                <tr>
+                    <th>{$value.id}</th>
+                    <td>{$value.descricao}</td>
+                    <td>{$value.noticia}</td>
+                    <td>{$value.usuario}</td>
+                    <td>{function="formatDate($value.data)"}</td>
+                    <td style="vertical-align: middle;"><a href="/adminCom/edit/{$value.id}" class="buttonEdit"><i class="fas fa-edit"></i> Editar</td>
+                    <td style="vertical-align: middle;"><a href="/adminCom/delete/{$value.id}" class="buttonDelete"><i class="fas fa-trash"></i> Excluir</a></td>
+                </tr>
+                {/loop}
+            </tbody>
+        </table>
+
+        <hr>
+
+        <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        {if="$post == 1"}
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disable><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            {loop="$paginas"}
+            {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                {if="$value != 1"}
+                <li class="page-item"><a class="page-link" href="filter/{$value-1}">{$value}</a></li>
+                {/if}
+            {/if}
+            {/loop}
+            {if="$numPags != 1"}
+                <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+            {else}
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+            {/if}
+            {/if}
+
+        {else}
+
+            {if="$pagina == 0"}
+                <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-left"></i></a></li>
+                <li class="page-item active"><a class="page-link" href="0">1</a></li>
+                {loop="$paginas"}
+                {if="$value <= $pagina+4"}  <!--Altera o numero de resultados a aparecer-->
+                    {if="$value != 1"}
+                    <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                    {/if}
+                {/if}
+                {/loop}
+                {if="$numPags != 1"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+            {else}
+                <li class="page-item"><a class="page-link" href="{$pagina-1}"><i class="fas fa-chevron-left"></i></a></li>
+                {loop="$paginas"}
+                    {if="$value <= $pagina+3"}<!--Altera o numero de resultados a aparecer-->
+                        {if="$value-1 >= $pagina"}
+                            {if="($value-1) == $pagina"}
+                            {if="$pagina != 1"}
+                                <li class="page-item"><a class="page-link" href="{$value-3}">{$value-2}</a></li>
+                            {/if}
+                            <li class="page-item"><a class="page-link" href="{$value-2}">{$value-1}</a></li>
+                            <li class="page-item active"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {else}
+                            <li class="page-item"><a class="page-link" href="{$value-1}">{$value}</a></li>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/loop}
+                {if="$pagina+1 < $numPags"}
+                    <li class="page-item"><a class="page-link" href="{$pagina+1}"><i class="fas fa-chevron-right"></i></a></li>
+                {else}
+                    <li class="page-item disabled"><a a class="page-link" href="#" disabled><i class="fas fa-chevron-right"></i></a></li>
+                {/if}
+
+
+            {/if}
+        {/if}
+        </ul>
+        </nav>
+
+    </div>
+</div>
+
+<br>
