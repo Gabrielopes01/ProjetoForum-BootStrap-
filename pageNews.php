@@ -21,7 +21,7 @@
     //Página
     echo "<br><br><br><br><br>";
 
-    echo "<h2 id='titleNews' align='left' width='100%' class='home-title'><span>". $noticia['Titulo']. "</span></h2>";
+    echo "<h2 id='titleNews' align='left' width='95%' class='home-title'><span>". $noticia['Titulo']. "</span></h2>";
 
     isInFavorite($num);
 
