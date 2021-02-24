@@ -143,6 +143,9 @@ header, .navbar {
   width: 30%;
   margin-left: -160px;
   border-radius: 20px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  transition: all 2.0s ease;
 }
 
 .card {

@@ -10,5 +10,26 @@
         </footer>
 
 
+<script>
+
+//Animação do Título da Home
+    let area = $('#titleRecents').offset();   //Área do elemento do titulo
+    stop = 0;
+
+    $(window).scroll(function() {
+
+        let scroll = $(window).scrollTop();
+
+        if (scroll > (area.top - 900) && stop == 0){
+
+            $('#titleRecents').css({"width": "135%"})
+
+            stop = 1;
+        }
+
+
+    });
+</script>
+
 </body>
 </html>
