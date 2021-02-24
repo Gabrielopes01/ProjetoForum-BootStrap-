@@ -76,6 +76,7 @@
                     echo "<p class='text-muted' style='font-size:12px'>".$comment['email']."</p>";
                     echo "<p style='margin-left: 20px'> - ".$comment['descricao']."</p>";
                 echo "</div>";
+                $numComment += 1;
             }
     }
     if ($numComment <= 0) {
