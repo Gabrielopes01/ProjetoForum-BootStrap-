@@ -146,6 +146,19 @@ header, .navbar {
   margin-top: -5px;
   margin-bottom: 15px;
   transition: all 2.0s ease;
+  text-align: center;
+}
+
+#titleRecentsSm{
+  font-family: 'Trebuchet MS', sans-serif;
+  background-color: #ffd9b3;
+  width: 60%;
+  margin-left: -40px;
+  border-radius: 20px;
+  margin-top: -5px;
+  margin-bottom: 15px;
+  transition: all 2.0s ease;
+  text-align: center;
 }
 
 .card {
