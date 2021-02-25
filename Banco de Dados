@@ -54,7 +54,8 @@ CREATE TABLE Comentario (
   id_usuario INT,
   FOREIGN KEY (id_usuario) REFERENCES Usuario(id),
   id_noticia INT,
-  FOREIGN KEY (id_noticia) REFERENCES Noticia(id)
+  FOREIGN KEY (id_noticia) REFERENCES Noticia(id),
+  data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 
