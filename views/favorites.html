@@ -5,12 +5,13 @@
 
 
 <h2 align="left" id="favoritesTitle"> Favoritos</h2>
-      
+
     <div class="container-fluid">
       <div class="row">
 
         <div class="col-sm-12 col-md-10 offset-md-1">
           <div class="row row-cols-2 row-cols-md-4 g-4">
+          {if="$favoritos != []"}
           {loop="$favoritos"}
             <div class="col">
             <div class="card">
@@ -38,6 +39,9 @@
             </div>
             </div>
           {/loop}
+          {else}
+          <p class="text-muted" align="center" style="font-size: 30px; text-align: center; width: 100%">Suas notícias favoritas aparecerão aqui...</p>
+          {/if}
         </div>
 
           </div>
@@ -45,6 +49,7 @@
 </div>
 
 <hr>
+{if="$favoritos != []"}
         <nav id="paginationBar">
         <ul class="pagination">
             {if="$pagina == 0"}
@@ -90,6 +95,7 @@
             {/if}
         </ul>
         </nav>
+{/if}
 <br>
 <br>
 <br>
