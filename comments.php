@@ -34,7 +34,7 @@ $app->get("/adminCom/search/:num", function($num){
         "comentarios"=>$comentarios,
         "message"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "filtros"=>['desc' => "", "data" => "", "nome" => ""],
-        "usuario"=>$_SESSION['nome'],
+        "usuario"=>$_SESSION['email'],
         "paginas"=>$pages,
         "numPags"=>$numPags,
         "pagina"=>$num,

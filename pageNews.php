@@ -74,7 +74,9 @@
                     echo "<p class='text-muted' style='float:right; font-size:12px; margin-right: 5px'>".formatDate($comment['data'])."</p>";
                     echo "<h5>".$comment['nome']."</h5>";
                     echo "<p class='text-muted' style='font-size:12px'>".$comment['email']."</p>";
-                    echo "<p style='margin-left: 20px'> - ".$comment['descricao']."</p>";
+                    echo "<div id='descComment".$comment['id']."'>";
+                    echo "<p style='margin-left: 20px'> - <span id='commentText".$comment['id']."'>".$comment['descricao']."</span></p>";
+                    echo "</div>";
                 echo "</div>";
                 $numComment += 1;
             }
@@ -93,7 +95,9 @@
                     echo "<p class='text-muted' style='float:right; font-size:12px; margin-right: 5px'>".formatDate($comment['data'])."</p>";
                     echo "<h5>".$comment['nome']."</h5>";
                     echo "<p class='text-muted' style='font-size:12px'>".$comment['email']."</p>";
-                    echo "<p style='margin-left: 20px'> - ".$comment['descricao']."</p>";
+                    echo "<div id='descComment".$comment['id']."'>";
+                    echo "<p style='margin-left: 20px'> - <span id='commentText".$comment['id']."'>".$comment['descricao']."</span></p>";
+                    echo "</div>";
                 echo "</div>";
                 $numComment += 1;
             }
@@ -117,7 +121,10 @@ echo "function favButtonC(id) {
       $('#'+id).html(data);
     })
     .fail(function(){
-      $('#'+id).html('Erro');
+      $('#'+id).html('Erro ');
     });
-}";
+
+}
+
+";
 echo "</script>";

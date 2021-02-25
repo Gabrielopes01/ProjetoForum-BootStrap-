@@ -3,7 +3,7 @@
 <br>
 <br>
 <br>
-
+<div class="container-fluid">
 <div class="row">
     <div class="col-sm-5 col-md-8 offset-md-2">
         <h1 align="center">Comentários</h1>
@@ -81,8 +81,13 @@
                     <td>{$value.noticia}</td>
                     <td>{$value.usuario}</td>
                     <td>{function="formatDate($value.data)"}</td>
+                    {if="$usuario == $value.email"}
                     <td style="vertical-align: middle;"><a href="/adminCom/edit/{$value.id}" class="buttonEdit"><i class="fas fa-edit"></i> Editar</td>
                     <td style="vertical-align: middle;"><a href="/adminCom/delete/{$value.id}" class="buttonDelete"><i class="fas fa-trash"></i> Excluir</a></td>
+                    {else}
+                    <td style="vertical-align: middle;"><a class="buttonDisable"><i class="fas fa-edit"></i> Editar</td>
+                    <td style="vertical-align: middle;"><a class="buttonDisable"><i class="fas fa-trash"></i> Excluir</a></td>
+                    {/if}
                 </tr>
                 {/loop}
             </tbody>
@@ -159,5 +164,5 @@
 
     </div>
 </div>
-
+</div>
 <br>

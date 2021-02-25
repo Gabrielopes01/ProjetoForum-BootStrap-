@@ -11,7 +11,7 @@ class Comments{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT Comentario.id AS 'id', Comentario.descricao AS 'descricao', Comentario.data AS 'data', Usuario.nome AS 'nome', Usuario.email AS 'email', Noticia.id AS 'noticia' 
+            SELECT Comentario.id AS 'id', Comentario.descricao AS 'descricao', Comentario.data AS 'data', Usuario.nome AS 'nome', Usuario.email AS 'email', Noticia.id AS 'noticia'
             FROM Comentario
             INNER JOIN Usuario ON Comentario.id_usuario = Usuario.id
             INNER JOIN Noticia ON Comentario.id_noticia = Noticia.id
@@ -27,7 +27,7 @@ class Comments{
         $sql = new Sql();
 
         $resultado = $sql->select("
-            SELECT Comentario.id AS 'id', Comentario.descricao AS 'descricao', Comentario.data AS 'data', Usuario.nome AS 'nome', Usuario.email AS 'email', Noticia.id AS 'noticia' 
+            SELECT Comentario.id AS 'id', Comentario.descricao AS 'descricao', Comentario.data AS 'data', Usuario.nome AS 'nome', Usuario.email AS 'email', Noticia.id AS 'noticia'
             FROM Comentario
             INNER JOIN Usuario ON Comentario.id_usuario = Usuario.id
             INNER JOIN Noticia ON Comentario.id_noticia = Noticia.id
@@ -87,7 +87,7 @@ class Comments{
         $forResult = $num * 10;
 
         $resultado = $sql->select("
-            SELECT TOP 10 Comentario.id AS 'id', Comentario.descricao AS 'descricao', Noticia.titulo AS 'noticia', Usuario.nome AS 'usuario', Comentario.data AS 'data'
+            SELECT TOP 10 Comentario.id AS 'id', Comentario.descricao AS 'descricao', Noticia.titulo AS 'noticia', Usuario.nome AS 'usuario', Usuario.email AS 'email', Comentario.data AS 'data'
             FROM Comentario
             INNER JOIN Noticia ON Comentario.id_noticia = Noticia.id
             INNER JOIN Usuario ON Comentario.id_usuario = Usuario.id
