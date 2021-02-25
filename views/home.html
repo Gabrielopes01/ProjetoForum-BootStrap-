@@ -64,6 +64,24 @@
                 </a>
             </div>
         </div>
+        {else}
+        <div id="mainSlider" class="carousel slide" data-bs-ride="carousel">
+                <!--Indicadores do Slider de Carrossel-->
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#mainSlider" data-bs-slide-to="0" class="active"></li>
+                </ol>
+                <!--Parte Interna do Carrossel-->
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+                        <img src="../../res/site/defaults/news.jpg">
+                        <!--Texto do Carrossel-->
+                        <div class="carousel-caption d-md-block" id="slide-caption">
+                            <h3 id="mostView">As Notícias mais acessadas</h3>
+                            <p>As notícias mais populares do Forum você encontra aqui</p>
+                        </div>
+                    </div>
+        </div>
         {/if}
 
       <div class="row " style="margin: 10px 10px 0 10px; border-radius: 25px; margin-top: 30px">
@@ -72,6 +90,7 @@
           <h2 class="d-xl-none" id="titleRecentsSm">As Mais Recentes </h2>
 
         <div class="row row-cols-2 row-cols-md-4 g-4">
+          {if="$noticias != []"}
           {loop="$noticias"}
             <div class="col">
             <div class="card">
@@ -115,9 +134,13 @@
 
           </div>
       </div>
+      {else}
+      <p class="text-muted" align="center" style="font-size: 30px; text-align: center; width: 100%">Ainda não há nada por aqui...</p>
+      {/if}
 </div>
 <!--Paginação-->
 <hr>
+{if="$noticias != []"}
         <nav id="paginationBar">
         <ul class="pagination">
             {if="$pagina == 0"}
@@ -163,7 +186,7 @@
             {/if}
         </ul>
         </nav>
-
+{/if}
 <br>
 <br>
 <br>

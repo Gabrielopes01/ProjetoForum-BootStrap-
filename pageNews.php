@@ -21,6 +21,8 @@
     //Página
     echo "<br><br><br><br><br>";
 
+    echo "<div class='container-fluid'>";
+
     echo "<h2 id='titleNews' align='left' width='95%' class='home-title'><span>". $noticia['Titulo']. "</span></h2>";
 
     isInFavorite($num);
@@ -42,7 +44,7 @@
     }
     echo "</p>";
 
-    echo "<img class='rounded-circle' src='../../res/site/images/".imageExists($noticia['Imagem'])."' style='float:left; height: 60px; width: 70px; margin-right:10px; margin-top:-10px'>";
+    echo "<img class='rounded-circle' src='../../res/site/images/".imageExists($noticia['Imagem'])."' style='float:left; height: 60px; width: 70px; margin-right:10px; margin-top:-15px'>";
     echo "<p style='text-align: left; color:#cccccc; font-size:15px'>".$noticia['Resumo']."</p>";
     echo "<hr>";
     echo "<div id='newsText' style='text-shadow: 0px 1px 0px black; background-color: #d9d9d9; color: black; padding: 20px;'>".$noticia["Corpo"]."</div>";
@@ -107,6 +109,7 @@
     }
     echo "</div>";
     echo "<input type='hidden' name='usuario-co' id='usuario-co' value='".$email."'>";
+    echo "</div>";
     echo "</div>";
     echo "<br><br><br><br>";
 
