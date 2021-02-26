@@ -4,9 +4,9 @@ namespace Classes;
 //CRMNOTE_18\SQLEXPRESS3
 class Sql {
 
-    const HOSTNAME = "CRMNOTE_18\SQLEXPRESS3";
-    const USERNAME = "";
-    const PASSWORD = "";
+    const HOSTNAME = "10.24.24.3,2017";
+    const USERNAME = "crm";
+    const PASSWORD = "Sql@server";
     const DBNAME = "Forum";
 
     private $conn;
