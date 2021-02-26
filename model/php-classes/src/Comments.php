@@ -105,7 +105,7 @@ class Comments{
 
 
         $filtros = ["desc"=>$parametros['desc'], "nome"=>$parametros['nome'], "data"=>$parametros['data']];
-        $select = "SELECT Comentario.id AS 'id', Comentario.descricao AS 'descricao', Comentario.data AS 'data', Usuario.nome AS 'usuario', Noticia.titulo AS 'noticia' 
+        $select = "SELECT Comentario.id AS 'id', Comentario.descricao AS 'descricao', Comentario.data AS 'data', Usuario.nome AS 'usuario', Usuario.email AS 'email', Noticia.titulo AS 'noticia' 
                     FROM Comentario
                     INNER JOIN Usuario ON Comentario.id_usuario = Usuario.id
                     INNER JOIN Noticia ON Comentario.id_noticia = Noticia.id
