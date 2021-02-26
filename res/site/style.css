@@ -399,6 +399,11 @@ header, .navbar {
 
 
 /* Admin */
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
 .buttonEdit{
   color: #668cff;
   font-size: 13px;
