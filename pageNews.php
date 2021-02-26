@@ -88,7 +88,7 @@
     }
     echo "</div>";
     echo "<p id='comText' class='d-xl-none'>Comentários</p>";
-    echo "<div class='d-xl-none' style='height: 260px; width:500px; overflow:auto; float:right; margin-left: 10px'>";
+    echo "<div class='d-xl-none' id='commentSection'>";
 
     foreach ($comments as $comment) {
             if ($comment['noticia'] == $num){

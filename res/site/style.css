@@ -4,6 +4,30 @@
     --bg-color: #D8D8D8;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #cccccc; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+/* ScrollBar */
+
+
 /* title styles */
 .home-title span{
     position: relative;
@@ -340,6 +364,14 @@ header, .navbar {
   margin-top: 10px;
   margin-right: 5px;
   margin-left: 1px;
+}
+
+#commentSection {
+  height: 260px; 
+  width:500px; 
+  overflow:auto; 
+  float:right; 
+  margin-left: 10px;
 }
 
 
