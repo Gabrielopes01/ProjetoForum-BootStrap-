@@ -122,7 +122,7 @@
                 {/if}
                 </p>
                 <h5 class="card-title">{$value.Titulo}</h5>
-                <a href="/news/{$value.Id}" class="btn btn-info" style="margin: 10px; border-radius: 4px">Acessar</a>
+                <a href="/news/{$value.Id}" class="btn btn-info" id="accessButton">Acessar</a>
               </div>
               <div class="card-footer" style="font-size: 13px; background-color: lightgray">
                 <small class="text-muted">Publicado em: {function="formatDate($value.Data)"} por {$value.Usuario}</small>

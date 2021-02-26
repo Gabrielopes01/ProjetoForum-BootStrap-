@@ -15,7 +15,7 @@ class Comments{
             FROM Comentario
             INNER JOIN Usuario ON Comentario.id_usuario = Usuario.id
             INNER JOIN Noticia ON Comentario.id_noticia = Noticia.id
-            ORDER BY Noticia.data DESC
+            ORDER BY Noticia.data ASC
         ");
 
         return $resultado;

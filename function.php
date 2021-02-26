@@ -15,6 +15,15 @@ function formatDate($date){
 
 }
 
+function formatDateTime($date){
+
+    $dateC = strtotime($date);
+    $newDate = date("H:i - d/m/Y",$dateC);
+
+    return $newDate;
+
+}
+
 
 function getNameCategorie($id){
 

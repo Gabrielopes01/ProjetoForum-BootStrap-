@@ -181,6 +181,17 @@ header, .navbar {
   transform: scale(1.2);
 }
 
+#accessButton{
+  margin: 10px; 
+  border-radius: 4px
+}
+
+#accessButton:hover{
+  background-color: transparent;
+  border: 2px solid #c1c1f0;
+  color: white;
+}
+
 #paginationBar {
   float: right;
   margin-right: 120px;
