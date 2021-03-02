@@ -104,7 +104,7 @@ class News{
 
     }
 
-    public static function addNews($parametros){
+    public static function addNews($parametros, $address){
 
         $sql = new Sql();
 
@@ -126,7 +126,7 @@ class News{
 
 
         $_SESSION['mensagem'] = "Notícia Criada com Sucesso";
-        header("Location: /adminNews/search/0");
+        header("Location: ".$address);
         exit;
 
     }

@@ -175,14 +175,11 @@ $app->get("/adminNews/add", function(){
 
     User::checkLogin();
 
-    $usuarios = User::getALLUsers();
-
     $categorias = Categorie::getALLCategorie();
 
     $page->setTpl('addNews', [
         "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
         "categorias"=>$categorias,
-        "usuarios"=>$usuarios,
         "usuario"=>$_SESSION['nome'],
         "titulo"=>isset($_SESSION['paramNews']['titulo']) ? $_SESSION['paramNews']['titulo'] : "",
         "corpo"=>isset($_SESSION['paramNews']['corpo']) ? $_SESSION['paramNews']['corpo'] : "",
@@ -198,7 +195,7 @@ $app->post("/adminNews/add", function(){
 
     $_SESSION['paramNews'] = $_POST;
 
-    News::addNews($_POST);
+    News::addNews($_POST, "/adminNews/search/0");
 
 });
 
@@ -258,5 +255,37 @@ $app->get("/adminNews/delete/:id", function($id){
 $app->post("/adminNews/delete/:id", function($id){
 
     News::deleteNews($id);
+
+});
+
+
+$app->get("/0/publish", function(){
+
+    $page = new PageAdmin([
+        "nome"=>isset($_SESSION['nome'])? $_SESSION['nome']:''
+    ]);
+
+    User::checkLogin();
+
+    $categorias = Categorie::getALLCategorie();
+
+    $page->setTpl('publish', [
+        "erro"=>isset($_SESSION['mensagem'])? $_SESSION['mensagem']:'',
+        "categorias"=>$categorias,
+        "usuario"=>$_SESSION['nome'],
+        "titulo"=>isset($_SESSION['paramNews']['titulo']) ? $_SESSION['paramNews']['titulo'] : "",
+        "corpo"=>isset($_SESSION['paramNews']['corpo']) ? $_SESSION['paramNews']['corpo'] : "",
+        "resumo"=>isset($_SESSION['paramNews']['resumo']) ? $_SESSION['paramNews']['resumo'] : ""
+    ]);
+
+    $_SESSION['paramNews'] = "";
+
+});
+
+$app->post("/0/publish", function(){
+
+    $_SESSION['paramNews'] = $_POST;
+
+    News::addNews($_POST, "/");
 
 });
