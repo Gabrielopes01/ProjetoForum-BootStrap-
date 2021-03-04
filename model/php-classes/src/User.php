@@ -9,7 +9,7 @@ class User{
 
     public function getUserById($id){
 
-        $sql = new Sql;
+        $sql = new Sql();
 
         $resultado = $sql->select("SELECT * FROM Usuario WHERE id = :id", [
             ":id"=>$id
@@ -21,7 +21,7 @@ class User{
 
     public function getUserByEmail($email){
 
-        $sql = new Sql;
+        $sql = new Sql();
 
         $resultado = $sql->select("SELECT * FROM Usuario WHERE email = :email", [
             ":email"=>$email
